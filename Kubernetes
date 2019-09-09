@@ -1,0 +1,65 @@
+Multi master setup?
+Quoram?
+Deployments vs Replicationset vs Replication Controller and what is the latest one?
+Canary deployments?
+Red and Green Deployments?
+1 VCPU - 1023 containers?
+Recently application you have built?
+How many master nodes?
+split brain issue?
+Cluster setup?
+  3 Master
+  4 workers
+  2 data nodes (NFS or EBS)
+Migrate POD from one worker node another worker node?
+  Kubectl evacutaed?
+  kubectl manage-node nodename <podname>
+daemons?
+Container registry set for kubernetes?
+How to configure the max and min pods with autoscaling based on CPU utilization?
+How to maintain the logs of a service in Kubernetes pods?
+Can I start one Pod with multiple containers?
+-Yes
+Kuberneres Pods AutoScalling?
+Kubernetes worker nodes autoscalling?
+- Used versions
+- Migrations to new versions
+- Volumes
+- UI
+- How to check logs
+- Deployments
+- Rolling updates
+- Docker registry
+- Commands
+- Expose URLS - Service, NodePort, ingressController
+- NodePort vs Service vs ingressController
+- Trouble shooting
+- Multi cluster master setup
+- Swith master to worker and worker to master
+- Back up and recovery
+- How to rollback the Kubernetes deployments
+Kubernetes Migrations
+keep alive container
+Kuberenetes N/W Protocals
+ingress vs nodeport vs lb in service
+nodeip vs master ip
+docker registry set
+how k8 know the chnges in image
+AutoScalling
+Replication for Service
+Master backup and how to create master active passive
+Replication for pods
+IP Ranges
+canary deployments
+Blue and green Deployments
+Can we restart only a container within the pod?
+Volume Management
+Types of Kind
+jobs
+ReplicationController Vs RelicationSet
+Deployments Vs Kind Vs ReplicationController Vs ReplicationSet vs replica
+Entrypoint Vs cmd
+
+
+https://stackoverflow.com/questions/21553353/what-is-the-difference-between-cmd-and-entrypoint-in-a-dockerfile
+The ENTRYPOINT specifies a command that will always be executed when the container starts. The CMD specifies arguments that will be fed to the ENTRYPOINT.

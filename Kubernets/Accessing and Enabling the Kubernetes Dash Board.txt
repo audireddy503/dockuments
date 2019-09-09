@@ -1,0 +1,74 @@
+Accessing and Enabling the Kubernetes Dash Board:
+
+1. Make sure that your network level firewall is enabled. Since we are using google cloud make sure that 
+under firewall you are allowing all the traffic.
+
+2. Once done with the above make sure that you are enabling the hostlevel firewall as we are using centos7
+
+In our case we are gonna use ports between 9000-9050 hence I am enabling these ports on my machine using below.
+
+firewall-cmd --permanent --add-port=9000-9050/tcp
+firewall-cmd --reload
+
+3. Once done with the above configure the below.
+
+[root@k8s-master ~]# kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+
+Output:
+
+secret "kubernetes-dashboard-certs" created
+serviceaccount "kubernetes-dashboard" created
+role.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
+rolebinding.rbac.authorization.k8s.io "kubernetes-dashboard-minimal" created
+deployment.apps "kubernetes-dashboard" created
+service "kubernetes-dashboard" created
+
+4. Creating the user credentials
+
+[root@k8s-master ~]# cat dashboard-admin.yaml
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+   name: kubernetes-dashboard
+   labels:
+     k8s-app: kubernetes-dashboard
+roleRef:
+   apiGroup: rbac.authorization.k8s.io
+   kind: ClusterRole
+   name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-dashboard
+  namespace: kube-system
+
+  
+5. kubectl create -f dashboard-admin.yaml
+
+6. Enabling the proxy using below.
+
+[root@k8s-master ~]# ifconfig eth0
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 10.142.0.2  netmask 255.255.255.255  broadcast 10.142.0.2
+        inet6 fe80::4001:aff:fe8e:2  prefixlen 64  scopeid 0x20<link>
+        ether 42:01:0a:8e:00:02  txqueuelen 1000  (Ethernet)
+        RX packets 81260  bytes 466818143 (445.1 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 55423  bytes 10874302 (10.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@k8s-master ~]# nohup kubectl proxy --address="10.142.0.2" -p 9000 --accept-hosts='^*$' &
+[1] 25782
+[root@k8s-master ~]# nohup: ignoring input and appending output to ‘nohup.out’
+
+Note: Here dont forget to give the private ipaddress of your instance.
+
+7. Checking 
+
+[root@k8s-master ~]# netstat -nap|grep :9000
+tcp        0      0 10.142.0.2:9000         0.0.0.0:*               LISTEN      25782/kubectl
+
+8. Now simply open your console using below URL
+
+http://10.142.0.2:9000/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+Note: select kubeconfig --> skip --> You can able to see content of all your cluster.

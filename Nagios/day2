@@ -1,0 +1,861 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.11.27 07:20:19 =~=~=~=~=~=~=~=~=~=~=~=
+[root@nagiosserver ~]# 
+[root@nagiosserver ~]# 
+[root@nagiosserver ~]# cd /var/usr/local/nagios/
+[root@nagiosserver nagios]# ls
+bin  etc  include  libexec  sbin  share  var
+[root@nagiosserver nagios]# cd etc/
+[root@nagiosserver etc]# ls
+cgi.cfg  htpasswd.users  nagios.cfg  nrpe.cfg  objects  resource.cfg
+[root@nagiosserver etc]# cd objects/
+[root@nagiosserver objects]# [root@nagiosserver objects]# pwd
+/usr/local/nagios/etc/objects
+[root@nagiosserver objects]# ls -l
+total 0
+drwxr-xr-x. 2 root root 26 Nov 26 02:51 commands
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 contactgroups
+drwxr-xr-x. 2 root root 26 Nov 26 03:16 contacts
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 hostgroups
+drwxr-xr-x. 2 root root 51 Nov 26 03:21 hosts
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 servicegroups
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 services
+drwxr-xr-x. 2 root root 27 Nov 26 03:19 templates
+drwxr-xr-x. 2 root root 29 Nov 26 03:20 timeperiods
+[root@nagiosserver objects]# Lcecd hosts
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# pwd
+/usr/local/nagios/etc/objects/hosts
+[root@nagiosserver hosts]# ll
+total 12
+-rw-rw-r--. 1 nagios nagios 5375 Nov 26 02:27 localhost.cfg
+-rw-r--r--. 1 root   root    910 Nov 26 03:21 nagiosserver.cfg
+[root@nagiosserver hosts]# vim nagiosserver.cfg 
+  "nagiosserver.cfg" 22L, 910Cdefine host{host_namenagiosserveraliasnagios core hostcheck_period24x7check_interval5retry_interval1max_check_attempts3
+#        check_command                   check-host-by-pingcheck_commandcheck_ping!100.0,20%!500.0,60%address127.0.0.1contact_groupsadminsnotifications_enabled1event_handler_enabled1flap_detection_enabled1process_perf_data1retain_status_information1retain_nonstatus_information    1notification_interval5notification_optionsd,u,rnotification_period24x7
+
+}
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      9,9All{}22,1-- INSERT --22,2All22,2All{}3,1424,0-1All:q1E488: Trailing characters24,0-1Alldefine host{host_namenagiosserveraliasnagios core hostcheck_period24x7check_interval5retry_interval1max_check_attempts3
+#        check_command                   check-host-by-pingcheck_commandcheck_ping!100.0,20%!500.0,60%address127.0.0.1contact_groupsadminsnotifications_enabled1event_handler_enabled1flap_detection_enabled1process_perf_data1retain_status_information1retain_nonstatus_information    1notification_interval5notification_optionsd,u,rnotification_period24x7
+
+}
+
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      24,0-1All:q![root@nagiosserver hosts]# [root@nagiosserver hosts]# cat logocalhost.cfg 
+###############################################################################
+# LOCALHOST.CFG - SAMPLE OBJECT CONFIG FILE FOR MONITORING THIS MACHINE
+#
+#
+# NOTE: This config file is intended to serve as an *extremely* simple 
+#       example of how you can create configuration entries to monitor
+#       the local (Linux) machine.
+#
+###############################################################################
+
+
+
+
+###############################################################################
+###############################################################################
+#
+# HOST DEFINITION
+#
+###############################################################################
+###############################################################################
+
+# Define a host for the local machine
+
+define host{
+        use                     linux-server            ; Name of host template to use
+; This host definition will inherit all variables that are defined
+; in (or inherited by) the linux-server host template definition.
+        host_name               localhost
+        alias                   localhost
+        address                 127.0.0.1
+        }
+
+
+
+###############################################################################
+###############################################################################
+#
+# HOST GROUP DEFINITION
+#
+###############################################################################
+###############################################################################
+
+# Define an optional hostgroup for Linux machines
+
+define hostgroup{
+        hostgroup_name  linux-servers ; The name of the hostgroup
+        alias           Linux Servers ; Long name of the group
+        members         localhost     ; Comma separated list of hosts that belong to this group
+        }
+
+
+
+###############################################################################
+###############################################################################
+#
+# SERVICE DEFINITIONS
+#
+###############################################################################
+###############################################################################
+
+
+# Define a service to "ping" the local machine
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             PING
+check_commandcheck_ping!100.0,20%!500.0,60%
+        }
+
+
+# Define a service to check the disk space of the root partition
+# on the local machine.  Warning if < 20% free, critical if
+# < 10% free space on partition.
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             Root Partition
+check_commandcheck_local_disk!20%!10%!/
+        }
+
+
+
+# Define a service to check the number of currently logged in
+# users on the local machine.  Warning if > 20 users, critical
+# if > 50 users.
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             Current Users
+check_commandcheck_local_users!20!50
+        }
+
+
+# Define a service to check the number of currently running procs
+# on the local machine.  Warning if > 250 processes, critical if
+# > 400 users.
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             Total Processes
+check_commandcheck_local_procs!250!400!RSZDT
+        }
+
+
+
+# Define a service to check the load on the local machine. 
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             Current Load
+check_commandcheck_local_load!5.0,4.0,3.0!10.0,6.0,4.0
+        }
+
+
+
+# Define a service to check the swap usage the local machine. 
+# Critical if less than 10% of swap is free, warning if less than 20% is free
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             Swap Usage
+check_commandcheck_local_swap!20!10
+        }
+
+
+
+# Define a service to check SSH on the local machine.
+# Disable notifications for this service by default, as not all users may have SSH enabled.
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             SSH
+check_commandcheck_ssh
+notifications_enabled0
+        }
+
+
+
+# Define a service to check HTTP on the local machine.
+# Disable notifications for this service by default, as not all users may have HTTP enabled.
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       localhost
+        service_description             HTTP
+check_commandcheck_http
+notifications_enabled0
+        }
+
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# vim nagiosserver.cfg 
+  "nagiosserver.cfg" 22L, 910Cdefine host{host_namenagiosserveraliasnagios core hostcheck_period24x7check_interval5retry_interval1max_check_attempts3
+#        check_command                   check-host-by-pingcheck_commandcheck_ping!100.0,20%!500.0,60%address127.0.0.1contact_groupsadminsnotifications_enabled1event_handler_enabled1flap_detection_enabled1process_perf_data1retain_status_information1retain_nonstatus_information    1notification_interval5notification_optionsd,u,rnotification_period24x7
+
+}
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      1,1All{}22,1-- INSERT --22,2All22,2All{}3,14define service{
+        use                             local-service         ; Name of service template to use        host_name                       localhost7
+service_descriptionSSH
+        check_command                   check_ssh        notifications_enabled           0}30,10Bot{}30,10Bot{}2987654987654321n2a3g4i5o6s7s8e9r50v1e2r37,448,509,428,507,446,5359654325,92Bot1 change; before #3  2 seconds agouse25,95Bot43210898765432107987654321069876543210598765434-- INSERT --25,54Bot         ; Name of service template to us47 ; Name of service template to use6         ; Name of service template to use125,40Bot1 change; before #4  5 seconds agolocal-service         ; Name of service template to use25,54Bot:wq!"nagiosserver.cfg" 30L, 1222C written
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# cat nagiosserver.cfg 
+define host{
+        host_name                       nagiosserver
+        alias                           nagios core host
+        check_period                    24x7
+        check_interval                  5
+        retry_interval                  1
+        max_check_attempts              3
+#        check_command                   check-host-by-ping
+        check_command                   check_ping!100.0,20%!500.0,60%
+        address                         127.0.0.1
+        contact_groups                  admins
+        notifications_enabled           1
+        event_handler_enabled           1
+        flap_detection_enabled          1
+        process_perf_data               1
+        retain_status_information       1
+        retain_nonstatus_information    1
+        notification_interval           5
+        notification_options            d,u,r
+        notification_period             24x7
+
+}
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       nagiosserver
+        service_description             SSH
+        check_command                   check_ssh
+        notifications_enabled           0
+        }
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# (reverse-i-search)`':-': ls -lv': /usr/local/nagios/bin/nagios -v  /usr/local/nagios/etc/nagios.cfg[root@nagiosserver hosts]#
+
+Nagios Core 4.1.1
+Copyright (c) 2009-present Nagios Core Development Team and Community Contributors
+Copyright (c) 1999-2009 Ethan Galstad
+Last Modified: 08-19-2015
+License: GPL
+
+Website: https://www.nagios.org
+Reading configuration data...
+   Read main config file okay...
+   Read object config files okay...
+
+Running pre-flight check on configuration data...
+
+Checking objects...
+Checked 9 services.
+Checked 2 hosts.
+Checked 1 host groups.
+Checked 0 service groups.
+Checked 1 contacts.
+Checked 1 contact groups.
+Checked 24 commands.
+Checked 5 time periods.
+Checked 0 host escalations.
+Checked 0 service escalations.
+Checking for circular paths...
+Checked 2 hosts
+Checked 0 service dependencies
+Checked 0 host dependencies
+Checked 5 timeperiods
+Checking global event handlers...
+Checking obsessive compulsive processor commands...
+Checking misc settings...
+
+Total Warnings: 0
+Total Errors:   0
+
+Things look okay - No serious problems were detected during the pre-flight check
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# /usr/local/nagios/bin/nagios -v  /usr/local/nagios/etc/nagios.cfg^C
+[root@nagiosserver hosts]# /usr/local/nagios/bin/nagios -v  /usr/local/nagios/etc/nagios.cfg
+
+Nagios Core 4.1.1
+Copyright (c) 2009-present Nagios Core Development Team and Community Contributors
+Copyright (c) 1999-2009 Ethan Galstad
+Last Modified: 08-19-2015
+License: GPL
+
+Website: https://www.nagios.org
+Reading configuration data...
+   Read main config file okay...
+   Read object config files okay...
+
+Running pre-flight check on configuration data...
+
+Checking objects...
+Checked 9 services.
+Checked 2 hosts.
+Checked 1 host groups.
+Checked 0 service groups.
+Checked 1 contacts.
+Checked 1 contact groups.
+Checked 24 commands.
+Checked 5 time periods.
+Checked 0 host escalations.
+Checked 0 service escalations.
+Checking for circular paths...
+Checked 2 hosts
+Checked 0 service dependencies
+Checked 0 host dependencies
+Checked 5 timeperiods
+Checking global event handlers...
+Checking obsessive compulsive processor commands...
+Checking misc settings...
+
+Total Warnings: 0
+Total Errors:   0
+
+Things look okay - No serious problems were detected during the pre-flight check
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# (reverse-i-search)`':r': /usr/local/nagios/bin/nagios -v  /usr/local/nagios/etc/nagios.cfge': service nagios restarts[root@nagiosserver hosts]#reload
+Reloading nagios configuration (via systemctl):  [  OK  ]
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# ll
+total 12
+-rw-rw-r--. 1 nagios nagios 5375 Nov 26 02:27 localhost.cfg
+-rw-r--r--. 1 root   root   1222 Nov 27 01:53 nagiosserver.cfg
+[root@nagiosserver hosts]# cat nagiosserver.cfg 
+define host{
+        host_name                       nagiosserver
+        alias                           nagios core host
+        check_period                    24x7
+        check_interval                  5
+        retry_interval                  1
+        max_check_attempts              3
+#        check_command                   check-host-by-ping
+        check_command                   check_ping!100.0,20%!500.0,60%
+        address                         127.0.0.1
+        contact_groups                  admins
+        notifications_enabled           1
+        event_handler_enabled           1
+        flap_detection_enabled          1
+        process_perf_data               1
+        retain_status_information       1
+        retain_nonstatus_information    1
+        notification_interval           5
+        notification_options            d,u,r
+        notification_period             24x7
+
+}
+
+define service{
+        use                             local-service         ; Name of service template to use
+        host_name                       nagiosserver
+        service_description             SSH
+        check_command                   check_ssh
+        notifications_enabled           0
+        }
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# cd ../commands/
+[root@nagiosserver commands]# ls -l
+total 8
+-rw-rw-r--. 1 nagios nagios 7688 Nov 26 02:27 commands.cfg
+[root@nagiosserver commands]# gmmore commands.cfg 
+###############################################################################
+# COMMANDS.CFG - SAMPLE COMMAND DEFINITIONS FOR NAGIOS 4.1.1
+#
+#
+# NOTES: This config file provides you with some example command definitions
+#        that you can reference in host, service, and contact definitions.
+#       
+#        You don't need to keep commands in a separate file from your other
+#        object definitions.  This has been done just to make things easier to
+#        understand.
+#
+###############################################################################
+
+
+################################################################################
+#
+# SAMPLE NOTIFICATION COMMANDS
+#
+# These are some example notification commands.  They may or may not work on
+# your system without modification.  As an example, some systems will require 
+# you to use "/usr/bin/mailx" instead of "/usr/bin/mail" in the commands below.
+#
+################################################################################
+
+
+# 'notify-host-by-email' command definition
+define command{
+command_namenotify-host-by-email
+command_line/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYP
+--More--(15%)E$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LON
+GDATETIME$\n" | /bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTE
+MAIL$
+}
+
+# 'notify-service-by-email' command definition
+define command{
+command_namenotify-service-by-email
+command_line/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYP
+E$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/
+Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$\n" | /bin/mail -s "** $NOTIFICATIONTYPE$ Se
+rvice Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$
+}
+
+
+
+
+
+################################################################################
+#
+# SAMPLE HOST CHECK COMMANDS
+#
+################################################################################
+
+
+# This command checks to see if a host is "alive" by pinging it
+# The check must result in a 100% packet loss or 5 second (5000ms) round trip 
+# average time to produce a critical error.
+# Note: Five ICMP echo packets are sent (determined by the '-p 5' argument)
+--More--(30%)
+# 'check-host-alive' command definition
+define command{
+        command_name    check-host-alive
+        command_line    $USER1$/check_ping -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -p 5
+        }
+
+
+
+
+################################################################################
+#
+# SAMPLE SERVICE CHECK COMMANDS
+#
+# These are some example service check commands.  They may or may not work on
+# your system, as they must be modified for your plugins.  See the HTML 
+# documentation on the plugins for examples of how to configure command definitions.
+#
+# NOTE:  The following 'check_local_...' functions are designed to monitor
+#        various metrics on the host that Nagios is running on (i.e. this one).
+################################################################################
+
+# 'check_local_disk' command definition
+define command{
+        command_name    check_local_disk
+        command_line    $USER1$/check_disk -w $ARG1$ -c $ARG2$ -p $ARG3$
+        }
+
+
+--More--(43%)# 'check_local_load' command definition
+define command{
+        command_name    check_local_load
+        command_line    $USER1$/check_load -w $ARG1$ -c $ARG2$
+        }
+
+
+# 'check_local_procs' command definition
+define command{
+        command_name    check_local_procs
+        command_line    $USER1$/check_procs -w $ARG1$ -c $ARG2$ -s $ARG3$
+        }
+
+
+# 'check_local_users' command definition
+define command{
+        command_name    check_local_users
+        command_line    $USER1$/check_users -w $ARG1$ -c $ARG2$
+        }
+
+
+# 'check_local_swap' command definition
+define command{
+command_namecheck_local_swap
+command_line$USER1$/check_swap -w $ARG1$ -c $ARG2$
+}
+
+
+# 'check_local_mrtgtraf' command definition
+--More--(52%)define command{
+command_namecheck_local_mrtgtraf
+command_line$USER1$/check_mrtgtraf -F $ARG1$ -a $ARG2$ -w $ARG3$ -c $ARG4$ -e $ARG5$
+}
+
+
+################################################################################
+# NOTE:  The following 'check_...' commands are used to monitor services on
+#        both local and remote hosts.
+################################################################################
+
+# 'check_ftp' command definition
+define command{
+        command_name    check_ftp
+        command_line    $USER1$/check_ftp -H $HOSTADDRESS$ $ARG1$
+        }
+
+
+# 'check_hpjd' command definition
+define command{
+        command_name    check_hpjd
+        command_line    $USER1$/check_hpjd -H $HOSTADDRESS$ $ARG1$
+        }
+
+
+# 'check_snmp' command definition
+define command{
+        command_name    check_snmp
+        command_line    $USER1$/check_snmp -H $HOSTADDRESS$ $ARG1$
+--More--(64%)        }
+
+
+# 'check_http' command definition
+define command{
+        command_name    check_http
+        command_line    $USER1$/check_http -I $HOSTADDRESS$ $ARG1$
+        }
+
+
+# 'check_ssh' command definition
+define command{
+command_namecheck_ssh
+command_line$USER1$/check_ssh $ARG1$ $HOSTADDRESS$
+}
+
+
+# 'check_dhcp' command definition
+define command{
+command_namecheck_dhcp
+command_line$USER1$/check_dhcp $ARG1$
+}
+
+
+# 'check_ping' command definition
+define command{
+        command_name    check_ping
+        command_line    $USER1$/check_ping -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -p 5
+        }
+--More--(72%)
+
+# 'check_pop' command definition
+define command{
+        command_name    check_pop
+        command_line    $USER1$/check_pop -H $HOSTADDRESS$ $ARG1$
+        }
+
+
+# 'check_imap' command definition
+define command{
+        command_name    check_imap
+        command_line    $USER1$/check_imap -H $HOSTADDRESS$ $ARG1$
+        }
+
+
+# 'check_smtp' command definition
+define command{
+        command_name    check_smtp
+        command_line    $USER1$/check_smtp -H $HOSTADDRESS$ $ARG1$
+        }
+
+
+# 'check_tcp' command definition
+define command{
+command_namecheck_tcp
+command_line$USER1$/check_tcp -H $HOSTADDRESS$ -p $ARG1$ $ARG2$
+}
+
+--More--(80%)
+# 'check_udp' command definition
+define command{
+command_namecheck_udp
+command_line$USER1$/check_udp -H $HOSTADDRESS$ -p $ARG1$ $ARG2$
+}
+
+
+# 'check_nt' command definition
+define command{
+command_namecheck_nt
+command_line$USER1$/check_nt -H $HOSTADDRESS$ -p 12489 -v $ARG1$ $ARG2$
+}
+
+
+
+################################################################################
+#
+# SAMPLE PERFORMANCE DATA COMMANDS
+#
+# These are sample performance data commands that can be used to send performance
+# data output to two text files (one for hosts, another for services).  If you
+# plan on simply writing performance data out to a file, consider using the 
+# host_perfdata_file and service_perfdata_file options in the main config file.
+#
+################################################################################
+
+
+# 'process-host-perfdata' command definition
+--More--(91%)[root@nagiosserver commands]# [root@nagiosserver commands]# vim commands.cfg 
+  "commands.cfg" 239L, 7688C#
+# SAMPLE HOST CHECK COMMANDS
+#
+################################################################################
+
+
+# This command checks to see if a host is "alive" by pinging it
+# The check must result in a 100% packet loss or 5 second (5000ms) round trip 
+# average time to produce a critical error.
+# Note: Five ICMP echo packets are sent (determined by the '-p 5' argument)
+
+# 'check-host-alive' command definition
+define command{command_name    check-host-alivecommand_line    $USER1$/check_ping -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -p 5}################################################################################
+#
+# SAMPLE SERVICE CHECK COMMANDS
+#
+# These are some example service check commands.  They may or may not work on
+# your system, as they must be modified for your plugins.  See the HTML 
+# documentation on the plugins for examples of how to configure command definitions.
+#
+# NOTE:  The following 'check_local_...' functions are designed to monitor57,920%/pingpingcheck_57,3920%# 'check_ssh' command definition
+define command{command_name    check_sshcommand_line    $USER1$/check_ssh $ARG1$ $HOSTADDRESS$}
+
+
+# 'check_dhcp' command definition
+define command{command_name    check_dhcpcommand_line    $USER1$/check_dhcp $ARG1$}
+
+
+# 'check_ping' command definition
+define command{command_name    check_pingcommand_line    $USER1$/check_ping -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -p 5}
+
+
+# 'check_pop' command definition
+define command{command_name    check_popcommand_line    $USER1$/check_pop -H $HOSTADDRESS$ $ARG1$}
+
+
+# 'check_imap' command definition164,1070%/ping166,3170%167,3970%search hit BOTTOM, continuing at TOP}################################################################################
+#
+# SAMPLE HOST CHECK COMMANDS
+#
+################################################################################
+
+
+# This command checks to see if a host is "alive" by pinging it
+# The check must result in a 100% packet loss or 5 second (5000ms) round trip 
+# average time to produce a critical error.
+# Note: Five ICMP echo packets are sent (determined by the '-p 5' argument)
+
+# 'check-host-alive' command definition
+define command{command_name    check-host-alivecommand_line    $USER1$/check_ping -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -p 5}################################################################################
+#49,5416%search hit BOTTOM, continuing at TOP49,5416%501,432,543,0-14,39 {}5,15{}6,407,54/cheping# 'check_ssh' command definition
+define command{command_name    check_sshcommand_line    $USER1$/check_ssh $ARG1$ $HOSTADDRESS$}
+
+
+# 'check_dhcp' command definition
+define command{command_name    check_dhcpcommand_line    $USER1$/check_dhcp $ARG1$}
+
+
+# 'check_ping' command definition
+define command{command_name    check_pingcommand_line    $USER1$/check_ping -H $HOSTADDRESS$ -w $ARG1$ -c $ARG2$ -p 5}
+
+
+# 'check_pop' command definition
+define command{command_name    check_popcommand_line    $USER1$/check_pop -H $HOSTADDRESS$ $ARG1$}
+
+
+# 'check_imap' command definition164,1070%:q![root@nagiosserver commands]# [root@nagiosserver commands]# cd ..
+[root@nagiosserver objects]# ls -l
+total 0
+drwxr-xr-x. 2 root root 26 Nov 27 02:00 commands
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 contactgroups
+drwxr-xr-x. 2 root root 26 Nov 26 03:16 contacts
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 hostgroups
+drwxr-xr-x. 2 root root 51 Nov 27 01:53 hosts
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 servicegroups
+drwxr-xr-x. 2 root root  6 Nov 26 02:34 services
+drwxr-xr-x. 2 root root 27 Nov 26 03:19 templates
+drwxr-xr-x. 2 root root 29 Nov 26 03:20 timeperiods
+[root@nagiosserver objects]# cd ..
+[root@nagiosserver etc]# [root@nagiosserver etc]# ll
+total 76
+-rw-rw-r--.  1 nagios nagios 12267 Nov 26 02:27 cgi.cfg
+-rw-r--r--.  1 root   root      50 Nov 26 02:39 htpasswd.users
+-rw-rw-r--.  1 nagios nagios 45276 Nov 26 02:38 nagios.cfg
+-rw-r--r--.  1 nagios nagios  7988 Nov 26 02:28 nrpe.cfg
+drwxrwxr-x. 11 nagios nagios   163 Nov 26 02:35 objects
+-rw-rw----.  1 nagios nagios  1312 Nov 26 02:27 resource.cfg
+[root@nagiosserver etc]# pwd
+/usr/local/nagios/etc
+[root@nagiosserver etc]# cat resource.cfg 
+###########################################################################
+#
+# RESOURCE.CFG - Sample Resource File for Nagios 4.1.1
+#
+#
+# You can define $USERx$ macros in this file, which can in turn be used
+# in command definitions in your host config file(s).  $USERx$ macros are
+# useful for storing sensitive information such as usernames, passwords, 
+# etc.  They are also handy for specifying the path to plugins and 
+# event handlers - if you decide to move the plugins or event handlers to
+# a different directory in the future, you can just update one or two
+# $USERx$ macros, instead of modifying a lot of command definitions.
+#
+# The CGIs will not attempt to read the contents of resource files, so
+# you can set restrictive permissions (600 or 660) on them.
+#
+# Nagios supports up to 32 $USERx$ macros ($USER1$ through $USER32$)
+#
+# Resource files may also be used to store configuration directives for
+# external data sources like MySQL...
+#
+###########################################################################
+
+# Sets $USER1$ to be the path to the plugins
+$USER1$=/usr/local/nagios/libexec
+
+# Sets $USER2$ to be the path to event handlers
+#$USER2$=/usr/local/nagios/libexec/eventhandlers
+
+# Store some usernames and passwords (hidden from the CGIs)
+#$USER3$=someuser
+#$USER4$=somepassword
+
+[root@nagiosserver etc]# [root@nagiosserver etc]# cat resource.cfg pwd
+/usr/local/nagios/etc
+[root@nagiosserver etc]# ls -l resource.cfg 
+-rw-rw----. 1 nagios nagios 1312 Nov 26 02:27 resource.cfg
+[root@nagiosserver etc]# cat resource.cfg 
+###########################################################################
+#
+# RESOURCE.CFG - Sample Resource File for Nagios 4.1.1
+#
+#
+# You can define $USERx$ macros in this file, which can in turn be used
+# in command definitions in your host config file(s).  $USERx$ macros are
+# useful for storing sensitive information such as usernames, passwords, 
+# etc.  They are also handy for specifying the path to plugins and 
+# event handlers - if you decide to move the plugins or event handlers to
+# a different directory in the future, you can just update one or two
+# $USERx$ macros, instead of modifying a lot of command definitions.
+#
+# The CGIs will not attempt to read the contents of resource files, so
+# you can set restrictive permissions (600 or 660) on them.
+#
+# Nagios supports up to 32 $USERx$ macros ($USER1$ through $USER32$)
+#
+# Resource files may also be used to store configuration directives for
+# external data sources like MySQL...
+#
+###########################################################################
+
+# Sets $USER1$ to be the path to the plugins
+$USER1$=/usr/local/nagios/libexec
+
+# Sets $USER2$ to be the path to event handlers
+#$USER2$=/usr/local/nagios/libexec/eventhandlers
+
+# Store some usernames and passwords (hidden from the CGIs)
+#$USER3$=someuser
+#$USER4$=somepassword
+
+[root@nagiosserver etc]# [root@nagiosserver etc]# cat resource.cfg ls -lpwd
+/usr/local/nagios/etc
+[root@nagiosserver etc]# pwdcat resource.cfg ls -l
+-rw-rw----. 1 nagios nagios 1312 Nov 26 02:27 resource.cfg
+[root@nagiosserver etc]# [root@nagiosserver etc]# cd objects/
+[root@nagiosserver objects]# lscd hosts
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# ll
+total 12
+-rw-rw-r--. 1 nagios nagios 5375 Nov 26 02:27 localhost.cfg
+-rw-r--r--. 1 root   root   1222 Nov 27 01:53 nagiosserver.cfg
+[root@nagiosserver hosts]# vim nagiosclient1.cfg
+  "nagiosclient1.cfg" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1Alldefine host {
+        use                             linux-server        host_name                       nagiosclient1        alias                           My first Apache server        address                         <nagiosclient1 private ipaddress>        max_check_attempts              5        check_period                    24x7        notification_interval           30        notification_period             24x7}{}10,2All10,1All:wq!"nagiosclient1.cfg" [New] 10L, 435C written
+[root@nagiosserver hosts]# cd ../templates/
+[root@nagiosserver templates]# ls -l
+total 12
+-rw-rw-r--. 1 nagios nagios 10621 Nov 26 02:27 templates.cfg
+[root@nagiosserver templates]# vim templates.cfg 
+  "templates.cfg" 187L, 10621C###############################################################################
+# TEMPLATES.CFG - SAMPLE OBJECT TEMPLATES
+#
+#
+# NOTES: This config file provides you with some example object definition
+#        templates that are refered by other host, service, contact, etc.
+#        definitions in other config files.
+#       
+#        You don't need to keep these definitions in a separate file from your
+#        other object definitions.  This has been done just to make things
+#        easier to understand.
+#
+##############################################################################################################################################################
+###############################################################################
+#
+# CONTACT TEMPLATES
+#
+###############################################################################
+###############################################################################
+
+# Generic contact definition template - This is NOT a real contact, just a template!
+
+define contact{namegeneric-contact; The name of this contact templateservice_notification_period     24x7; service notifications can be sent any@                                                                                                      1,1Top2345678910,11234,0-1567,1  89201234,0-15,1  6,0-17,1  8
+        service_notification_period     24x7                    ; service notifications can be sent anyytime29,10%host_notification_period24x7; host notifications can be sent anytimme30,11%service_notification_options    w,u,c,r,f,s; send notifications for all service sttates, flapping events, and scheduled downtime events31,13%host_notification_optionsd,u,r,f,s; send notifications for all host statees, flapping events, and scheduled downtime events32,14%
+service_notification_commands   notify-service-by-email ; send service notifications via email33,14%
+host_notification_commands      notify-host-by-email    ; send host notifications via email34,15%register0; DONT REGISTER THIS DEFINITION - ITS NNOT A REAL CONTACT, JUST A TEMPLATE!35,16%
+}36,17%
+37,0-17%
+38,0-18%
+39,0-19%
+40,0-19%
+###############################################################################41,110%
+###############################################################################42,111%
+#43,111%
+# HOST TEMPLATES44,112%
+#45,112%
+###############################################################################46,113%
+###############################################################################47,114%
+48,0-114%
+# Generic host definition template - This is NOT a real host, just a template!49,115%
+50,0-115%
+define host{51,116%
+namegeneric-host    ; The name of this host template52,117%notifications_enabled1; Host notifications are enabledevent_handler_enabled1; Host event handler is enabled53,117%4flap_detection_enabled1; Flap detection is enabledprocess_perf_data1; Process performance data55,118%6retain_status_information1; Retain status information across program resttarts57,119%retain_nonstatus_information    1; Retain non-status information across program  restarts58,119%
+notification_period24x7; Send host notifications at any time59,1-820%register0; DONT REGISTER THIS DEFINITION - ITS NOT A REAAL HOST, JUST A TEMPLATE!}60,121%1
+62,0-122%
+63,0-122%
+# Linux host definition template - This is NOT a real host, just a template!64,123%
+65,0-124%
+define host{66,124%
+namelinux-server    ; The name of this host template67,1-825%usegeneric-host    ; This template inherits other values from the  generic-host template68,1-826%check_period24x7; By default, Linux hosts are checked round thee clock69,1-827%
+check_interval5; Actively check the host every 5 minutes70,1-828%retry_interval1; Schedule host check retries at 1 minute interrvals71,1-829%
+max_check_attempts10; Check each Linux host 10 times (max)72,1-829%
+check_commandcheck-host-alive ; Default command to check Linux hosts73,130%notification_periodworkhours; Linux admins hate to be woken up, so we only  notify during the day74,1-831%; Note that the notification_period variable iss being overridden from75,1-832%; the value that is inherited from the generic--host template!76,1-833%notification_interval120; Resend notifications every 2 hoursnotification_optionsd,u,r; Only send notifications for specific host sta@                                                                                                      77,1-834%        notification_options            d,u,r           ; Only send notifications for specific host staatescontact_groupsadmins; Notifications get sent to the admins by defau@                                                                                                      78,1-834%
+        contact_groups                  admins          ; Notifications get sent to the admins by defauult79,1-835%register0; DONT REGISTER THIS DEFINITION - ITS NOT A REAAL HOST, JUST A TEMPLATE!80,1-835%
+}81,1-836%:q![root@nagiosserver templates]# [root@nagiosserver templates]# cd ../hosts/
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# vim nagios
+  "nagios" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All:q![root@nagiosserver hosts]# vim nagiosclient1.cfg 
+  "nagiosclient1.cfg" 10L, 435Cdefine host {uselinux-serverhost_namenagiosclient1aliasMy first Apache serveraddress<nagiosclient1 private ipaddress>max_check_attempts5check_period24x7notification_interval30notification_period24x7
+}
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      10,1All{}9,1 8765-- INSERT --5,74All343210698765432105987654321049876543211203.4154627.809.50315,50All:wq!"nagiosclient1.cfg" 10L, 412C written
+[root@nagiosserver hosts]# (reverse-i-search)`':r': ls -l resource.cfgel': service nagios reloado[root@nagiosserver hosts]#
+Reloading nagios configuration (via systemctl):  [  OK  ]
+[root@nagiosserver hosts]# cat nagiosclient1.cfg 
+define host {
+        use                             linux-server
+        host_name                       nagiosclient1
+        alias                           My first Apache server
+        address                         10.142.0.3
+        max_check_attempts              5
+        check_period                    24x7
+        notification_interval           30
+        notification_period             24x7
+}
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# vim nagiosclient1.cfg 
+  "nagiosclient1.cfg" 10L, 412Cdefine host {uselinux-serverhost_namenagiosclient1aliasMy first Apache serveraddress10.142.0.3max_check_attempts5check_period24x7notification_interval30notification_period24x7
+}
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      5,9All{}10,1-- INSERT --10,2All10,2All{}1,1define service {
+        use                             generic-service        host_name                       nagiosclient1        service_description             PING        check_command                   check_ping!100.0,20%!500.0,60%}717,0-1All:wq!"nagiosclient1.cfg" 17L, 658C written
+[root@nagiosserver hosts]# [root@nagiosserver hosts]# (reverse-i-search)`':-': ls -lv': /usr/local/nagios/bin/nagios -v  /usr/local/nagios/etc/nagios.cfg[root@nagiosserver hosts]# ^C
+[root@nagiosserver hosts]# (reverse-i-search)`':r': service nagios reloadelo[root@nagiosserver hosts]#
+Reloading nagios configuration (via systemctl):  [  OK  ]
+[root@nagiosserver hosts]# vim nagiosserver.cfg 
+  "nagiosserver.cfg" 30L, 1222Cdefine host{host_namenagiosserveraliasnagios core hostcheck_period24x7check_interval5retry_interval1max_check_attempts3
+#        check_command                   check-host-by-pingcheck_commandcheck_ping!100.0,20%!500.0,60%address127.0.0.1contact_groupsadminsnotifications_enabled1event_handler_enabled1flap_detection_enabled1process_perf_data1retain_status_information1retain_nonstatus_information    1notification_interval5notification_optionsd,u,rnotification_period24x7
+
+}
+
+define service{uselocal-service; Name of service template to usehost_namenagiosserverservice_descriptionSSHcheck_commandcheck_sshnotifications_enabled025,9Top6789
+{}30,9Bot{}2989876543,0-12,1  1,0-10,9  198765432123456789:q![root@nagiosserver hosts]# [root@nagiosserver hosts]# logout
+[ec2-user@nagiosserver ~]$ logout

@@ -1,0 +1,75 @@
+Other Questions !!
+
+1. What is java Garbage collection?
+
+2. How can we take a thread dump?
+
+3. Maven Snapshot Repository vs Release Repository?
+
+4. Tell me about yourself?
+
+5. What is your total and relevant experience?
+
+6. Tell me about skills in Devops domain?
+
+7. What is your day to day activity you will be doing?
+
+8. What tools you are using in Devops?
+
+9. Did you work on apache , tomcat?
+
+10. Did you work on any middleware technology, cloud?
+
+11. What is the toughest challenge faced in your project?
+
+12. What you do on daily basis?
+
+Describe the project architecture, what is the role
+
+What is the toughest challenge faced in your project?
+
+What you do on daily basis?
+
+Tell me about yourself and work culture and daily activities and  rules and responsibilities what  you are holding on?
+
+What is the issue you faced in your project and how can you fix that issue?
+
+1.Can you please explain about  your rules responsibilities in your current role?
+
+4.What is the size of your team members?
+
+15.Tell me about your key skill in devops?
+
+Q5. What are the core operations of DevOps in terms of development and Infrastructure?
+Ans. The core operations of DevOps are: application development, code developing, code coverage, unit testing, packaging, deployment with infrastructure, provisioning, configuration, orchestration, and deployment.
+
+Q6. Can one consider DevOps as an Agile methodology?
+Ans. DevOps can be considered complementary to the agile methodology, but not completely similar.
+
+Q7. Name some of the top tools used in DevOps? What are the tools that you have used?
+Ans. Some of the common tools are – Docker, Git, Selenium, Puppet, Nagios and Chef
+
+Q12. Which is the most popular scripting language in DevOps?
+Ans. Python.
+
+Q13. What is Vagrant and what is it used for?
+Ans. Vagrant is a tool that can create and manage virtualized (or containerized) environments for testing and developing software.
+
+Q14. What is post mortem meetings?
+Ans. It is done to discuss what went wrong and what steps should be taken so that failure doesn’t happen again.
+
+Q16. What’s a PTR in DNS?
+Ans. Pointer (PTR) record is used for revers DNS (Domain Name System) lookup.
+
+Q24. How does HTTP work?
+Ans. The HTTP protocol works in a client and server model like most other protocols. A web browser using which a request is initiated is called as a client and a web server software which responds to that request is called a server. World Wide Web Consortium and the Internet Engineering Task Force are two important spokes in the standardization of the HTTP protocol.
+
+Tell me about ypur past working experience?
+
+what is your roles and responsibilities?
+
+what is wave server?
+
+what is the revere proxy?
+
+6.what is dedicated server?

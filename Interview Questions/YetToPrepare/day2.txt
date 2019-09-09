@@ -1,0 +1,342 @@
+[20/02, 4:46 PM] Kiran Devops Stdnt: 1.	What is your role in AWS?
+2.	What is the toughest challenge faced in your project?
+3.	What you do on daily basis?
+4.	Autoscaling Group threshold when an instance in the asg goes down?
+5.	What is sessions stickiness?
+6.	I have a machine in 1regions and  want to use that machine in deifferent region?
+7.	What is the importance of Route Table?
+8.	What if not defineInternet gate way in Route table?
+9.	I have 2 VPCs in same or different region, I want to establish the connection between that 2 VPCs, How?
+10.	What is Terraform? Does it supports RDS
+11.	What is the difference between Cloud Watch and Cloud trail?
+12.	How to take manual backup of RDS instance? (Not default backup)
+13.	
+14.	Write a ansible playbook for installing Apache service?
+[09/03, 5:47 PM] Mani1 Devops Student: 1.Tell me about yourself and work culture and daily activities and  rules and responsibilities what  you are holding on?
+2. What is the issue you faced in your project and how can you fix that issue?
+3. Which operating system you are working?
+4. In Linux what are the commands mostly used in your environment?
+5. Explain me about the permission 777 and 655 and 755?
+6. What chown does?
+7. What are the other command you used?
+8. I have one server thing that  how can we check our Java is running or not?
+9. Checking the particular process who can you check?
+10. What is the ps –ef means?
+11. Which services you had   working on AWS?
+12. In IAM I have a 10 users I want to segregate 10 users  2 in development  and  2 in Administrative and   other 2 in billing how can we set the permission?
+13. What is the default security group when we are creating a instance?
+14. What type of ELB you worked?
+	
+
+
+15. In s3 what sort of things we can do? Why we use s3?
+16. What are the types in s3?
+17.What we use glacier?
+18.What is the difference between git and git hub
+19 If I want to create a branch in git how can we create?
+20.If we wat to switch that branch  how can we switch ?
+21.What git status do?
+22.I checking the status in staging area how can we check it?
+23 I create one branch if we want to upload  something to my repository in the Git Hub? For that what I have to do?
+24.I created a repo but you guys are not able to commit any changes to my repo? What is the issue?
+25.What is the difference between GIT and SVN?
+26.In configuration management which tool you are working?(Ansible)
+27.What is the difference between Ansible, cheff and puppet?
+28.If I have set of DB   servers and I have a set of Application servers? I do have some have set of web servers? I want to push something in Application servers, how can we push it?
+29.Which playbook you are implemented in your environment?
+30.I want to create some users in the  100 servers, same user present in the 100 servrers?
+31.What are the setions are there in playbook?
+32.What are the setions are there in playbook?
+33.Can you explain ansible and configuring notes to ansible?
+34.What are the things are you do in Jenkins?
+35.What do you mean by continues integration and continoues delivery?
+36.What are the most plugins you  used in Jenkins?
+37.For integrating the ansble you have to use some  plugin for  Jenkins?
+38.Do you automated anything in the Jenkins?
+39.What is the mean of Docker?
+[10/03, 12:47 PM] Mani1 Devops Student: 1.Can you please explain about  your rules responsibilities in your current role?
+2.What are the scripting languages you know?
+3.Are you  used any 3rd  part library to write the python scripts?
+4.What is the size of your team members?
+5.What level of knowledge you have in Jenkins?
+6.Coming to the linux administration  whenever user login to the linux server I want a welcome message to be displayed, how we will do that?
+7.There is a process in linix how we will convert to the service?
+8.In a folder people how  creates a file only there should be having the delete permition? other people don’t have to delete file, How can we achieve that?
+9.git and git hub what are the things you do?
+10.What is the default branch?
+11.If you want to switch the other  branch  what is the command you  use?
+12.New changes in the master branch and you are developing a develop branch? How  can  you verbose those changes in develop branch?
+13.When we will use git rebase command?
+14.If you get any conflicts how you can resolve it?
+15.Tell me about your key skill in devops?
+16.In Jenkins ways we can install Jenkins?
+17.Coming to AMI and Security groups can you explain me how can we custome AMI and what are the security groups provide that AMI?
+18.How you will create a customized image?
+19.If you want to Automate the AMI process how can you do it?
+20.I give a application? Some wibesite I want? How you will design architech tell me what are the permitions you will give the security groups ?
+21.You create a subnet that subnet is open to the internet?
+22.Do you have any operational stuff?
+[17/03, 5:20 PM] Ramu Java Homes: Q1. What is Version control?
+
+ 
+
+Ans. It is a system that records changes to a file or set of files over time so that you can recall specific versions later.
+
+ 
+
+Q2. What are containers?
+
+ 
+
+Ans. Containers are form of lightweight virtualization, heavier than ‘chroot’ but lighter than ‘hypervisors’. They provide isolation among processes while using same kernel as the host machine, and ‘cgroups’ functionality within kernel.
+
+ 
+
+Q3. What is Continuous Delivery?
+
+ 
+
+Ans. It is practice of delivering the software for testing as soon as it is built by CI (Continuous Integration) servers.
+
+ 
+
+Q4. What are the uses of Version control?
+
+ 
+Ans.
+
+Revert files back to a previous state.
+
+Revert the entire project back to a previous state.
+
+Compare changes over time.
+
+See who last modified something that might be causing a problem.
+
+Who introduced an issue and when.
+
+ 
+
+Q5. What are the core operations of DevOps in terms of development and Infrastructure?
+
+ 
+
+Ans. The core operations of DevOps are: application development, code developing, code coverage, unit testing, packaging, deployment with infrastructure, provisioning, configuration, orchestration, and deployment.
+
+ 
+
+Q6. Can one consider DevOps as an Agile methodology?
+
+ 
+
+Ans. DevOps can be considered complementary to the agile methodology, but not completely similar.
+
+ 
+
+Q7. Name some of the top tools used in DevOps? What are the tools that you have used?
+
+ 
+
+Ans. Some of the common tools are – Docker, Git, Selenium, Puppet, Nagios and Chef
+
+ 
+
+Q8. What is Git?
+
+ 
+
+Ans. Git is a Distributed Version Control system (DVCS). It can track changes to a file and allows you to revert back to any particular change.
+
+ 
+
+Q9. In Git how do you revert a commit that has already been pushed and made public?
+
+ 
+
+Ans. It can be done in two ways:
+
+By removing or fixing the bad file in a new commit and pushing it to the remote repository. Once the necessary changes to the file has been made, commit it to the remote repository. Use: git commit -m “commit message”
+
+By creating a new commit that undoes all changes that were made in the bad commit. To do this, use command: git revert <name of bad commit>
+
+ 
+
+Q10. What is Git bisect?
+
+ 
+
+Ans. Git bisect is used to find the commit that introduced a bug by using binary search.
+
+ 
+
+Q11. Why do you need a Continuous Integration of Dev & Testing?
+
+ 
+
+Ans. Continuous Integration of Dev and Testing improves the quality of software, and reduces the time taken to deliver it, by replacing the traditional practice of testing after completing all development.
+
+ 
+
+Q12. Which is the most popular scripting language in DevOps?
+
+ 
+
+Ans. Python.
+
+ 
+
+Learn DevOps Now>>
+
+ 
+
+Q13. What is Vagrant and what is it used for?
+
+ 
+
+Ans. Vagrant is a tool that can create and manage virtualized (or containerized) environments for testing and developing software.
+
+ 
+
+Q14. What is post mortem meetings?
+
+ 
+
+Ans. It is done to discuss what went wrong and what steps should be taken so that failure doesn’t happen again.
+
+ 
+
+Q15. What is meant by Continuous Integration?
+
+ 
+
+Ans. It is a development practice that requires developers to integrate code into a shared repository several times a day.
+
+ 
+
+Q16. What’s a PTR in DNS?
+
+ 
+
+Ans. Pointer (PTR) record is used for revers DNS (Domain Name System) lookup.
+
+ 
+
+Q17. What testing is necessary to insure a new service is ready for production?
+
+ 
+
+Ans. Continuous testing
+
+ 
+
+Also Read>> Top Python Interview Questions with Answers
+
+ 
+
+Q18. What is Continuous Testing?
+
+ 
+
+Ans. Continuous Testing is the process of executing automated tests as part of the software delivery pipeline to obtain immediate feedback on the business risks associated with in the latest build.
+
+ 
+
+Q19. What is Automation Testing?
+
+ 
+
+Ans. Automation testing or Test Automation is a process of automating the manual process to test the application/system under test.
+
+ 
+
+Q20. What are the key elements of continuous testing?
+
+ 
+
+Ans. Risk assessment, policy analysis, requirements traceability, advanced analysis, test optimisation, and service virtualisation
+
+ 
+
+Q21. What are the Testing types supported by Selenium?
+
+ 
+
+Ans. Regression testing and functional testing
+
+ 
+
+Also Read>> Top Selenium Interview Questions & Answers
+
+ 
+
+Q22. Differentiate between Asset Management and Configuration Management
+
+ 
+
+Ans. Asset Management, broadly defined, refers to any system that monitors and maintains things of value to an entity or group.
+
+Configuration Management is the process of planning for, identifying, controlling and verifying the Configurations Items (CIs) within a service, recording their status and, in support of Change Management, assessing the potential IT impact of changing those items.
+
+ 
+
+Q23. What is Puppet?
+
+ 
+
+Ans. It is a Configuration Management tool which is used to automate administration tasks.
+
+ 
+
+Q24. How does HTTP work?
+
+ 
+
+Ans. The HTTP protocol works in a client and server model like most other protocols. A web browser using which a request is initiated is called as a client and a web server software which responds to that request is called a server. World Wide Web Consortium and the Internet Engineering Task Force are two important spokes in the standardization of the HTTP protocol.
+
+ 
+
+Q25. Describe two-factor authentication?
+
+ 
+
+Ans. Two-factor authentication is a security process in which the user provides two means of identification from separate categories of credentials; one is typically a physical token, such as a card, and the other is typically something memorized, such as a security code.
+
+These are some of the popular questions asked in DevOps interviews. Always be prepared to answer all types of questions — technical skills, interpersonal, leadership or methodology. If you are someone who has recently started your career in DevOps, you can always get certified in the various tools and skills needed to be an expert in the field.
+
+ 
+[19/03, 1:48 PM] Mani1 Devops Student: Tell me about ypur past working experience?
+what are the different types of load balancers?what is the difference between them?
+which load balancer you are using?
+what is S3 bucket?
+what is the difference between public subnet and private subnet?
+do you add internet gateway to the private subnet?
+how can we add one DNS server to another server?
+what is the role of /etc/hosts file?
+which perpose you are using Ansible?
+how do you rolback an application throw Ansible?
+i have some task that i have go through an ansible, i have 10 machines some tasks are comman dependent, how can we reuse that tasks?
+what do you do throw terraform?
+what is your roles and responsibilities?
+what is container?
+difference between VMWARE and Container?
+what is wave server?
+what is the revere proxy?
+[20/03, 4:54 PM] Mani1 Devops Student: 1.what is the use of Jenkins?
+2.how do you maintain more than unexpected request how do you make it scalable?
+3.when do you do stress testing?
+4.What is VPC?
+5.In ec2 also we can create IP? what is the difference between ec2IP adress and VPC IP adress?
+6.what is dedicated server?
+7.what is squash?
+8.If you want to know particular lines who has written it how do you find that?
+9.where you are used Dockers? why you are using Dockers?
+10.what do you mean by container?
+[29/03, 3:21 PM] Mani1 Devops Student: what was the product you deployed in kubernets?
+how many nodes and how many masters are there in your kubernets?
+what is your Docker environment?
+what is the docker methodology you are using to geth the containers deployement?
+explain me about the build complete life cycle How eactly build start in your organization and how it's build and how it's get deployeed?
+where did you used cloud watch?
+How do you monitoring the Application?
+how do you configure that application errors?
+what is ELB?

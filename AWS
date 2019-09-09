@@ -1,0 +1,35 @@
+regionsZones
+VPC
+Security group vs NACL?
+VPC pics?
+S3
+EBS and S3
+S3 classes
+S3 Replications3 versioning
+Mount S3 in EC2
+Lambda
+SNS
+LoadBalancers
+Dif ALB vs classic vs NLB
+OSI Model
+Autoscaling
+RDS
+AWS Migration tools
+R53
+DNS vs R53
+EC2
+EC2 troubleshoot issues
+ASG?
+How to check if EC2 on one subnet is unable to connect to the other EC2 in other EC2?
+Application loadBalancer set for multiple ports?
+Subnet - NACL - SG --> Order of Precedence
+AWS Migrations issues?
+- Used versions
+- Migrations to new versions
+- VPC
+- S3 Classes
+- R53
+- LB Types
+- How to copy the files from EC2 to S3
+- EFS mount in EC2
+Natgateways

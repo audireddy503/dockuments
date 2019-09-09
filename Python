@@ -1,0 +1,10 @@
+boto3
+smtp
+open
+popen
+os
+system
+requests
+How to swap the variables without using the temp varibale?
+How to print the pyramid using single loop?
+Diff b/w lists and tuples vs dict?

@@ -1,0 +1,118 @@
+Unix & Linux Shell Scripting:
+
+9738566679
+
+Special Files:
+
+/dev/null
+
+echo "hello" > /dev/null
+
+/dev/tty
+
+cp file > /dev/tty
+
+Variables:
+
+1. Predifined
+2. User defined
+- Null Variables
+- unsetting a varaible
+- Storing File Names ( Wild Cards ? & *)
+- Storing File contents to a varaible
+- Storing Commands to a variable
+- Read Only Variables
+{(var=8; readonly var; echo "-$var-"); var=90; echo "[$var]"; unset var; echo "[[$var]]";}
+- Exporting Variables
+Which shell you are currently in 
+ps -p $$
+echo $$
+echo $0 ( it wont work for csh)
+tcsh - set var=name
+- Echo/print command & formats "\t \n \\ \b"
+Perment assigning the variables
+
+Reading A variable:
+- less arguments
+- More i/p than arguments
+- reading from a file
+- exit status ?
+- eval command
+
+Bash Shell Scripting:
+
+#! (shebang) & Importance
+# comments 
+; & \n importance
+Executing a script 
+
+
+Expressions:
+Mathametical 
+execution of numberics & String caluclations
+Relational operators( 2 ways)
+File expressions
+-f ,-d ,-x & etc
+Logical Operations
+
+Decision Making :
+
+if
+if-then-else
+elif-ladder
+
+Command Controled Loops:
+
+while loop
+case
+until loop
+for loop
+select loop
+
+Loop Direction:
+
+Input Redirection:
+
+while
+until
+
+output Redirection:
+
+while
+for
+until
+
+Input Piping:
+while
+until
+
+output piping:
+while
+
+Other Controled Loops:
+break
+continue
+sleep
+Special Parameters & Values:
+Arguments & Positional Parameters 
+$1 .. $9
+$0 , $#,$@,$*
+
+All parameters with out quotes
+All parameters with quotes
+
+Argument Validation:
+
+Debuggin scripts:
+ksh -o xtrace *.scr
+
+Functions & Explanation
+
+
+--------------------------------
+
+AWK & its uses
+Wild Cards
+
+
+

@@ -1,0 +1,200 @@
+AWS Questions !!
+
+1. What is meant by ec2 instance and what you does on it?
+
+2. What is NACL gateway?
+
+3. How load balancer works?
+
+4. What is VPC Peering?
+
+5. VPC peering is possible between different regions?
+
+6. What automation work you did?
+
+7. What you worked on ec2-instances?
+
+8. What is Cloud watch? Why we use cloud watch?
+
+9. What is the difference between cloud watch and cloud trail ?
+
+10. What is vpc? Why we use vpc?
+
+11. What is your role in AWS?
+
+12. Have you create instance manually or using scripts?
+
+13. What are the major services we have in AWS?
+
+14. What is the difference between ELB and ALB?
+
+15. Have you done any connection between 2 regions and how to do that?
+
+16. What is S3 bucket? Explain about it?
+
+17. What is EFS in cloud?
+
+18. Explain difference between cloud & other environment?
+
+19. Can we restart RDS instance?
+
+20. Autoscaling Group threshold when an instance in the asg goes down?
+
+21. What is sessions stickiness?
+
+22. I have a machine in 1 regions and  want to use that machine in different region?
+
+23. What is the importance of Route Table?
+
+24. What if not define Internet gateway in Route table?
+
+25. I have 2 VPCs in same or different region, I want to establish the connection between that 2 VPCs, How?
+
+26. How to take manual backup of RDS instance? (Not default backup)
+
+27. I have 1 web application which needs a common storage, where my app is global application where it is accecible by different customers. 
+I want a shared volume to be created, so that all changes will be to that volume so that no need to maintain the multi server. Can we do that?
+(I want a common storage for accessing bymultiple instances)?
+
+
+28. What is Lambda and what is its use?
+
+29. What languages does lambda supports?
+
+30. AWS supports python?
+
+31. What is region and availability zone?
+
+32. Why to go for VPC? Explain configuration.
+
+33. Worked on AWS CLI?
+
+34. Worked on RDS? What are the types available?
+
+35. Worked on lambda?
+
+When instance is slow, what you will do.
+
+Not able to connect to a EC2 instance, what all the things will do?
+
+How to connect to EC2 instance using the private ip. What is the name of the EC2 service involved here. (elastic ip)
+
+Location of the main html page.
+
+How to achieve auto scaling?
+
+On security group of ELB. How the load balancer knows one instance is not working? 
+
+How we will work with S3 storage?
+
+What is the difference between S3 and EBS?
+
+A zip file is copied to a wrong location, particularly under S3 repository. Now, in order to do the correction, any down time is reqd?
+
+How to create the RDS. Configuration in detail.
+
+Write the CICD pipeline. They were saying, was looking for different particularly with AWS services.
+
+What are the parameters to consider for creating ec2-instance.
+
+What is VPC?
+
+Installation steps in RDS?
+
+How to stop the RDS instance.
+
+Expalin what S3 bucket do?
+
+What is a worker with respect to SWF?
+
+You have reached your account limit for the number of CloudFormation stacks in a region.How do you increase your limit?
+
+Which operation could return temporarily inconsistent results?
+
+Your CloudFormation template launches a two-tier web application in us-east-1. When you attempt to create a development stack in us-west-1,What is the problem if the process fails?
+
+Tell about VPC? 
+
+Aws Beanstalk  supports what?? How to configure it?
+
+What is your role in AWS?
+
+Autoscaling Group threshold when an instance in the asg goes down?
+
+What is sessions stickiness?
+
+I have a machine in 1regions and  want to use that machine in deifferent region?
+
+What is the importance of Route Table?
+
+What if not defineInternet gate way in Route table?
+
+I have 2 VPCs in same or different region, I want to establish the connection between that 2 VPCs, How?
+
+What is the difference between Cloud Watch and Cloud trail?
+
+How to take manual backup of RDS instance? (Not default backup)
+
+Which services you had working on AWS?
+
+In IAM I have a 10 users I want to segregate 10 users  2 in development  and  2 in Administrative and   other 2 in billing how can we set the permission?
+
+What is the default security group when we are creating a instance?
+
+What type of ELB you worked?
+
+In s3 what sort of things we can do? Why we use s3?
+
+What are the types in s3?
+
+What we use glacier?
+
+17.Coming to AMI and Security groups can you explain me how can we custome AMI and what are the security groups provide that AMI?
+
+18.How you will create a customized image?
+
+19.If you want to Automate the AMI process how can you do it?
+
+20.I give a application? Some wibesite I want? How you will design architech tell me what are the permitions you will give the security groups ?
+
+21.You create a subnet that subnet is open to the internet?
+
+22.Do you have any operational stuff?
+
+Q25. Describe two-factor authentication?
+Ans. Two-factor authentication is a security process in which the user provides two means of identification from separate categories of credentials; one is typically a physical token, such as a card, and the other is typically something memorized, such as a security code.
+These are some of the popular questions asked in DevOps interviews. Always be prepared to answer all types of questions — technical skills, interpersonal, leadership or methodology. If you are someone who has recently started your career in DevOps, you can always get certified in the various tools and skills needed to be an expert in the field.
+
+what are the different types of load balancers?what is the difference between them?
+
+which load balancer you are using?
+
+what is S3 bucket?
+
+what is the difference between public subnet and private subnet?
+
+do you add internet gateway to the private subnet?
+
+how can we add one DNS server to another server?
+
+2.how do you maintain more than unexpected request how do you make it scalable?
+
+3.when do you do stress testing?
+
+4.What is VPC?
+
+5.In ec2 also we can create IP? what is the difference between ec2IP adress and VPC IP adress?
+
+where did you used cloud watch?
+
+How do you monitoring the Application?
+
+how do you configure that application errors?
+
+what is ELB?
+
+
+
+
+
+

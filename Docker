@@ -1,0 +1,37 @@
+what is CMD?
+What is ENRTYPOINT?
+ENTRYPOINT vs CMD?
+How to run multiple services in one container?
+How to deploy the Docker new image and delete the old container?
+Docker CI/CD suing Ansible?
+Docker registery cluster?
+Docker register backup and restore?
+Volumes in Docker?
+How to expose ports?
+How to run the commands?
+What is the command to download the files in Dockerfile?
+ADD vs COPY in docker files?
+Virtulization vs containiraztion?
+Write Dockerfile?
+How to run a container?
+Port forward?
+voluemanagement?
+expose the container to the external world?
+link 2 container?
+push images to the registry server?
+Networking?
+RUN vs CMD?
+Images House keeping
+How to monitor the service inside the container?
+How to create and use the network brides in docker?
+How to list the docker network brides?
+Container to container communication?
+Client and Server containers setup?
+How to use container 1 volume on container 2?
+What is port mapping and when and which we will use examp?
+- Used versions
+- Migrations to new versions
+- Volumes
+- Port
+- Docker commands
+- Docker container states

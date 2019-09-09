@@ -1,0 +1,818 @@
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+[ec2-user@k8s-master ~]$
+[ec2-user@k8s-master ~]$ sudo su -
+[root@k8s-master ~]# exec bash
+sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /et                                  c/sysconfig/selinux
+
+firewall-cmd --permanent --add-port=6443/tcp
+firewall-cmd --permanent --add-port=2379-2380/tcp
+firewall-cmd --permanent --add-port=10250/tcp
+firewall-cmd --permanent --add-port=10251/tcp
+firewall-cmd --permanent --add-port=10252/tcp
+firewall-cmd --permanent --add-port=10255/tcp
+firewall-cmd --reload
+modprobe br_netfilter
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables[root@k8s-mast                                  er ~]# setenforce 0
+[root@k8s-master ~]# sed -i --follow-symlinks 's/SELINUX=enforcing/SE                                  LINUX=disabled/g' /etc/sysconfig/selinux
+[root@k8s-master ~]#
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=6443/tcp
+success
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=2379-2380/tc                                  p
+success
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=10250/tcp
+success
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=10251/tcp
+success
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=10252/tcp
+success
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=10255/tcp
+success
+[root@k8s-master ~]# firewall-cmd --reload
+success
+[root@k8s-master ~]# modprobe br_netfilter
+[root@k8s-master ~]# echo '1' > /proc/sys/net/bridge/bridge-nf-call-i                                  ptables
+[root@k8s-master ~]#
+[root@k8s-master ~]# yum update -y
+Loaded plugins: fastestmirror
+Determining fastest mirrors
+epel/x86_64/metalink                          |  17 kB     00:00
+ * base: repos.lax.quadranet.com
+ * epel: mirror.umd.edu
+ * extras: repos.lax.quadranet.com
+ * updates: mirrors.usc.edu
+base                                          | 3.6 kB     00:00
+epel                                          | 3.2 kB     00:00
+extras                                        | 3.4 kB     00:00
+google-cloud-compute/signature                |  454 B     00:00
+google-cloud-compute/signature                | 1.8 kB     00:00 !!!
+google-cloud-sdk/signature                    |  454 B     00:00
+google-cloud-sdk/signature                    | 1.4 kB     00:00 !!!
+updates                                       | 3.4 kB     00:00
+(1/10): epel/x86_64/group_gz                    |  88 kB   00:00
+(2/10): epel/x86_64/updateinfo                  | 932 kB   00:00
+(3/10): base/7/x86_64/group_gz                  | 166 kB   00:00
+(4/10): epel/x86_64/primary                     | 3.6 MB   00:00
+(5/10): google-cloud-compute/updateinfo         | 1.2 kB   00:00
+(6/10): google-cloud-compute/primary            | 3.8 kB   00:00
+(7/10): extras/7/x86_64/primary_db              | 205 kB   00:00
+(8/10): google-cloud-sdk/primary                |  63 kB   00:00
+(9/10): updates/7/x86_64/primary_db             | 6.0 MB   00:00
+(10/10): base/7/x86_64/primary_db               | 5.9 MB   00:02
+epel                                                     12716/12716
+google-cloud-compute                                           11/11
+google-cloud-sdk                                             419/419
+Resolving Dependencies
+--> Running transaction check
+---> Package google-cloud-sdk.noarch 0:225.0.0-1.el7 will be updated
+---> Package google-cloud-sdk.noarch 0:226.0.0-1.el7 will be an updat                                  e
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================
+ Package           Arch    Version           Repository         Size
+=====================================================================
+Updating:
+ google-cloud-sdk  noarch  226.0.0-1.el7     google-cloud-sdk   29 M
+
+Transaction Summary
+=====================================================================
+Upgrade  1 Package
+
+Total download size: 29 M
+Downloading packages:
+Delta RPMs disabled because /usr/bin/applydeltarpm not installed.
+7d551996dda1b0a7950ce41515c94aec6025f65f4551e4d |  29 MB   00:01
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : google-cloud-sdk-226.0.0-1.el7.noarch             1/2
+  Cleanup    : google-cloud-sdk-225.0.0-1.el7.noarch             2/2
+  Verifying  : google-cloud-sdk-226.0.0-1.el7.noarch             1/2
+  Verifying  : google-cloud-sdk-225.0.0-1.el7.noarch             2/2
+
+Updated:
+  google-cloud-sdk.noarch 0:226.0.0-1.el7
+
+Complete!
+[root@k8s-master ~]#
+[root@k8s-master ~]# cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+> [kubernetes]
+> name=Kubernetes
+> baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-                                  x86_64
+> enabled=1
+> gpgcheck=1
+> repo_gpgcheck=1
+> gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+>         https://packages.cloud.google.com/yum/doc/rpm-package-key.g                                  pg
+> EOF
+[root@k8s-master ~]#
+[root@k8s-master ~]# yum update -y
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: repos.lax.quadranet.com
+ * epel: mirror.umd.edu
+ * extras: repos.lax.quadranet.com
+ * updates: mirrors.usc.edu
+kubernetes/signature                          |  454 B     00:00
+Retrieving key from https://packages.cloud.google.com/yum/doc/yum-key                                  .gpg
+Importing GPG key 0xA7317B0F:
+ Userid     : "Google Cloud Packages Automatic Signing Key <gc-team@g                                  oogle.com>"
+ Fingerprint: d0bc 747f d8ca f711 7500 d6fa 3746 c208 a731 7b0f
+ From       : https://packages.cloud.google.com/yum/doc/yum-key.gpg
+Retrieving key from https://packages.cloud.google.com/yum/doc/rpm-pac                                  kage-key.gpg
+kubernetes/signature                          | 1.4 kB     00:00 !!!
+kubernetes/primary                              |  38 kB   00:00
+kubernetes                                                   275/275
+No packages marked for update
+[root@k8s-master ~]# yum install kubeadm docker -y
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: repos.lax.quadranet.com
+ * epel: mirror.umd.edu
+ * extras: repos.lax.quadranet.com
+ * updates: mirrors.usc.edu
+Resolving Dependencies
+--> Running transaction check
+---> Package docker.x86_64 2:1.13.1-75.git8633870.el7.centos will be                                   installed
+--> Processing Dependency: docker-common = 2:1.13.1-75.git8633870.el7                                  .centos for package: 2:docker-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: docker-client = 2:1.13.1-75.git8633870.el7                                  .centos for package: 2:docker-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: subscription-manager-rhsm-certificates for                                   package: 2:docker-1.13.1-75.git8633870.el7.centos.x86_64
+---> Package kubeadm.x86_64 0:1.12.2-0 will be installed
+--> Processing Dependency: kubernetes-cni >= 0.6.0 for package: kubea                                  dm-1.12.2-0.x86_64
+--> Processing Dependency: kubelet >= 1.6.0 for package: kubeadm-1.12                                  .2-0.x86_64
+--> Processing Dependency: kubectl >= 1.6.0 for package: kubeadm-1.12                                  .2-0.x86_64
+--> Processing Dependency: cri-tools >= 1.11.0 for package: kubeadm-1                                  .12.2-0.x86_64
+--> Running transaction check
+---> Package cri-tools.x86_64 0:1.12.0-0 will be installed
+---> Package docker-client.x86_64 2:1.13.1-75.git8633870.el7.centos w                                  ill be installed
+---> Package docker-common.x86_64 2:1.13.1-75.git8633870.el7.centos w                                  ill be installed
+--> Processing Dependency: skopeo-containers >= 1:0.1.26-2 for packag                                  e: 2:docker-common-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: oci-umount >= 2:2.3.3-3 for package: 2:doc                                  ker-common-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: oci-systemd-hook >= 1:0.1.4-9 for package:                                   2:docker-common-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: oci-register-machine >= 1:0-5.13 for packa                                  ge: 2:docker-common-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: lvm2 >= 2.02.112 for package: 2:docker-com                                  mon-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: container-storage-setup >= 0.9.0-1 for pac                                  kage: 2:docker-common-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: container-selinux >= 2:2.51-1 for package:                                   2:docker-common-1.13.1-75.git8633870.el7.centos.x86_64
+--> Processing Dependency: atomic-registries for package: 2:docker-co                                  mmon-1.13.1-75.git8633870.el7.centos.x86_64
+---> Package kubectl.x86_64 0:1.12.2-0 will be installed
+---> Package kubelet.x86_64 0:1.12.2-0 will be installed
+--> Processing Dependency: socat for package: kubelet-1.12.2-0.x86_64
+---> Package kubernetes-cni.x86_64 0:0.6.0-0 will be installed
+---> Package subscription-manager-rhsm-certificates.x86_64 0:1.20.11-                                  1.el7.centos will be installed
+--> Running transaction check
+---> Package atomic-registries.x86_64 1:1.22.1-25.git5a342e3.el7.cent                                  os will be installed
+--> Processing Dependency: python-yaml for package: 1:atomic-registri                                  es-1.22.1-25.git5a342e3.el7.centos.x86_64
+--> Processing Dependency: python-pytoml for package: 1:atomic-regist                                  ries-1.22.1-25.git5a342e3.el7.centos.x86_64
+---> Package container-selinux.noarch 2:2.68-1.el7 will be installed
+---> Package container-storage-setup.noarch 0:0.11.0-2.git5eaf76c.el7                                   will be installed
+---> Package lvm2.x86_64 7:2.02.177-4.el7 will be installed
+--> Processing Dependency: lvm2-libs = 7:2.02.177-4.el7 for package:                                   7:lvm2-2.02.177-4.el7.x86_64
+--> Processing Dependency: device-mapper-persistent-data >= 0.7.0-0.1                                  .rc6 for package: 7:lvm2-2.02.177-4.el7.x86_64
+--> Processing Dependency: liblvm2app.so.2.2(Base)(64bit) for package                                  : 7:lvm2-2.02.177-4.el7.x86_64
+--> Processing Dependency: libdevmapper-event.so.1.02(Base)(64bit) fo                                  r package: 7:lvm2-2.02.177-4.el7.x86_64
+--> Processing Dependency: liblvm2app.so.2.2()(64bit) for package: 7:                                  lvm2-2.02.177-4.el7.x86_64
+--> Processing Dependency: libdevmapper-event.so.1.02()(64bit) for pa                                  ckage: 7:lvm2-2.02.177-4.el7.x86_64
+---> Package oci-register-machine.x86_64 1:0-6.git2b44233.el7 will be                                   installed
+---> Package oci-systemd-hook.x86_64 1:0.1.17-2.git83283a0.el7 will b                                  e installed
+--> Processing Dependency: libyajl.so.2()(64bit) for package: 1:oci-s                                  ystemd-hook-0.1.17-2.git83283a0.el7.x86_64
+---> Package oci-umount.x86_64 2:2.3.3-3.gite3c9055.el7 will be insta                                  lled
+---> Package skopeo-containers.x86_64 1:0.1.31-1.dev.gitae64ff7.el7.c                                  entos will be installed
+---> Package socat.x86_64 0:1.7.3.2-2.el7 will be installed
+--> Running transaction check
+---> Package PyYAML.x86_64 0:3.10-11.el7 will be installed
+--> Processing Dependency: libyaml-0.so.2()(64bit) for package: PyYAM                                  L-3.10-11.el7.x86_64
+---> Package device-mapper-event-libs.x86_64 7:1.02.146-4.el7 will be                                   installed
+---> Package device-mapper-persistent-data.x86_64 0:0.7.3-3.el7 will                                   be installed
+--> Processing Dependency: libaio.so.1(LIBAIO_0.4)(64bit) for package                                  : device-mapper-persistent-data-0.7.3-3.el7.x86_64
+--> Processing Dependency: libaio.so.1(LIBAIO_0.1)(64bit) for package                                  : device-mapper-persistent-data-0.7.3-3.el7.x86_64
+--> Processing Dependency: libaio.so.1()(64bit) for package: device-m                                  apper-persistent-data-0.7.3-3.el7.x86_64
+---> Package lvm2-libs.x86_64 7:2.02.177-4.el7 will be installed
+--> Processing Dependency: device-mapper-event = 7:1.02.146-4.el7 for                                   package: 7:lvm2-libs-2.02.177-4.el7.x86_64
+---> Package python-pytoml.noarch 0:0.1.14-1.git7dea353.el7 will be i                                  nstalled
+---> Package yajl.x86_64 0:2.0.4-4.el7 will be installed
+--> Running transaction check
+---> Package device-mapper-event.x86_64 7:1.02.146-4.el7 will be inst                                  alled
+---> Package libaio.x86_64 0:0.3.109-13.el7 will be installed
+---> Package libyaml.x86_64 0:0.1.4-11.el7_0 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=====================================================================
+ Package           Arch   Version                   Repository  Size
+=====================================================================
+Installing:
+ docker            x86_64 2:1.13.1-75.git8633870.el7.centos
+                                                    extras      16 M
+ kubeadm           x86_64 1.12.2-0                  kubernetes 7.2 M
+Installing for dependencies:
+ PyYAML            x86_64 3.10-11.el7               base       153 k
+ atomic-registries x86_64 1:1.22.1-25.git5a342e3.el7.centos
+                                                    extras      35 k
+ container-selinux noarch 2:2.68-1.el7              extras      36 k
+ container-storage-setup
+                   noarch 0.11.0-2.git5eaf76c.el7   extras      35 k
+ cri-tools         x86_64 1.12.0-0                  kubernetes 4.2 M
+ device-mapper-event
+                   x86_64 7:1.02.146-4.el7          base       185 k
+ device-mapper-event-libs
+                   x86_64 7:1.02.146-4.el7          base       184 k
+ device-mapper-persistent-data
+                   x86_64 0.7.3-3.el7               base       405 k
+ docker-client     x86_64 2:1.13.1-75.git8633870.el7.centos
+                                                    extras     3.8 M
+ docker-common     x86_64 2:1.13.1-75.git8633870.el7.centos
+                                                    extras      93 k
+ kubectl           x86_64 1.12.2-0                  google-cloud-sdk
+                                                               7.7 M
+ kubelet           x86_64 1.12.2-0                  kubernetes  19 M
+ kubernetes-cni    x86_64 0.6.0-0                   kubernetes 8.6 M
+ libaio            x86_64 0.3.109-13.el7            base        24 k
+ libyaml           x86_64 0.1.4-11.el7_0            base        55 k
+ lvm2              x86_64 7:2.02.177-4.el7          base       1.3 M
+ lvm2-libs         x86_64 7:2.02.177-4.el7          base       1.0 M
+ oci-register-machine
+                   x86_64 1:0-6.git2b44233.el7      extras     1.1 M
+ oci-systemd-hook  x86_64 1:0.1.17-2.git83283a0.el7 extras      33 k
+ oci-umount        x86_64 2:2.3.3-3.gite3c9055.el7  extras      32 k
+ python-pytoml     noarch 0.1.14-1.git7dea353.el7   extras      18 k
+ skopeo-containers x86_64 1:0.1.31-1.dev.gitae64ff7.el7.centos
+                                                    extras      17 k
+ socat             x86_64 1.7.3.2-2.el7             base       290 k
+ subscription-manager-rhsm-certificates
+                   x86_64 1.20.11-1.el7.centos      base       195 k
+ yajl              x86_64 2.0.4-4.el7               base        39 k
+
+Transaction Summary
+=====================================================================
+Install  2 Packages (+25 Dependent packages)
+
+Total download size: 72 M
+Installed size: 319 M
+Downloading packages:
+(1/27): container-selinux-2.68-1.el7.noarch.rpm |  36 kB   00:00
+(2/27): atomic-registries-1.22.1-25.git5a342e3. |  35 kB   00:00
+(3/27): container-storage-setup-0.11.0-2.git5ea |  35 kB   00:00
+(4/27): PyYAML-3.10-11.el7.x86_64.rpm           | 153 kB   00:00
+(5/27): 53edc739a0e51a4c17794de26b13ee5df939bd3 | 4.2 MB   00:00
+(6/27): device-mapper-event-libs-1.02.146-4.el7 | 184 kB   00:00
+(7/27): device-mapper-event-1.02.146-4.el7.x86_ | 185 kB   00:00
+(8/27): device-mapper-persistent-data-0.7.3-3.e | 405 kB   00:01
+(9/27): docker-client-1.13.1-75.git8633870.el7. | 3.8 MB   00:00
+(10/27): docker-1.13.1-75.git8633870.el7.centos |  16 MB   00:01
+(11/27): docker-common-1.13.1-75.git8633870.el7 |  93 kB   00:00
+(12/27): ead06eb2dc5ff86ca39823fa5f9e944b2f197e | 7.7 MB   00:00
+(13/27): 6bd058ff754287c0b6b7431ee8f08bd35af40b | 7.2 MB   00:00
+(14/27): libaio-0.3.109-13.el7.x86_64.rpm       |  24 kB   00:00
+(15/27): fe33057ffe95bfae65e2f269e1b05e99308853 | 8.6 MB   00:00
+(16/27): c2c59cf03fa14b8d91026c94d63c877091d54a |  19 MB   00:01
+(17/27): libyaml-0.1.4-11.el7_0.x86_64.rpm      |  55 kB   00:00
+(18/27): oci-register-machine-0-6.git2b44233.el | 1.1 MB   00:00
+(19/27): oci-umount-2.3.3-3.gite3c9055.el7.x86_ |  32 kB   00:00
+(20/27): lvm2-2.02.177-4.el7.x86_64.rpm         | 1.3 MB   00:00
+(21/27): python-pytoml-0.1.14-1.git7dea353.el7. |  18 kB   00:00
+(22/27): oci-systemd-hook-0.1.17-2.git83283a0.e |  33 kB   00:00
+(23/27): skopeo-containers-0.1.31-1.dev.gitae64 |  17 kB   00:00
+(24/27): socat-1.7.3.2-2.el7.x86_64.rpm         | 290 kB   00:00
+(25/27): yajl-2.0.4-4.el7.x86_64.rpm            |  39 kB   00:00
+(26/27): subscription-manager-rhsm-certificates | 195 kB   00:00
+(27/27): lvm2-libs-2.02.177-4.el7.x86_64.rpm    | 1.0 MB   00:01
+---------------------------------------------------------------------
+Total                                    19 MB/s |  72 MB  00:03
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 7:device-mapper-event-libs-1.02.146-4.el7.x86    1/27
+  Installing : yajl-2.0.4-4.el7.x86_64                          2/27
+  Installing : 1:oci-systemd-hook-0.1.17-2.git83283a0.el7.x8    3/27
+  Installing : 2:oci-umount-2.3.3-3.gite3c9055.el7.x86_64       4/27
+  Installing : 7:device-mapper-event-1.02.146-4.el7.x86_64      5/27
+  Installing : 7:lvm2-libs-2.02.177-4.el7.x86_64                6/27
+  Installing : socat-1.7.3.2-2.el7.x86_64                       7/27
+  Installing : kubernetes-cni-0.6.0-0.x86_64                    8/27
+  Installing : kubelet-1.12.2-0.x86_64                          9/27
+  Installing : libaio-0.3.109-13.el7.x86_64                    10/27
+  Installing : device-mapper-persistent-data-0.7.3-3.el7.x86   11/27
+  Installing : 7:lvm2-2.02.177-4.el7.x86_64                    12/27
+  Installing : container-storage-setup-0.11.0-2.git5eaf76c.e   13/27
+  Installing : libyaml-0.1.4-11.el7_0.x86_64                   14/27
+  Installing : PyYAML-3.10-11.el7.x86_64                       15/27
+  Installing : kubectl-1.12.2-0.x86_64                         16/27
+  Installing : 1:oci-register-machine-0-6.git2b44233.el7.x86   17/27
+  Installing : cri-tools-1.12.0-0.x86_64                       18/27
+  Installing : python-pytoml-0.1.14-1.git7dea353.el7.noarch    19/27
+  Installing : 1:atomic-registries-1.22.1-25.git5a342e3.el7.   20/27
+  Installing : 1:skopeo-containers-0.1.31-1.dev.gitae64ff7.e   21/27
+  Installing : 2:container-selinux-2.68-1.el7.noarch           22/27
+  Installing : 2:docker-common-1.13.1-75.git8633870.el7.cent   23/27
+  Installing : 2:docker-client-1.13.1-75.git8633870.el7.cent   24/27
+  Installing : subscription-manager-rhsm-certificates-1.20.1   25/27
+  Installing : 2:docker-1.13.1-75.git8633870.el7.centos.x86_   26/27
+  Installing : kubeadm-1.12.2-0.x86_64                         27/27
+  Verifying  : kubeadm-1.12.2-0.x86_64                          1/27
+  Verifying  : device-mapper-persistent-data-0.7.3-3.el7.x86    2/27
+  Verifying  : subscription-manager-rhsm-certificates-1.20.1    3/27
+  Verifying  : 2:docker-common-1.13.1-75.git8633870.el7.cent    4/27
+  Verifying  : 2:container-selinux-2.68-1.el7.noarch            5/27
+  Verifying  : container-storage-setup-0.11.0-2.git5eaf76c.e    6/27
+  Verifying  : 1:skopeo-containers-0.1.31-1.dev.gitae64ff7.e    7/27
+  Verifying  : 7:device-mapper-event-1.02.146-4.el7.x86_64      8/27
+  Verifying  : kubelet-1.12.2-0.x86_64                          9/27
+  Verifying  : 2:docker-client-1.13.1-75.git8633870.el7.cent   10/27
+  Verifying  : python-pytoml-0.1.14-1.git7dea353.el7.noarch    11/27
+  Verifying  : 7:lvm2-2.02.177-4.el7.x86_64                    12/27
+  Verifying  : 1:oci-systemd-hook-0.1.17-2.git83283a0.el7.x8   13/27
+  Verifying  : cri-tools-1.12.0-0.x86_64                       14/27
+  Verifying  : kubernetes-cni-0.6.0-0.x86_64                   15/27
+  Verifying  : 1:oci-register-machine-0-6.git2b44233.el7.x86   16/27
+  Verifying  : 2:oci-umount-2.3.3-3.gite3c9055.el7.x86_64      17/27
+  Verifying  : 7:device-mapper-event-libs-1.02.146-4.el7.x86   18/27
+  Verifying  : yajl-2.0.4-4.el7.x86_64                         19/27
+  Verifying  : kubectl-1.12.2-0.x86_64                         20/27
+  Verifying  : 2:docker-1.13.1-75.git8633870.el7.centos.x86_   21/27
+  Verifying  : libyaml-0.1.4-11.el7_0.x86_64                   22/27
+  Verifying  : libaio-0.3.109-13.el7.x86_64                    23/27
+  Verifying  : PyYAML-3.10-11.el7.x86_64                       24/27
+  Verifying  : 7:lvm2-libs-2.02.177-4.el7.x86_64               25/27
+  Verifying  : 1:atomic-registries-1.22.1-25.git5a342e3.el7.   26/27
+  Verifying  : socat-1.7.3.2-2.el7.x86_64                      27/27
+
+Installed:
+  docker.x86_64 2:1.13.1-75.git8633870.el7.centos
+  kubeadm.x86_64 0:1.12.2-0
+
+Dependency Installed:
+  PyYAML.x86_64 0:3.10-11.el7
+  atomic-registries.x86_64 1:1.22.1-25.git5a342e3.el7.centos
+  container-selinux.noarch 2:2.68-1.el7
+  container-storage-setup.noarch 0:0.11.0-2.git5eaf76c.el7
+  cri-tools.x86_64 0:1.12.0-0
+  device-mapper-event.x86_64 7:1.02.146-4.el7
+  device-mapper-event-libs.x86_64 7:1.02.146-4.el7
+  device-mapper-persistent-data.x86_64 0:0.7.3-3.el7
+  docker-client.x86_64 2:1.13.1-75.git8633870.el7.centos
+  docker-common.x86_64 2:1.13.1-75.git8633870.el7.centos
+  kubectl.x86_64 0:1.12.2-0
+  kubelet.x86_64 0:1.12.2-0
+  kubernetes-cni.x86_64 0:0.6.0-0
+  libaio.x86_64 0:0.3.109-13.el7
+  libyaml.x86_64 0:0.1.4-11.el7_0
+  lvm2.x86_64 7:2.02.177-4.el7
+  lvm2-libs.x86_64 7:2.02.177-4.el7
+  oci-register-machine.x86_64 1:0-6.git2b44233.el7
+  oci-systemd-hook.x86_64 1:0.1.17-2.git83283a0.el7
+  oci-umount.x86_64 2:2.3.3-3.gite3c9055.el7
+  python-pytoml.noarch 0:0.1.14-1.git7dea353.el7
+  skopeo-containers.x86_64 1:0.1.31-1.dev.gitae64ff7.el7.centos
+  socat.x86_64 0:1.7.3.2-2.el7
+  subscription-manager-rhsm-certificates.x86_64 0:1.20.11-1.el7.cento                                  s
+  yajl.x86_64 0:2.0.4-4.el7
+
+Complete!
+[root@k8s-master ~]#
+[root@k8s-master ~]# systemctl restart docker && systemctl enable doc                                  ker
+Created symlink from /etc/systemd/system/multi-user.target.wants/dock                                  er.service to /usr/lib/systemd/system/docker.service.
+[root@k8s-master ~]# systemctl  restart kubelet && systemctl enable k                                  ubelet
+Created symlink from /etc/systemd/system/multi-user.target.wants/kube                                  let.service to /etc/systemd/system/kubelet.service.
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubeadm init
+[init] using Kubernetes version: v1.12.2
+[preflight] running pre-flight checks
+        [WARNING Firewalld]: firewalld is active, please ensure ports                                   [6443 10250] are open or your cluster may not function correctly
+[preflight/images] Pulling images required for setting up a Kubernete                                  s cluster
+[preflight/images] This might take a minute or two, depending on the                                   speed of your internet connection
+[preflight/images] You can also perform this action in beforehand usi                                  ng 'kubeadm config images pull'
+[kubelet] Writing kubelet environment file with flags to file "/var/l                                  ib/kubelet/kubeadm-flags.env"
+[kubelet] Writing kubelet configuration to file "/var/lib/kubelet/con                                  fig.yaml"
+[preflight] Activating the kubelet service
+[certificates] Generated etcd/ca certificate and key.
+[certificates] Generated etcd/peer certificate and key.
+[certificates] etcd/peer serving cert is signed for DNS names [k8s-ma                                  ster localhost] and IPs [10.142.0.2 127.0.0.1 ::1]
+[certificates] Generated apiserver-etcd-client certificate and key.
+[certificates] Generated etcd/server certificate and key.
+[certificates] etcd/server serving cert is signed for DNS names [k8s-                                  master localhost] and IPs [127.0.0.1 ::1]
+[certificates] Generated etcd/healthcheck-client certificate and key.
+[certificates] Generated ca certificate and key.
+[certificates] Generated apiserver certificate and key.
+[certificates] apiserver serving cert is signed for DNS names [k8s-ma                                  ster kubernetes kubernetes.default kubernetes.default.svc kubernetes.                                  default.svc.cluster.local] and IPs [10.96.0.1 10.142.0.2]
+[certificates] Generated apiserver-kubelet-client certificate and key                                  .
+[certificates] Generated front-proxy-ca certificate and key.
+[certificates] Generated front-proxy-client certificate and key.
+[certificates] valid certificates and keys now exist in "/etc/kuberne                                  tes/pki"
+[certificates] Generated sa key and public key.
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/admin.co                                  nf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/kubelet.                                  conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/controll                                  er-manager.conf"
+[kubeconfig] Wrote KubeConfig file to disk: "/etc/kubernetes/schedule                                  r.conf"
+[controlplane] wrote Static Pod manifest for component kube-apiserver                                   to "/etc/kubernetes/manifests/kube-apiserver.yaml"
+[controlplane] wrote Static Pod manifest for component kube-controlle                                  r-manager to "/etc/kubernetes/manifests/kube-controller-manager.yaml"
+[controlplane] wrote Static Pod manifest for component kube-scheduler                                   to "/etc/kubernetes/manifests/kube-scheduler.yaml"
+[etcd] Wrote Static Pod manifest for a local etcd instance to "/etc/k                                  ubernetes/manifests/etcd.yaml"
+[init] waiting for the kubelet to boot up the control plane as Static                                   Pods from directory "/etc/kubernetes/manifests"
+[init] this might take a minute or longer if the control plane images                                   have to be pulled
+[apiclient] All control plane components are healthy after 26.003401                                   seconds
+[uploadconfig] storing the configuration used in ConfigMap "kubeadm-c                                  onfig" in the "kube-system" Namespace
+[kubelet] Creating a ConfigMap "kubelet-config-1.12" in namespace kub                                  e-system with the configuration for the kubelets in the cluster
+[markmaster] Marking the node k8s-master as master by adding the labe                                  l "node-role.kubernetes.io/master=''"
+[markmaster] Marking the node k8s-master as master by adding the tain                                  ts [node-role.kubernetes.io/master:NoSchedule]
+[patchnode] Uploading the CRI Socket information "/var/run/dockershim                                  .sock" to the Node API object "k8s-master" as an annotation
+[bootstraptoken] using token: p2fq9e.c2ob5t1hk5jf7rpj
+[bootstraptoken] configured RBAC rules to allow Node Bootstrap tokens                                   to post CSRs in order for nodes to get long term certificate credent                                  ials
+[bootstraptoken] configured RBAC rules to allow the csrapprover contr                                  oller automatically approve CSRs from a Node Bootstrap Token
+[bootstraptoken] configured RBAC rules to allow certificate rotation                                   for all node client certificates in the cluster
+[bootstraptoken] creating the "cluster-info" ConfigMap in the "kube-p                                  ublic" namespace
+[addons] Applied essential addon: CoreDNS
+[addons] Applied essential addon: kube-proxy
+
+Your Kubernetes master has initialized successfully!
+
+To start using your cluster, you need to run the following as a regul                                  ar user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options list                                  ed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+You can now join any number of machines by running the following on e                                  ach node
+as root:
+
+  kubeadm join 10.142.0.2:6443 --token p2fq9e.c2ob5t1hk5jf7rpj --disc                                  overy-token-ca-cert-hash sha256:2d5e488c435a79482b66f71bfaeb85a46aca7                                  378bf521149aa97a563317d107d
+
+[root@k8s-master ~]#
+[root@k8s-master ~]# mkdir -p $HOME/.kube
+[root@k8s-master ~]# cp -i /etc/kubernetes/admin.conf $HOME/.kube/con                                  fig
+[root@k8s-master ~]# chown $(id -u):$(id -g) $HOME/.kube/config
+[root@k8s-master ~]# export kubever=$(kubectl version | base64 | tr -                                  d '\n')
+[root@k8s-master ~]# kubectl apply -f "https://cloud.weave.works/k8s/                                  net?k8s-version=$kubever"
+serviceaccount/weave-net created
+clusterrole.rbac.authorization.k8s.io/weave-net created
+clusterrolebinding.rbac.authorization.k8s.io/weave-net created
+role.rbac.authorization.k8s.io/weave-net created
+rolebinding.rbac.authorization.k8s.io/weave-net created
+daemonset.extensions/weave-net created
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get nodes
+NAME         STATUS   ROLES    AGE     VERSION
+k8s-master   Ready    master   2m57s   v1.12.2
+[root@k8s-master ~]# kubectl get nodes
+NAME          STATUS   ROLES    AGE     VERSION
+k8s-master    Ready    master   6m36s   v1.12.2
+k8s-minion1   Ready    <none>   29s     v1.12.2
+k8s-minion2   Ready    <none>   26s     v1.12.2
+[root@k8s-master ~]#
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Last login: Sat Nov 24 03:51:25 2018 from 183.82.19.216
+[ec2-user@k8s-master ~]$
+[ec2-user@k8s-master ~]$ sudo su -
+Last login: Sat Nov 24 03:51:28 UTC 2018 on pts/0
+[root@k8s-master ~]#
+[root@k8s-master ~]#  kubectl get nodes
+NAME          STATUS   ROLES    AGE   VERSION
+k8s-master    Ready    master   48m   v1.12.2
+k8s-minion1   Ready    <none>   42m   v1.12.2
+k8s-minion2   Ready    <none>   42m   v1.12.2
+[root@k8s-master ~]#  kubectl get nodes -o wide
+NAME          STATUS   ROLES    AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                KERNEL-VERSION               CONTAINER-RUNTIME
+k8s-master    Ready    master   48m   v1.12.2   10.142.0.2    <none>        CentOS Linux 7 (Core)   3.10.0-862.14.4.el7.x86_64   docker://1.13.1
+k8s-minion1   Ready    <none>   42m   v1.12.2   10.142.0.3    <none>        CentOS Linux 7 (Core)   3.10.0-862.14.4.el7.x86_64   docker://1.13.1
+k8s-minion2   Ready    <none>   42m   v1.12.2   10.142.0.4    <none>        CentOS Linux 7 (Core)   3.10.0-862.14.4.el7.x86_64   docker://1.13.1
+[root@k8s-master ~]# kubectl get cs
+NAME                 STATUS    MESSAGE              ERROR
+scheduler            Healthy   ok
+controller-manager   Healthy   ok
+etcd-0               Healthy   {"health": "true"}
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get nodes
+NAME          STATUS   ROLES    AGE   VERSION
+k8s-master    Ready    master   50m   v1.12.2
+k8s-minion1   Ready    <none>   44m   v1.12.2
+k8s-minion2   Ready    <none>   43m   v1.12.2
+[root@k8s-master ~]# mkdir /mywork
+[root@k8s-master ~]# cd /mywork/
+[root@k8s-master mywork]# vim pod.yml
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# cat pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+   - name: nginx
+     image: nginx
+     ports:
+      - containerPort: 80
+[root@k8s-master mywork]# kubectl get nodes
+NAME          STATUS   ROLES    AGE   VERSION
+k8s-master    Ready    master   55m   v1.12.2
+k8s-minion1   Ready    <none>   49m   v1.12.2
+k8s-minion2   Ready    <none>   49m   v1.12.2
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl describe nodes/k8s-minion1
+Name:               k8s-minion1
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/hostname=k8s-minion1
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: /var/run/dockershim.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Sat, 24 Nov 2018 04:05:09 +0000
+Taints:             <none>
+Unschedulable:      false
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Sat, 24 Nov 2018 04:05:20 +0000   Sat, 24 Nov 2018 04:05:20 +0000   WeaveIsUp                    Weave pod has set this
+  OutOfDisk            False   Sat, 24 Nov 2018 04:55:02 +0000   Sat, 24 Nov 2018 04:05:09 +0000   KubeletHasSufficientDisk     kubelet has sufficient disk space available
+  MemoryPressure       False   Sat, 24 Nov 2018 04:55:02 +0000   Sat, 24 Nov 2018 04:05:09 +0000   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Sat, 24 Nov 2018 04:55:02 +0000   Sat, 24 Nov 2018 04:05:09 +0000   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Sat, 24 Nov 2018 04:55:02 +0000   Sat, 24 Nov 2018 04:05:09 +0000   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Sat, 24 Nov 2018 04:55:02 +0000   Sat, 24 Nov 2018 04:05:29 +0000   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  10.142.0.3
+  Hostname:    k8s-minion1
+Capacity:
+ cpu:                1
+ ephemeral-storage:  10229Mi
+ hugepages-1Gi:      0
+ hugepages-2Mi:      0
+ memory:             3623136Ki
+ pods:               110
+Allocatable:
+ cpu:                1
+ ephemeral-storage:  9653295498
+ hugepages-1Gi:      0
+ hugepages-2Mi:      0
+ memory:             3520736Ki
+ pods:               110
+System Info:
+ Machine ID:                 53ce105d2ff73e81b5f54777fbf6095f
+ System UUID:                F04B8C15-AA41-EDDE-E063-004FFCD59DF5
+ Boot ID:                    e18afe08-776b-4fa2-b184-c71d80d490cc
+ Kernel Version:             3.10.0-862.14.4.el7.x86_64
+ OS Image:                   CentOS Linux 7 (Core)
+ Operating System:           linux
+ Architecture:               amd64
+ Container Runtime Version:  docker://1.13.1
+ Kubelet Version:            v1.12.2
+ Kube-Proxy Version:         v1.12.2
+Non-terminated Pods:         (2 in total)
+  Namespace                  Name                CPU Requests  CPU Limits  Memory Requests  Memory Limits
+  ---------                  ----                ------------  ----------  ---------------  -------------
+  kube-system                kube-proxy-2bg89    0 (0%)        0 (0%)      0 (0%)           0 (0%)
+  kube-system                weave-net-kplbl     20m (2%)      0 (0%)      0 (0%)           0 (0%)
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource  Requests  Limits
+  --------  --------  ------
+  cpu       20m (2%)  0 (0%)
+  memory    0 (0%)    0 (0%)
+Events:
+  Type    Reason                   Age                From                     Message
+  ----    ------                   ----               ----                     -------
+  Normal  Starting                 49m                kubelet, k8s-minion1     Starting kubelet.
+  Normal  NodeHasSufficientDisk    49m (x2 over 49m)  kubelet, k8s-minion1     Node k8s-minion1 status is now: NodeHasSufficientDisk
+  Normal  NodeHasSufficientMemory  49m (x2 over 49m)  kubelet, k8s-minion1     Node k8s-minion1 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    49m (x2 over 49m)  kubelet, k8s-minion1     Node k8s-minion1 status is now: NodeHasNoDiskPressure
+  Normal  NodeHasSufficientPID     49m (x2 over 49m)  kubelet, k8s-minion1     Node k8s-minion1 status is now: NodeHasSufficientPID
+  Normal  NodeAllocatableEnforced  49m                kubelet, k8s-minion1     Updated Node Allocatable limit across pods
+  Normal  Starting                 49m                kube-proxy, k8s-minion1  Starting kube-proxy.
+  Normal  NodeReady                49m                kubelet, k8s-minion1     Node k8s-minion1 status is now: NodeReady
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# cat pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+   - name: nginx
+     image: nginx
+     ports:
+      - containerPort: 80
+[root@k8s-master mywork]# kubectl
+[root@k8s-master mywork]# kubectl create -f pod.yml
+pod/nginx created
+[root@k8s-master mywork]# kubectl get pods
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   0          64s
+[root@k8s-master mywork]# kubectl get pods -o wide
+NAME    READY   STATUS    RESTARTS   AGE    IP          NODE          NOMINATED NODE
+nginx   1/1     Running   0          106s   10.44.0.1   k8s-minion1   <none>
+[root@k8s-master mywork]# kubectl describe pods/nginx
+Name:               nginx
+Namespace:          default
+Priority:           0
+PriorityClassName:  <none>
+Node:               k8s-minion1/10.142.0.3
+Start Time:         Sat, 24 Nov 2018 04:59:45 +0000
+Labels:             <none>
+Annotations:        <none>
+Status:             Running
+IP:                 10.44.0.1
+Containers:
+  nginx:
+    Container ID:   docker://0817d2519b5fc86e3c57fdfd13d1490f36c62f7898409c13c6252e6c97ba1584
+    Image:          nginx
+    Image ID:       docker-pullable://docker.io/nginx@sha256:31b8e90a349d1fce7621f5a5a08e4fc519b634f7d3feb09d53fac9b12aa4d991
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 24 Nov 2018 04:59:50 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-s8xr8 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  default-token-s8xr8:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-s8xr8
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age    From                  Message
+  ----    ------     ----   ----                  -------
+  Normal  Scheduled  3m16s  default-scheduler     Successfully assigned default/nginx to k8s-minion1
+  Normal  Pulling    3m15s  kubelet, k8s-minion1  pulling image "nginx"
+  Normal  Pulled     3m11s  kubelet, k8s-minion1  Successfully pulled image "nginx"
+  Normal  Created    3m11s  kubelet, k8s-minion1  Created container
+  Normal  Started    3m11s  kubelet, k8s-minion1  Started container
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# ps -ef|grep -i kubelet
+root     14446     1  1 03:58 ?        00:01:11 /usr/bin/kubelet --bootstrap-kubeconfig=/etc/kubernetes/bootstrap-kubelet.conf --kubeconfig=/etc/kubernetes/kubelet.conf --config=/var/lib/kubelet/config.yaml --cgroup-driver=systemd --network-plugin=cni
+root     14678 14634  2 03:58 ?        00:01:43 kube-apiserver --authorization-mode=Node,RBAC --advertise-address=10.142.0.2 --allow-privileged=true --client-ca-file=/etc/kubernetes/pki/ca.crt --enable-admission-plugins=NodeRestriction --enable-bootstrap-token-auth=true --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key --etcd-servers=https://127.0.0.1:2379 --insecure-port=0 --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key --requestheader-allowed-names=front-proxy-client --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt --requestheader-extra-headers-prefix=X-Remote-Extra- --requestheader-group-headers=X-Remote-Group --requestheader-username-headers=X-Remote-User --secure-port=6443 --service-account-key-file=/etc/kubernetes/pki/sa.pub --service-cluster-ip-range=10.96.0.0/12 --tls-cert-file=/etc/kubernetes/pki/apiserver.crt --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+root     30965 26348  0 05:07 pts/0    00:00:00 grep --color=auto -i kubelet
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+NAME    READY   STATUS    RESTARTS   AGE
+nginx   1/1     Running   1          10m
+[root@k8s-master mywork]# kubectl describe pods/nginx|grep -i ipadd
+[root@k8s-master mywork]# kubectl describe pods/nginx|grep -i ip
+IP:                 10.44.0.1
+[root@k8s-master mywork]# curl http://10.44.0.1
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl exec -it nginx /bin/bash
+root@nginx:/# exit
+[root@k8s-master mywork]# kubectl remove pods/nginx
+Error: unknown command "remove" for "kubectl"
+Run 'kubectl --help' for usage.
+unknown command "remove" for "kubectl"
+[root@k8s-master mywork]# kubectl delete pods/nginx
+pod "nginx" deleted
+[root@k8s-master mywork]# kubectl get pods
+No resources found.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# vim lable.yml
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl create -f lable.yml
+pod/nginx1 created
+[root@k8s-master mywork]# kubectl get pods
+NAME     READY   STATUS    RESTARTS   AGE
+nginx1   1/1     Running   0          11s
+[root@k8s-master mywork]# kubectl get pods -o wide
+NAME     READY   STATUS    RESTARTS   AGE   IP          NODE          NOMINATED NODE
+nginx1   1/1     Running   0          18s   10.47.0.1   k8s-minion2   <none>
+[root@k8s-master mywork]# kubectl describe pods/nginx1|more
+Name:               nginx1
+Namespace:          default
+Priority:           0
+PriorityClassName:  <none>
+Node:               k8s-minion2/10.142.0.4
+Start Time:         Sat, 24 Nov 2018 05:20:47 +0000
+Labels:             app=nginx1
+Annotations:        <none>
+Status:             Running
+IP:                 10.47.0.1
+Containers:
+  nginx1:
+    Container ID:   docker://888b8918a140343ade897c7562167f4dae20c645b3f19805cda950b6af696058
+    Image:          nginx:1.7.9
+    Image ID:       docker-pullable://docker.io/nginx@sha256:e3456c851a152494c3e4ff5fcc26f240206abac0c9
+d794affb40e0714846c451
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 24 Nov 2018 05:20:53 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-s8xr8 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl describe -l "app=nginx1"
+error: You must specify the type of resource to describe. Use "kubectl api-resources" for a complete list of supported resources.
+[root@k8s-master mywork]# kubectl describe pods -l "app=nginx1"
+Name:               nginx1
+Namespace:          default
+Priority:           0
+PriorityClassName:  <none>
+Node:               k8s-minion2/10.142.0.4
+Start Time:         Sat, 24 Nov 2018 05:20:47 +0000
+Labels:             app=nginx1
+Annotations:        <none>
+Status:             Running
+IP:                 10.47.0.1
+Containers:
+  nginx1:
+    Container ID:   docker://888b8918a140343ade897c7562167f4dae20c645b3f19805cda950b6af696058
+    Image:          nginx:1.7.9
+    Image ID:       docker-pullable://docker.io/nginx@sha256:e3456c851a152494c3e4ff5fcc26f240206abac0c9d794affb40e0714846c451
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sat, 24 Nov 2018 05:20:53 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-s8xr8 (ro)
+Conditions:
+  Type              Status
+  Initialized       True
+  Ready             True
+  ContainersReady   True
+  PodScheduled      True
+Volumes:
+  default-token-s8xr8:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-s8xr8
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason     Age   From                  Message
+  ----    ------     ----  ----                  -------
+  Normal  Scheduled  105s  default-scheduler     Successfully assigned default/nginx1 to k8s-minion2
+  Normal  Pulling    104s  kubelet, k8s-minion2  pulling image "nginx:1.7.9"
+  Normal  Pulled     99s   kubelet, k8s-minion2  Successfully pulled image "nginx:1.7.9"
+  Normal  Created    99s   kubelet, k8s-minion2  Created container
+  Normal  Started    99s   kubelet, k8s-minion2  Started container
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl describe pods -l "app=nginx1"

@@ -1,0 +1,13 @@
+How Prometheus works for Kubernetes?
+How to configure alertmanager for kubernetes?
+How Grafana Dshboards works?
+NagiOs SetUp?
+- Grafana + ElasticSearch + Logstash
+    - Used versions
+    - Migrations to new versions
+    	- prometheus
+    			- Used versions
+    			- Migrations to new versions
+    	- Nagios
+    			- Used versions
+    			- Migrations to new versions

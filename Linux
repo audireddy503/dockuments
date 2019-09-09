@@ -1,0 +1,41 @@
+Day to Day activities
+  Patching
+local repo sync with redhat satelettie server ?
+Kernel issues after patching the systems?
+File system failures checking?
+LVMs
+Script to check whether filesystem is in redaonly mode or not?
+File systems
+sticky bit, UUID and GUID
+softlink
+Hard line?
+umask?
+Verify size of a particular folder?
+OS installations?
+LoadAverage debuging?
+High cpu utilization debug?
+Server load vs CPU utilization?
+types of file systems?
+How to list the disks?
+Hwo to check if the file in mount is giving the 'unable to executing the file'
+How ping, telnet and traceroute works?
+How to secure the ssh keys and how to regenerate if expires?
+How the DNS resolvation happened?
+What is the use of single user mode?
+How to recove the file systems if linux vm got crashed?
+- Used versions
+- Migrations to new versions
+- NFS daemon
+- Load vs CPU utilization
+- I/O load
+- Grep with sort
+- Sar and VMstata
+- Server slowness troubleshoot
+- VM Provision with Ansible/Terraform
+- Debuging commands
+- IOPS
+- How to mount the mounts
+_ Networking and Troubleshooting
+Inodes
+I/O operations
+I/O vs N/O

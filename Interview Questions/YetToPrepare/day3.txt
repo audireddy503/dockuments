@@ -1,0 +1,64 @@
+[09/03, 5:47 PM] Mani1 Devops Student: 1.Tell me about yourself and work culture and daily activities and  rules and responsibilities what  you are holding on?
+2. What is the issue you faced in your project and how can you fix that issue?
+3. Which operating system you are working?
+4. In Linux what are the commands mostly used in your environment?
+5. Explain me about the permission 777 and 655 and 755?
+6. What chown does?
+7. What are the other command you used?
+8. I have one server thing that  how can we check our Java is running or not?
+9. Checking the particular process who can you check?
+10. What is the ps –ef means?
+11. Which services you had   working on AWS?
+12. In IAM I have a 10 users I want to segregate 10 users  2 in development  and  2 in Administrative and   other 2 in billing how can we set the permission?
+13. What is the default security group when we are creating a instance?
+14. What type of ELB you worked?
+	
+
+
+15. In s3 what sort of things we can do? Why we use s3?
+16. What are the types in s3?
+17.What we use glacier?
+18.What is the difference between git and git hub
+19 If I want to create a branch in git how can we create?
+20.If we wat to switch that branch  how can we switch ?
+21.What git status do?
+22.I checking the status in staging area how can we check it?
+23 I create one branch if we want to upload  something to my repository in the Git Hub? For that what I have to do?
+24.I created a repo but you guys are not able to commit any changes to my repo? What is the issue?
+25.What is the difference between GIT and SVN?
+26.In configuration management which tool you are working?(Ansible)
+27.What is the difference between Ansible, cheff and puppet?
+28.If I have set of DB   servers and I have a set of Application servers? I do have some have set of web servers? I want to push something in Application servers, how can we push it?
+29.Which playbook you are implemented in your environment?
+30.I want to create some users in the  100 servers, same user present in the 100 servrers?
+31.What are the setions are there in playbook?
+32.What are the setions are there in playbook?
+33.Can you explain ansible and configuring notes to ansible?
+34.What are the things are you do in Jenkins?
+35.What do you mean by continues integration and continoues delivery?
+36.What are the most plugins you  used in Jenkins?
+37.For integrating the ansble you have to use some  plugin for  Jenkins?
+38.Do you automated anything in the Jenkins?
+39.What is the mean of Docker?
+[10/03, 12:47 PM] Mani1 Devops Student: 1.Can you please explain about  your rules responsibilities in your current role?
+2.What are the scripting languages you know?
+3.Are you  used any 3rd  part library to write the python scripts?
+4.What is the size of your team members?
+5.What level of knowledge you have in Jenkins?
+6.Coming to the linux administration  whenever user login to the linux server I want a welcome message to be displayed, how we will do that?
+7.There is a process in linix how we will convert to the service?
+8.In a folder people how  creates a file only there should be having the delete permition? other people don’t have to delete file, How can we achieve that?
+9.git and git hub what are the things you do?
+10.What is the default branch?
+11.If you want to switch the other  branch  what is the command you  use?
+12.New changes in the master branch and you are developing a develop branch? How  can  you verbose those changes in develop branch?
+13.When we will use git rebase command?
+14.If you get any conflicts how you can resolve it?
+15.Tell me about your key skill in devops?
+16.In Jenkins ways we can install Jenkins?
+17.Coming to AMI and Security groups can you explain me how can we custome AMI and what are the security groups provide that AMI?
+18.How you will create a customized image?
+19.If you want to Automate the AMI process how can you do it?
+20.I give a application? Some wibesite I want? How you will design architech tell me what are the permitions you will give the security groups ?
+21.You create a subnet that subnet is open to the internet?
+22.Do you have any operational stuff?

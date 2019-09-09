@@ -1,0 +1,591 @@
+Introduction to Kubernetes ::
+
+What is Kubernetes :
+
+Commonly referred to by its internal designation during the development as Google(k8s),
+Kubernetes is an open source container cluster manage.
+
+When it was released in july 2015, Google donated it as "seed technology" to the newly 
+formed Cloud native computing foundation established in a partenership
+with the linux foundation
+
+Kubernetes primary goal is to provide a platform for automating deployment,scaling and 
+operations of application containers across a cluster of hosts.
+
+Design Overview:
+
+kubernetes is built through the definition of a set of components (building blocks or 
+"primitives") which,when used collectively,provide a method for the deployment,
+maintenance and scalability of container based application clusters.
+
+These "primitives" are designed to be loosely coupled(i.e. where little to no knowledge 
+of the other component definitions is needed to use) as well as easily extensible through 
+an API.
+Both the internal components of kubernetes as well as the extensions and containers make 
+use of this API.
+
+Although kubernetes was designed and used internally at google to deploy and utilize 
+"billion of containers", since it was open sourced under the Apache common license, 
+it has since been
+adopted formally as a service available from each of the major cloud providers.
+
+Components:
+
+Building Block of Kubernetes:
+
+Node
+Pods
+Labels
+Selectors
+Controllers
+Services
+Control Pane
+API
+
+
+
+Kubernetes Architecture ::
+
+Please check "HighLevel Architecture" figure for more information ...
+
+From the above architecture we can conclude that we will have a "master controller" which 
+will control all the other nodes. Here in k8s we called these nodes as "minion", 
+which means that each and every server (minion) should have docker package installed. Along
+ with this we are going to create our containers in seperate environment which 
+we called it as "Pods". Hence you are not allowed to create as seperate entity. You should 
+create the containers as part of the pods. If you want to increase the containers 
+you can increase the containers as part of that pods. And finally all the minions will be 
+managed by our master controller. 
+
+Minions (Nodes):
+
+You can think of these as "container clients". These are the individual hosts(physical or 
+virtual) that docker is installed on and hosts the various containers within your 
+managed cluster.
+
+Each minion will run ETCD(a key pair management and communication service, used by kubernetes
+ for exaching messages and reporting on cluster status) as well as the kubernetes proxy.
+
+So Finally "Minions" are nothing but our physical or virtula server where we have our 
+container package installed and it acts like a slave to the master controller. 
+
+PODS:
+
+A pod consists of one or more containers. Those containers are guaranteed (by the cluster 
+controller) to be located on the same host machine in order to facilitate sharing of 
+resources.
+
+Pods are assigned unique ips with in each cluster. These allow an application to use ports 
+with out having to worry about conflicting port utilization.
+
+Pods can contain definitions of disk volumes or share, and then provide access from those to
+ all the members(containers) with in the pod.
+
+Finally, pod management is done through the API or delegated to a controller.
+
+labels:
+
+Clients can attach "key-value pairs" to any object in the system (like pods or minions). 
+These become the labels that identify them in the configuration and management of them.
+
+
+Selectors:
+
+Label selectors represent queries that are made against those labels. They resolve to the 
+corresponding matching objects.
+
+These two item are the primary way that grouping is done in kubernetes and determine which 
+components that a given operation applies to when indicated. 
+
+Controllers:
+
+These are used in the management of your cluster. Controllers are the mechanism by which 
+your desired configuration state is enforced.
+
+Controllers manage a set of pods and depending on the desire configuration state, may enagage
+ other controllers to handle replication and scaling (Replication Controller)
+of XX number of containers and pods across the clsuter. It is also responsible for replacing 
+any container in a pod that fails (based on the desired state of the cluster).
+
+Other controllers that cna be engaged include a DaemonSet Controller (enforces a 1 to 1 
+ratio of pods to minions) and job Controller(that runs pods to "completion", such
+as in batch jobs).
+
+Each set of pods any controller manages, is determined by the label selectors that are part
+ of its definition.
+
+Services:
+
+A pod consists of one or more containers. Those containers are guranteed (by the cluster 
+controller) to be located on the same host machine in order to facilitate sharing of resources.
+
+This is so that pods can work together, like in a multi-tiere application configuration. 
+Each set of pods that define and implement a service (like Mysql or Apache) are defined 
+by the label selector.
+
+Kubernetes can then provide service discovery and handle routing with the static ip for
+ each pod as well as load balancing (round robin based) connections to that service 
+among the pods that match the label selector indicated.
+
+By default although a service is only exposed inside a cluster, it can also be exposed 
+outside a cluster as needed. 
+
+
+
+========================================================================================================
+
+Installation & Configuration ::
+
+On the Master Node following components will be installed ::
+
+API Server  – It provides kubernetes API using Json / Yaml over http, states of 
+API objects are stored in etcd
+
+Scheduler  – It is a program on master node which performs the scheduling tasks like 
+launching containers in worker nodes based on resource availability
+
+Controller Manager – Main Job of Controller manager is to monitor replication controllers 
+and create pods to maintain desired state.
+
+etcd – It is a Key value pair data base. It stores configuration data of cluster and cluster
+ state.
+
+Kubectl utility – It is a command line utility which connects to API Server on port 6443. 
+It is used by administrators to create pods, services etc.
+
+On Worker Nodes following components will be installed ::
+
+Kubelet – It is an agent which runs on every worker node, it connects to docker  and 
+takes care of creating, starting, deleting containers.
+
+Kube-Proxy – It routes the traffic to appropriate containers based on ip address and 
+port number of the incoming request. In other words we can say it is used for port translation.
+
+Pod – Pod can be defined as a multi-tier or group of containers that are deployed on 
+a single worker node or docker host.
+
+
+Installing and configuration of K8s ::
+
+We are taking 3 machines with 1. master and other two as worker nodes !!
+
+Installing and configuring ansible-vim
+
+mkdir -p ~/.vim/autoload ~/.vim/bundle && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+
+Now add the following lines to vim ~/.vimrc to activate this and start autoloading 
+bundles.
+
+[root@slave1 ansible]# cat ~/.vimrc
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+
+Now, download the bundles.
+
+yum install git -y 
+cd ~/.vim/bundle
+git clone git://github.com/chase/vim-ansible-yaml.git
+git clone https://github.com/lepture/vim-jinja.git
+
+
+
+1. Do the changes below on all the nodes
+
+exec bash
+setenforce 0
+sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+
+firewall-cmd --permanent --add-port=6443/tcp
+firewall-cmd --permanent --add-port=2379-2380/tcp
+firewall-cmd --permanent --add-port=10250/tcp
+firewall-cmd --permanent --add-port=10251/tcp
+firewall-cmd --permanent --add-port=10252/tcp
+firewall-cmd --permanent --add-port=10255/tcp
+firewall-cmd --reload
+modprobe br_netfilter
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+
+2. Configure the local dns for mutual communication (/etc/hosts) NOTE: IF REQUIRED
+
+
+Master Node Configuration ::
+
+1. Configuring the repository
+
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+2. Install kubeadm and docker 
+yum update -y
+yum install kubeadm docker -y
+
+Start and enable kubectl and docker service::
+
+systemctl restart docker && systemctl enable docker
+systemctl  restart kubelet && systemctl enable kubelet
+
+3. Initialize Kubernetes Master with ‘kubeadm init’
+
+kubeadm init
+
+kubeadm join --token 117e39.0651dc804a68984d 10.142.0.2:6443 --discovery-token-ca-cert-hash sha256:9a98d03f3462605261021f5aaa1116ef5f96a7ced10773fe1bfb0ac30481d3b1
+
+
+One you are done with above you will get a token id, keep it safe !!!
+
+Once done with the above do the below.
+
+mkdir -p $HOME/.kube
+cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+chown $(id -u):$(id -g) $HOME/.kube/config
+
+4. Deploy pod network to the cluster
+
+export kubever=$(kubectl version | base64 | tr -d '\n')
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+
+
+Testing ::
+
+kubectl get nodes
+
+kubectl  get pods  --all-namespaces
+
+Worker or Minion Nodes Configuration ::
+
+Note: Execute the below on all the worker nodes !!! 
+
+
+1. Configuring the repository
+
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg
+        https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+2. Install kubeadm and docker package on both nodes
+
+yum  install kubeadm docker -y
+
+Note: if any errors use --disablerepo=epel\* 
+
+3. Start and enable docker service
+
+systemctl restart docker && systemctl enable docker
+systemctl enable kubelet
+
+
+4. Now Join worker nodes to master node
+
+kubeadm join --token 117e39.0651dc804a68984d 10.142.0.2:6443 --discovery-token-ca-cert-hash 
+sha256:9a98d03f3462605261021f5aaa1116ef5f96a7ced10773fe1bfb0ac30481d3b1
+
+Note: Copy the token you got while configuring the master node !! 
+
+
+Final Testing:
+
+Now verify Nodes status from master node using kubectl command
+
+[root@k8s-master ~]# kubectl get nodes
+NAME          STATUS     ROLES     AGE       VERSION
+k8s-master    Ready      master    7m        v1.9.3
+k8s-minion1   Ready      <none>    32s       v1.9.3
+k8s-minion2   NotReady   <none>    26s       v1.9.3
+
+
+now you are good to go with your work !!!!
+
+============================================================================================================
+
+Kubectl: Exploring our Environment ::
+
+Explain about the pods, nodes & cs options
+
+kubectl get nodes -o wide
+
+kubectl get cs
+
+kubectl describe nodes k8s-minion1
+
+Pods & Interacting with Pod Containers ::
+
+Create and Deploy Pod Definitions :
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+   - name: nginx
+     image: nginx
+     ports:
+      - containerPort: 80
+
+	  
+explain about the use of creating container inside a pod by killing it.
+
+login in to the pod,executing the operations & finally gathering the details & deleting the pod
+
+Deleting the pods
+
+Tags, Labels and Selectors ::
+
+Labels:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx1
+  labels:
+    app: nginx1
+
+spec:
+  containers:
+   - name: nginx1
+     image: nginx:1.7.9
+     ports:
+      - containerPort: 80
+	  
+kubectl describe pods -l app=nginx1
+
+Deployment State ::
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-prod
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-prod
+    spec:
+      containers:
+      - name: nginx-deployement-prod
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+
+Explain about the deployements & its usuage. Kill a container,pod and check it out ...
+
+Lets do a bit complicated things !! ::
+
+Try to create a deployment with two replicas and take nginx:1.7.9. Once deployed try to update the image to nginx:1.8 with same number of replicas try to show the difference.
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-dev
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-dev
+    spec:
+      containers:
+      - name: nginx-deployement-dev
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+
+Post Checks:
+
+[root@k8s-minion2 ~]# docker inspect ad27ebf3ca69|grep -i NGINX_VERSION
+                "NGINX_VERSION=1.8.1-1~jessie"
+[root@k8s-minion2 ~]#
+
+
+		
+Multi-Pod (Container) Replication Controller::
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nginx-www1
+spec:
+  replicas: 4
+  selector:
+    app: nginx
+  template:
+    metadata:
+      name: nginx
+      labels:
+        app: nginx
+
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+			
+Create the replicationcontroller and tell the difference between rc & deployments
+
+Delete the replicationcontroller & do the testing properly (delete the pods,containers)
+
+Note: If you observer both replication-controller and deployment both are doing the same job. But the main difference is as below.
+
+Deployments are a newer and higher level concept than Replication Controllers. They manage the deployment of Replica Sets (also a newer concept, but pretty much equivalent 
+to Replication Controllers), and allow for easy updating of a Replica Set as well as the ability to roll back to a previous deployment.
+
+
+Create and Deploy Service Definitions ::
+
+create the replication controller (as above)
+
+Create the service like below.
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service1
+
+spec:
+  ports:
+    - port: 8000
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: nginx
+	
+BusyBox:
+
+Busybox is an image where you can login and verify the linux command. Insimple its a simplified constrianed 300 commands linux image. 
+
+
+You can Create and login to the busybox by creating it in the form of a pod like below.
+
+kubectl run -i --tty busybox --image=busybox --restart=Never --generator=run-pod/v1 -- sh
+
+docker exec -it podname sh/bash (as your wish)
+
+Deleting the pods & replication controllers:
+
+
+Logs, Scaling and Recovery ::
+
+Till now we have created everything as part of compose file format ! but now lets try normal commands and check if its working or not. 
+
+Creating a pod.
+
+kubectl run apache --image=nginx
+
+By default you will be getting deployments created. 
+
+Replicas:
+
+kubectl run myreplicas --image=nginx --replicas=2 --labels=app=myapache,version=1.0
+
+
+Logs:
+
+kubectl logs myapache
+kubectl logs --tail=1 myapche
+kubectl logs --tail=1 myapache
+kubectl logs --since=24h myapache
+kubectl logs -f myapache
+
+Autoscaling and Scaling our Pods ::
+
+
+First create a deployment & try to scale it post creation 
+
+
+kubectl run myautoscale --image=nginx --port=80 --labels=app=myautoscale
+
+kubectl autoscale deployment myautoscale --min=2 --max=6
+
+scaling up:
+
+kubectl scale --current-replicas=2 --replicas=4 deployment/myautoscale
+
+scaling down:
+
+kubectl scale --current-replicas=4 --replicas=2 deployment/myautoscale
+
+explain about condition "--cpu-percent"
+
+Failure and Recovery ::
+
+create a deployment with two replicas and try to stop one workernode and show the autofailure/autocreation of pod in the existing running worker node
+
+systemctl stop docker kubelet (in one node !!)
+
+
+Question:
+
+how to login to the conatiner when a pod is having multiple conatiners !!
+
+ans: kubectl exec -it my-pod --container main-app -- /bin/bash
+
+
+Example:
+
+[root@k8s-master mytest]# cat multi_pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-django2
+  labels:
+    app: web
+spec:
+  containers:
+    - name: conatainer1
+      image: redis
+      ports:
+        - containerPort: 6379
+    - name: container2
+      image: nginx
+      ports:
+        - containerPort: 80
+
+[root@k8s-master mytest]# kubectl exec -it redis-django1 -c conatainer1 bash
+
+root@redis-django1:/data# id -a
+uid=0(root) gid=0(root) groups=0(root)
+
+root@redis-django1:/data# useradd container1
+root@redis-django1:/data# id -a container1
+uid=1000(container1) gid=1000(container1) groups=1000(container1)
+
+[root@k8s-master mytest]# kubectl exec -it redis-django1 -c container2 bash
+
+root@redis-django1:/# id -a container1
+id: 'container1': no such user
+
+root@redis-django1:/# useradd container2
+
+root@redis-django1:/# id -a container2
+uid=1000(container2) gid=1000(container2) groups=1000(container2)
+
+root@redis-django1:/# id -a container1
+id: 'container1': no such user
+
+
+
+
+
+
+

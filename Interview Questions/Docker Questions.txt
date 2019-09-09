@@ -1,0 +1,33 @@
+Docker Questions !!
+
+
+1. What is Docker? Why we use Dockers?
+
+2. Can I use json instead of yaml compose file in dockers?
+
+3. Can you give commands for creating and stopping the container in dockers?
+
+Why containerization?
+
+What is the mean of Docker?
+
+Q2. What are containers?
+Ans. Containers are form of lightweight virtualization, heavier than ‘chroot’ but lighter than ‘hypervisors’. They provide isolation among processes while using same kernel as the host machine, and ‘cgroups’ functionality within kernel.
+
+what is container?
+
+difference between VMWARE and Container?
+
+
+9.where you are used Dockers? why you are using Dockers?
+
+10.what do you mean by container?
+
+
+what was the product you deployed in kubernets?
+how many nodes and how many masters are there in your kubernets?
+what is your Docker environment?
+what is the docker methodology you are using to geth the containers deployement?
+explain me about the build complete life cycle How eactly build start in your organization and how it's build and how it's get deployeed?
+
+

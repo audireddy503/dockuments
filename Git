@@ -1,0 +1,20 @@
+push vs Pull?
+Cherry-pick?
+rebase vs revert vs reset
+How to merge branch with master?
+conflicts -- will do rebase to resolve the conflicts?
+GIT House keeping
+How to revoke the merge changes in?
+Git stash
+Git rebase vs revert vs reset vs checkout
+How to set the git repo in GitHub or Gutlab?
+How to provide the acccess to repo for the people?
+Gitlab Cluster setup?
+Gitlab volume management?
+Git
+	- Tags
+Gerrit
+	- Integration with GIT
+	- SetUp
+	- Used versions
+	- Migrations to new versions

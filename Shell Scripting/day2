@@ -1,0 +1,1082 @@
+=~=~=~=~=~=~=~=~=~=~=~= PuTTY log 2018.11.28 07:25:09 =~=~=~=~=~=~=~=~=~=~=~=
+cd /tmp/
+[root@shellscripting tmp]# mkdir scriptis
+[root@shellscripting tmp]# cd scripts/
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim testex1.sh
+  "ex1.sh" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1All$1,21#2!3/4b5i6n7/8b9a10s1h22,1 a2a=314053,1b2b=324054,15e2c3h4echo5 6"7v8a9l10u1e2 3o4f5 6a7 8&9 20198765432109 87S8u9m10 1o2f3 4a5n65 6a7n8d9 20b1 2i3s4 5$6$(7(8(a9+30b1)(a+b)2)((a+b))3"()45,33All
+echo "Sum of a and b is $((a+b))"6,1 -- INSERT --6,34All()3"((a+b)"21(a+b)029(a+b)8$a+b)"(b9301()2($a+b)1$b)"21029()8$a+$b)"($)"76,26All:wq1"1" [New] 6L, 91C written
+E37: No write since last change
+E162: No write since last change for buffer "ex1.sh"
+Press ENTER or type command to continue#!/bin/bash
+a=10
+b=206,26All:wq!"ex1.sh" [New] 6L, 91C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash ex1.sh 
+Sum of a and b is 30
+ex1.sh: line 6: 10+20: command not found
+Sum of a and b is 
+[root@shellscripting scripts]# vim ex1.sh 
+  "ex1.sh" 6L, 91C#!/bin/bash
+a=10
+b=20
+
+echo "Sum of a and b is $((a+b))"
+echo "Sum of a and b is $($a+$b)"
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      6,1All-- INSERT --6,34All()32()1029 +$b)"301 $b)"26,31All:wq!"ex1.sh" 6L, 93C written
+[root@shellscripting scripts]# vim ex1.sh bash
+Sum of a and b is 30
+ex1.sh: line 6: 10: command not found
+Sum of a and b is 
+[root@shellscripting scripts]# bash ex1.sh  -x
+Sum of a and b is 30
+ex1.sh: line 6: 10: command not found
+Sum of a and b is 
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim ex1.sh 
+  "ex1.sh" 6L, 93C#!/bin/bash
+a=10
+b=20
+
+echo "Sum of a and b is $((a+b))"
+echo "Sum of a and b is $($a + $b)"
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      6,1All:set nu  1 #!/bin/bash
+  2 a=10
+  3 b=20
+  4 
+  5 echo "Sum of a and b is $((a+b))"
+  6 echo "Sum of a and b is $($a + $b)"6,1All-- INSERT --6,36All()54()32$b)"10+$b)"296,28All~                                                                                                      5,1 -- INSERT --5,34All
+  6 6,1 c2c=3$4$(5$6$a7+8$9$b10)()1
+  7 ()7,1 p2r321e2c3h4echo5 6c77,6All:wq!"ex1.sh" 7L, 75C written7,6All7,6All-- INSERT --7,6All$c77,6All:wq!"ex1.sh" 7L, 76C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim ex1.sh bash ex1.sh  -x
+Sum of a and b is 30
+ex1.sh: line 6: 10+20: command not found
+
+[root@shellscripting scripts]# vim ex1.sh 
+  "ex1.sh" 7L, 76C#!/bin/bash
+a=10
+b=20
+
+echo "Sum of a and b is $((a+b))"
+c=$($a+$b)
+echo $c
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      7,1All6
+~                                                                                                      6,1All~                                                                                                      5124 fewer lines~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      1,1All1,1All-- INSERT --1,12All2,1 e2c3h4echo5 6"76-7p8 9"10H1i210P1l2e3a4s5e6 7e8n9t20e1r2 3s4t5u6d7e8n9t30 1s2c3o4r5e6"73,1 r2re3a4read56s7c8r9o10e14,1 ~                                                                                                      3,1109 8o9r10e14,1 5i2if3 4(5((67s8c9o10r1e23>43<4=51607089a2019&20&12s3c4o5r6e78>9=3081802)()3))(())4()6,1 t2h3e4then57,165Aif ( score <=100 & score >=80)
+then2if ( score <=10 & score >=80)then1()343(())2()10 80)16,5 7,1e2c3h4echo5 6"7G8r9a10d1e2 3A4"58,1 e2l3i4elif56(7((89s10c1o2r3e45>6=7789920&1&23s4c5o6r7e89<30=125304)()5))(())6()9,1 e2h3t4n54321t2h3e4then510,1e2c3h4echo5 6"7G8r9a10d1e2 3B4"51,1 e2l3s4else52,1e2c3h4echo5 6"7F8a9i10l1e2d3"43,1 f2fi34,114,0-1All:wq!"ex1.sh" 14L, 195C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash ex1.sh 
+-p Please enter student score
+^C
+[root@shellscripting scripts]# vim ex1.sh 
+  "ex1.sh" 14L, 195C#!/bin/bash
+echo -p "Please enter student score"
+read score
+
+if (( score <=100 && score >= 80))
+then
+echo "Grade A"
+elif (( score >=79 && score <= 50))
+then
+echo "Grade B"
+else
+echo "Failed"
+fi
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      14,0-1All3,1  21,1 23223456p "Please enter student score" "Please enter student score""Please enter student score":wq!"ex1.sh" 14L, 192C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim ex1.sh bash
+Please enter student score
+70
+Failed
+[root@shellscripting scripts]# bash ex1.sh 
+Please enter student score
+100   90
+Grade A
+[root@shellscripting scripts]# vvim ex1.sh 
+  "ex1.sh" 14L, 192C#!/bin/bash
+echo "Please enter student score"
+read score
+
+if (( score <=100 && score >= 80))
+then
+echo "Grade A"
+elif (( score >=79 && score <= 50))
+then
+echo "Grade B"
+else
+echo "Failed"
+fi
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      2,1All34,0-15,1  6789:wq!"ex1.sh" 14L, 192C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat exvim ex1.sh 
+  "ex1.sh" 14L, 192C#!/bin/bash
+echo "Please enter student score"
+read score
+
+if (( score <=100 && score >= 80))
+then
+echo "Grade A"
+elif (( score >=79 && score <= 50))
+then
+echo "Grade B"
+else
+echo "Failed"
+fi
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      9,1All82345 ()6(())7()891012345=79 & score <= 50)-- INSERT --8,15All<=79 & score <= 50)678920123456789= 50)>= 50)308,29All:wq!"ex1.sh" 14L, 192C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat ex1.sh 
+#!/bin/bash
+echo "Please enter student score"
+read score
+
+if (( score <=100 && score >= 80))
+then
+echo "Grade A"
+elif (( score <=79 && score >= 50))
+then
+echo "Grade B"
+else
+echo "Failed"
+fi
+
+[root@shellscripting scripts]# bash ex1.sh 
+Please enter student score
+90
+Grade A
+[root@shellscripting scripts]# bash ex1.sh 
+Please enter student score
+50
+Grade B
+[root@shellscripting scripts]# bash ex1.sh 
+Please enter student score
+45
+Failed
+[root@shellscripting scripts]# [root@shellscripting scripts]# ls -l
+total 8
+-rw-r--r-- 1 root root  91 Nov 28 02:09 1
+-rw-r--r-- 1 root root 192 Nov 28 02:15 ex1.sh
+[root@shellscripting scripts]# rm -f 1
+[root@shellscripting scripts]# ls -l
+total 4
+-rw-r--r-- 1 root root 192 Nov 28 02:15 ex1.sh
+[root@shellscripting scripts]# [root@shellscripting scripts]# ls -l
+total 4
+-rw-r--r-- 1 root root 192 Nov 28 02:15 ex1.sh
+[root@shellscripting scripts]# vim ex2.sh
+  "ex2.sh" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1All#1,2!3/4b5i6n7/8b9a10s1h22,1 3i2if3 4[5[[67-8-f9109 -876[56-7-f89e10x112.3s4h56][]7[]4,1 t2h3e4then55,1e2c3h4echo5 6"7F8i9l10e1 2e3x4i5s6t7s8"96,1 e2l3s4else57,1e2c3h4echo5 6"7F8i9l10e1 2n3o4t5 6e7x8i9s20t1s2"38,1 f2fi39,19,0-1All:wq!"ex2.sh" [New] 9L, 86C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat ex2.sh 
+#!/bin/bash
+
+if [ -f ex1.sh ]
+then
+echo "File exists"
+else
+echo "File not exists"
+fi
+
+[root@shellscripting scripts]# bash e[root@shellscripting scripts]# bash eex2.sh 
+File exists
+[root@shellscripting scripts]# cat ex2.sh 
+#!/bin/bash
+
+if [ -f ex1.sh ]
+then
+echo "File exists"
+else
+echo "File not exists"
+fi
+
+[root@shellscripting scripts]# mv ex1.sh t/tmp/
+[root@shellscripting scripts]# mv ex1.sh /tmp/cat ex2.sh bash
+File not exists
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat /tmp/ex1.sh 
+#!/bin/bash
+echo "Please enter student score"
+read score
+
+if (( score <=100 && score >= 80))
+then
+echo "Grade A"
+elif (( score <=79 && score >= 50))
+then
+echo "Grade B"
+else
+echo "Failed"
+fi
+
+[root@shellscripting scripts]# [root@shellscripting scripts]# uname -a
+Linux shellscripting 4.14.62-65.117.amzn1.x86_64 #1 SMP Fri Aug 10 20:03:52 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+[root@shellscripting scripts]# df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+devtmpfs       devtmpfs  483M   60K  483M   1% /dev
+tmpfs          tmpfs     493M     0  493M   0% /dev/shm
+/dev/xvda1     ext4      7.8G  3.1G  4.7G  40% /
+[root@shellscripting scripts]# uname -a;df -hT
+Linux shellscripting 4.14.62-65.117.amzn1.x86_64 #1 SMP Fri Aug 10 20:03:52 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+Filesystem     Type      Size  Used Avail Use% Mounted on
+devtmpfs       devtmpfs  483M   60K  483M   1% /dev
+tmpfs          tmpfs     493M     0  493M   0% /dev/shm
+/dev/xvda1     ext4      7.8G  3.1G  4.7G  40% /
+[root@shellscripting scripts]# echo $(nuname -a;df -hT)
+Linux shellscripting 4.14.62-65.117.amzn1.x86_64 #1 SMP Fri Aug 10 20:03:52 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux Filesystem Type Size Used Avail Use% Mounted on devtmpfs devtmpfs 483M 60K 483M 1% /dev tmpfs tmpfs 493M 0 493M 0% /dev/shm /dev/xvda1 ext4 7.8G 3.1G 4.7G 40% /
+[root@shellscripting scripts]# [root@shellscripting scripts]# for i in ra{1..10}
+> do
+> echo $i
+> done
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim ex3.sh
+  "ex3.sh" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1All$1,21#2!3/4b5i6n7/8b9a10s1h22,1 n2u3m4num=5163,1w2h3i4l5while6 7n8u987(8((9n10u1m23<4=516)()7(65432<3=41506)()7()4,1 d2o35,1e2c3o43h4o56$7$n8u9m106,1 n2u3m4=5$6$(7(8(n9u10m1+213)()4)(())5()7,1 d2o3n4e57,4All:wq!"ex3.sh" [New] 7L, 68C written
+[root@shellscripting scripts]# bash ex2.3.sh 
+ex3.sh: line 7: syntax error near unexpected token `done'
+ex3.sh: line 7: `done'
+[root@shellscripting scripts]# vim ex3.sh 
+  "ex3.sh" 7L, 68C#!/bin/bash
+num=1
+while ((num<=10)
+do
+echo $num
+num=$((num+1))
+done
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      7,1All65456543-- INSERT --3,17All()))
+do
+echo 
+num=num+
+done(())83,17All:wq!"ex3.sh" 7L, 69C written
+[root@shellscripting scripts]# vim ex3.sh 
+  "ex3.sh" 7L, 69C#!/bin/bash
+num=1
+while ((num<=10))
+do
+echo $num
+num=$((num+1))
+done
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      3,1All456:wq!"ex3.sh" 7L, 69C written
+[root@shellscripting scripts]# vim ex3.sh bash
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat ex3.sh 
+#!/bin/bash
+num=1
+while ((num<=10))
+do
+echo $num
+num=$((num+1))
+done
+[root@shellscripting scripts]# cat ex3.sh bash
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@shellscripting scripts]# l[root@shellscripting scripts]# vim case.sh
+  "case.sh" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1All#1,2!3/4b5i6n7/8b9a10s1h22,1 e2c3h4echo5 6"7P8l9e10a1s2e3 4g5i6v7e8 9a20 1a2n3d4 5b6 7v8a9l30u1e2s3"43,1 r2re3a4read56a74,1r2re3a4read56b75,1e2c3h4echo5 6"7P8l9e10a1s2e3 4c5h6o7o8s9e20 1a2n3y4 5o6n7e8 9o30p1e2r3a4t5o6r7:8"96,1 r2re3a4read56o7p8r97,18c2a3s4case56$7$o8p9r101i2in349,1 "2+3"4)56e7c8h9echo10 1"2Y32S3u4m5 6o7f8 9$20$a1 2a3n4d5 6$7$b8 9i30s1"2,3$4$(5(6a7+8b9)()40))(())1;()2;310,1e2s3a4esac510,4All:wq!"case.sh" [New] 10L, 171C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash case.sh 
+Please give a and b values
+10
+20
+Please choose any one operator:
++
+Sum of 10 and 20 is,30
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim case.sh 
+  "case.sh" 10L, 171C#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+esac
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      10,1All~                                                                                                      9,1 -- INSERT --9,43All10,1"2-3"4)56e7c8h9echo10 1"2S3u4b5 6o7f8 9$20$a1 2a3n4d5 6$7$b8 9i30s1"2,3$4$(5(6a7-8b9)()40;();1;21,1 0421();0));(())1()311,1All"2/3"4)56e7c8h9echo10 1"2D3I4v5 6o76543i4v5 6o7f8 9$20$a1 2a3n4d5 6$7$b8 9i30s1"2,3$4$(5(6a7/8b9)()40))(())1;()212,1All
+"/") echo "Div of $a and $b is",$((a/b));~                                                                                                      11,42All'32;312,1All"2%3"4)56e7c8h9echo10 1"2M3o4d5 6o7f8 9$20$a1 2a3n4d5 6$7$b8 9i30s1"2,3$4$(5(6a7%8b9)()40))(())1;()2;313,1All"2*3"4)56e7c8h9echo10 1"2M3u4l5 6o7f8 9$20$a1 2a3n4d5 6$7$b8 9i30s1"2,3$4$(5(6a7*8b9)()40))(())1;()214,1All*2)34e5c6h7echo8 9"10P1l2e3a4s5e6 7c8h9o20o1s2e3 4o5n6l7y8 9+30,1-2,3/4,5*6/76%7"8;9;4015,1Alle2s3a4esac515,4All:wq!"case.sh" 16L, 383C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash case.sh 
+Please give a and b values
+20
+30
+Please choose any one operator:
++
+case.sh: line 14: syntax error near unexpected token `)'
+case.sh: line 14: `*) echo "Please choose only +,-,/,*%";;'
+[root@shellscripting scripts]# vim [root@shellscripting scripts]# vim case.sh 
+  "case.sh" 16L, 383C#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));
+*) echo "Please choose only +,-,/,*%";;
+esac
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      15,1All4321234323434234567654321-- INSERT --14,1All\*) echo "Please choose only +,-,/,*%";;214,1All:wq1"1" [New] 16L, 384C written
+E37: No write since last change
+E162: No write since last change for buffer "case.sh"
+Press ENTER or type command to continue#!/bin/bash
+echo "Please give a and b values"
+read a14,1All#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));
+\*) echo "Please choose only +,-,/,*%";;
+esac
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      14,1All:wq!"case.sh" 16L, 384C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim case.sh bash
+Please give a and b values
+10
+20
+Please choose any one operator:
+-
+case.sh: line 14: syntax error near unexpected token `)'
+case.sh: line 14: `\*) echo "Please choose only +,-,/,*%";;'
+[root@shellscripting scripts]# vim case.sh 
+  "case.sh" 16L, 384C#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));
+\*) echo "Please choose only +,-,/,*%";;
+esac
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      14,1All54-- INSERT --14,41All03987,%";;87654321029876543210198765432109 87654321342;
+\*)313,42All:wq!"case.sh" 16L, 386C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim case.sh bash
+Please give a and b values
+10
+20
+Please choose any one operator:
++
+Sum of 10 and 20 is,30
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash ecasecase.sh 
+Please give a and b values
+20
+10
+Please choose any one operator:
+-
+Sub of 20 and 10 is,10
+[root@shellscripting scripts]# bash case.sh 
+Please give a and b values
+10
+20
+Please choose any one operator:
+*
+Mul of 10 and 20 is,200
+[root@shellscripting scripts]# cat case.sh bash case.sh 
+Please give a and b values
+10
+20
+Please choose any one operator:
+&
+[root@shellscripting scripts]# vim case.sh 
+  "case.sh" 16L, 386C#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+\*) echo "Please choose only +,-,/,*,%";;
+esac
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      13,1All4*) echo "Please choose only +,-,/,*,%";:wq!"case.sh" 16L, 385C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim case.sh bash
+Please give a and b values
+10
+20
+Please choose any one operator:
+&
+Please choose only +,-,/,*,%
+[root@shellscripting scripts]# cat case.sh 
+#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in 
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+*) echo "Please choose only +,-,/,*,%";;
+esac
+
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim select.sh
+  "select.sh" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1All#1,2!3/4b5i6n7/8b9a10s1h22,1 s2e3l4e5c6t7select 8+910-12/34*56%73,1 d2do34,1e2c3h4echo5 65ech4echo5 6"7H8e9l10l1o2 3t4e5a6m7"85,1 d2do3don4done543,32,56789101234\* %53,3 4,155,5 5,4All:wq!"select.sh" [New] 5L, 56C written
+[root@shellscripting scripts]# bash select.sh 
+select.sh: line 2: syntax error near unexpected token `-'
+select.sh: line 2: `select + - / \* %'
+[root@shellscripting scripts]# vim vim select.sh vim select.sh 
+  "select.sh" 5L, 56C#!/bin/bash
+select + - / \* %
+do
+echo "Hello team"
+done
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      5,1All432-- INSERT --2,18All765432109 8i+ - / \* %9 + - / \* %10i+ - / \* %1in+ - / \* %
+
+
+done2 + - / \* %32,12All:wq!"select.sh" 5L, 61C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat select.sh 
+#!/bin/bash
+select i in + - / \* %
+do
+echo "Hello team"
+done
+[root@shellscripting scripts]# bashh s select.sh 
+1) +
+2) -
+3) /
+4) *
+5) %
+#? 1
+Hello team
+#? ^C
+[root@shellscripting scripts]# vim case.sh 
+  "case.sh" 16L, 385C#!/bin/bash
+echo "Please give a and b values"
+read a
+read b
+echo "Please choose any one operator:"
+read opr
+
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+*) echo "Please choose only +,-,/,*,%";;
+esac
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      14,1All32109,1 87,0-16,1  53 fewer lines~                                                                                                      ~                                                                                                      ~                                                                                                      5,1All3 fewer lines5,1All4-- INSERT --4,7All5,1Alls2e3l4s54e5c6t7select 8$98o9p10r12i3in45+67-89*201/23%46,1Alld2do3545678910123456789\* / %206,3 7,148,20910,201234,5 15,1Alld2do3don4done5432109,5 876,35,54322,4All3 fewer lines~                                                                                                      ~                                                                                                      ~                                                                                                      2,1All3 fewer lines2,1All345432-- INSERT --3,3All4,1All4,0-1All3 more linesecho "Please give a and b values"
+read a
+read b5,1All3 more lines5,1All4,0-1
+~                                                                                                      4,1All5678910,1123-- INSERT --13,41All039;40e1x2i3exit4(5(0
+esac
+done6)
+esac
+done()7;()8;913,48All:wq!"case.sh" 16L, 377C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat case.sh 
+#!/bin/bash
+select opr in + - \* / %
+do
+echo "Please give a and b values"
+read a
+read b
+case $opr in 
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+*) echo "Please choose only +,-,/,*,%";exit(0);;
+esac
+done
+
+[root@shellscripting scripts]# bash case.sh 
+case.sh: line 13: syntax error near unexpected token `0'
+case.sh: line 13: `*) echo "Please choose only +,-,/,*,%";exit(0);;'
+[root@shellscripting scripts]# vim[root@shellscripting scripts]# vim case.sh 
+"case.sh" 16L, 377C#!/bin/bash
+select opr in + - \* / %
+do
+echo "Please give a and b values"
+read a
+read b
+case $opr in
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+*) echo "Please choose only +,-,/,*,%";exit(0);;
+esac
+done
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      
+
+
+
+
+
+
+
+
+
+
+
+-- INSERT --xit0);0; 0;;:wq!"case.sh" 16L, 376C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# vi case.sh bash
+1) +
+2) -
+3) *
+4) /
+5) %
+#? 1
+Please give a and b values
+10
+20
+Sum of 10 and 20 is,30
+#? 2
+Please give a and b values
+30
+20
+Sub of 30 and 20 is,10
+#? 6
+Please give a and b values
+10
+20
+Please choose only +,-,/,*,%
+[root@shellscripting scripts]# cat case.sh 
+#!/bin/bash
+select opr in + - \* / %
+do
+echo "Please give a and b values"
+read a
+read b
+case $opr in 
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+*) echo "Please choose only +,-,/,*,%";exit 0;;
+esac
+done
+
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat case.sh 
+#!/bin/bash
+select opr in + - \* / %
+do
+echo "Please give a and b values"
+read a
+read b
+case $opr in 
+"+") echo "Sum of $a and $b is",$((a+b));;
+"-") echo "Sub of $a and $b is",$((a-b));;
+"/") echo "Div of $a and $b is",$((a/b));;
+"%") echo "Mod of $a and $b is",$((a%b));;
+"*") echo "Mul of $a and $b is",$((a*b));;
+*) echo "Please choose only +,-,/,*,%";exit 0;;
+esac
+done
+
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim args.sh
+  "args.sh" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1All#1,2!3/4b5i6n7/8b9a10s1h22,1 3e2c3h4echo5 6"7M8y9 10f1o2r321i2r3s4t5 6a7r8e98g9 20i1s2"3,4$5$164,1 e2c3h4echo5 6"7M8y9 10s1e2c3o4n5d6 7a8r9g20 1i2s3"4,5$6$275,1 e2c3h4echo5 6"7M8y9u10 109  10t1h2i3r4d5 6a7r8g9 20i1s2"3,4$5$366,1 e2c3h4echo5 6"7T8o9t10a1l2 3N4o5.6O7f8 9a20r1g2s3 4a5r6e7"8,9$30$#17,1 e2c3h4echo5 6"7T8o9t10a1l2 3a4r5g6s7 8a9r20e1"2,3$4$*58,1 8,0-1All:wq!"args.sh" [New] 8L, 149C written
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat args.sh bash cat args.sh 
+#!/bin/bash
+
+echo "My first arg is",$1
+echo "My second arg is",$2
+echo "My third arg is",$3
+echo "Total No.Of args are",$#
+echo "Total args are",$*
+
+[root@shellscripting scripts]# bash args.sh 10 20 30 40 50
+My first arg is,10
+My second arg is,20
+My third arg is,30
+Total No.Of args are,5
+Total args are,10 20 30 40 50
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim vim ex1/tmp/ex1.sh 
+  "/tmp/ex1.sh" 14L, 192C#!/bin/bash
+echo "Please enter student score"
+read score
+
+if (( score <=100 && score >= 80))
+then
+echo "Grade A"
+elif (( score <=79 && score >= 50))
+then
+echo "Grade B"
+else
+echo "Failed"
+fi
+
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      1,1All-- INSERT --1,12All2,1Alls2e3t4set 5-6-x72,6All:wq!"/tmp/ex1.sh" 15L, 199C written
+[root@shellscripting scripts]# bash /tmp/ex1.sh 
++ echo 'Please enter student score'
+Please enter student score
++ read score
+90
++ ((  score <=100 && score >= 80 ))
++ echo 'Grade A'
+Grade A
+[root@shellscripting scripts]# [root@shellscripting scripts]# gre while *
+bash: gre: command not found
+[root@shellscripting scripts]# gre while *p
+ex3.sh:while ((num<=10))
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash -x ex3.sh 
++ num=1
++ (( num<=10 ))
++ echo 1
+1
++ num=2
++ (( num<=10 ))
++ echo 2
+2
++ num=3
++ (( num<=10 ))
++ echo 3
+3
++ num=4
++ (( num<=10 ))
++ echo 4
+4
++ num=5
++ (( num<=10 ))
++ echo 5
+5
++ num=6
++ (( num<=10 ))
++ echo 6
+6
++ num=7
++ (( num<=10 ))
++ echo 7
+7
++ num=8
++ (( num<=10 ))
++ echo 8
+8
++ num=9
++ (( num<=10 ))
++ echo 9
+9
++ num=10
++ (( num<=10 ))
++ echo 10
+10
++ num=11
++ (( num<=10 ))
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash -x ex3.sh 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@shellscripting scripts]# [root@shellscripting scripts]# bash ex3.sh -x 
++ num=1
++ (( num<=10 ))
++ echo 1
+1
++ num=2
++ (( num<=10 ))
++ echo 2
+2
++ num=3
++ (( num<=10 ))
++ echo 3
+3
++ num=4
++ (( num<=10 ))
++ echo 4
+4
++ num=5
++ (( num<=10 ))
++ echo 5
+5
++ num=6
++ (( num<=10 ))
++ echo 6
+6
++ num=7
++ (( num<=10 ))
++ echo 7
+7
++ num=8
++ (( num<=10 ))
++ echo 8
+8
++ num=9
++ (( num<=10 ))
++ echo 9
+9
++ num=10
++ (( num<=10 ))
++ echo 10
+10
++ num=11
++ (( num<=10 ))
+[root@shellscripting scripts]# [root@shellscripting scripts]# [root@shellscripting scripts]# cat /ettfc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+adm:x:3:4:adm:/var/adm:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin
+uucp:x:10:14:uucp:/var/spool/uucp:/sbin/nologin
+operator:x:11:0:operator:/root:/sbin/nologin
+games:x:12:100:games:/usr/games:/sbin/nologin
+gopher:x:13:30:gopher:/var/gopher:/sbin/nologin
+ftp:x:14:50:FTP User:/var/ftp:/sbin/nologin
+nobody:x:99:99:Nobody:/:/sbin/nologin
+rpc:x:32:32:Rpcbind Daemon:/var/lib/rpcbind:/sbin/nologin
+ntp:x:38:38::/etc/ntp:/sbin/nologin
+saslauth:x:499:76:"Saslauthd user":/var/empty/saslauth:/sbin/nologin
+mailnull:x:47:47::/var/spool/mqueue:/sbin/nologin
+smmsp:x:51:51::/var/spool/mqueue:/sbin/nologin
+rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin
+nfsnobody:x:65534:65534:Anonymous NFS User:/var/lib/nfs:/sbin/nologin
+sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin
+dbus:x:81:81:System message bus:/:/sbin/nologin
+ec2-user:x:500:500:EC2 Default User:/home/ec2-user:/bin/bash
+apache:x:48:48:Apache:/var/www:/sbin/nologin
+dvsbatch9:x:501:501::/home/dvsbatch9:/bin/bash
+nginx:x:498:496:Nginx web server:/var/lib/nginx:/sbin/nologin
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat /etc/passwd|cur -d : -d:t -d: -f1,7
+root:/bin/bash
+bin:/sbin/nologin
+daemon:/sbin/nologin
+adm:/sbin/nologin
+lp:/sbin/nologin
+sync:/bin/sync
+shutdown:/sbin/shutdown
+halt:/sbin/halt
+mail:/sbin/nologin
+uucp:/sbin/nologin
+operator:/sbin/nologin
+games:/sbin/nologin
+gopher:/sbin/nologin
+ftp:/sbin/nologin
+nobody:/sbin/nologin
+rpc:/sbin/nologin
+ntp:/sbin/nologin
+saslauth:/sbin/nologin
+mailnull:/sbin/nologin
+smmsp:/sbin/nologin
+rpcuser:/sbin/nologin
+nfsnobody:/sbin/nologin
+sshd:/sbin/nologin
+dbus:/sbin/nologin
+ec2-user:/bin/bash
+apache:/sbin/nologin
+dvsbatch9:/bin/bash
+nginx:/sbin/nologin
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat /etc/passwd|cut -d: -f1,7awk '{print {print $1,$7}'
+root:x:0:0:root:/root:/bin/bash 
+bin:x:1:1:bin:/bin:/sbin/nologin 
+daemon:x:2:2:daemon:/sbin:/sbin/nologin 
+adm:x:3:4:adm:/var/adm:/sbin/nologin 
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin 
+sync:x:5:0:sync:/sbin:/bin/sync 
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown 
+halt:x:7:0:halt:/sbin:/sbin/halt 
+mail:x:8:12:mail:/var/spool/mail:/sbin/nologin 
+uucp:x:10:14:uucp:/var/spool/uucp:/sbin/nologin 
+operator:x:11:0:operator:/root:/sbin/nologin 
+games:x:12:100:games:/usr/games:/sbin/nologin 
+gopher:x:13:30:gopher:/var/gopher:/sbin/nologin 
+ftp:x:14:50:FTP 
+nobody:x:99:99:Nobody:/:/sbin/nologin 
+rpc:x:32:32:Rpcbind 
+ntp:x:38:38::/etc/ntp:/sbin/nologin 
+saslauth:x:499:76:"Saslauthd 
+mailnull:x:47:47::/var/spool/mqueue:/sbin/nologin 
+smmsp:x:51:51::/var/spool/mqueue:/sbin/nologin 
+rpcuser:x:29:29:RPC 
+nfsnobody:x:65534:65534:Anonymous 
+sshd:x:74:74:Privilege-separated 
+dbus:x:81:81:System 
+ec2-user:x:500:500:EC2 
+apache:x:48:48:Apache:/var/www:/sbin/nologin 
+dvsbatch9:x:501:501::/home/dvsbatch9:/bin/bash 
+nginx:x:498:496:Nginx 
+[root@shellscripting scripts]# cat /etc/passwd|awk '{print $1,$7}'[root@shellscripting scripts]# cat /etc/passwd|awk '{print $1,$7}'-F: 
+root /bin/bash
+bin /sbin/nologin
+daemon /sbin/nologin
+adm /sbin/nologin
+lp /sbin/nologin
+sync /bin/sync
+shutdown /sbin/shutdown
+halt /sbin/halt
+mail /sbin/nologin
+uucp /sbin/nologin
+operator /sbin/nologin
+games /sbin/nologin
+gopher /sbin/nologin
+ftp /sbin/nologin
+nobody /sbin/nologin
+rpc /sbin/nologin
+ntp /sbin/nologin
+saslauth /sbin/nologin
+mailnull /sbin/nologin
+smmsp /sbin/nologin
+rpcuser /sbin/nologin
+nfsnobody /sbin/nologin
+sshd /sbin/nologin
+dbus /sbin/nologin
+ec2-user /bin/bash
+apache /sbin/nologin
+dvsbatch9 /bin/bash
+nginx /sbin/nologin
+[root@shellscripting scripts]# cat /etc/passwd|awk -F: '{print $1,$7}';print "Username SHellhell";[root@shellscripting scripts]# cat /etc/passwd|awk -F: '{;print "Username Shell";print $1,$7}'
+Username Shell
+root /bin/bash
+Username Shell
+bin /sbin/nologin
+Username Shell
+daemon /sbin/nologin
+Username Shell
+adm /sbin/nologin
+Username Shell
+lp /sbin/nologin
+Username Shell
+sync /bin/sync
+Username Shell
+shutdown /sbin/shutdown
+Username Shell
+halt /sbin/halt
+Username Shell
+mail /sbin/nologin
+Username Shell
+uucp /sbin/nologin
+Username Shell
+operator /sbin/nologin
+Username Shell
+games /sbin/nologin
+Username Shell
+gopher /sbin/nologin
+Username Shell
+ftp /sbin/nologin
+Username Shell
+nobody /sbin/nologin
+Username Shell
+rpc /sbin/nologin
+Username Shell
+ntp /sbin/nologin
+Username Shell
+saslauth /sbin/nologin
+Username Shell
+mailnull /sbin/nologin
+Username Shell
+smmsp /sbin/nologin
+Username Shell
+rpcuser /sbin/nologin
+Username Shell
+nfsnobody /sbin/nologin
+Username Shell
+sshd /sbin/nologin
+Username Shell
+dbus /sbin/nologin
+Username Shell
+ec2-user /bin/bash
+Username Shell
+apache /sbin/nologin
+Username Shell
+dvsbatch9 /bin/bash
+Username Shell
+nginx /sbin/nologin
+[root@shellscripting scripts]# [root@shellscripting scripts]# cat /etc/passwd|awk -F: '{;print "Username Shell";print $1,$7}'echo "Username SHell";
+Username SHell
+root /bin/bash
+bin /sbin/nologin
+daemon /sbin/nologin
+adm /sbin/nologin
+lp /sbin/nologin
+sync /bin/sync
+shutdown /sbin/shutdown
+halt /sbin/halt
+mail /sbin/nologin
+uucp /sbin/nologin
+operator /sbin/nologin
+games /sbin/nologin
+gopher /sbin/nologin
+ftp /sbin/nologin
+nobody /sbin/nologin
+rpc /sbin/nologin
+ntp /sbin/nologin
+saslauth /sbin/nologin
+mailnull /sbin/nologin
+smmsp /sbin/nologin
+rpcuser /sbin/nologin
+nfsnobody /sbin/nologin
+sshd /sbin/nologin
+dbus /sbin/nologin
+ec2-user /bin/bash
+apache /sbin/nologin
+dvsbatch9 /bin/bash
+nginx /sbin/nologin
+[root@shellscripting scripts]# [root@shellscripting scripts]# echo "Username SHell";cat /etc/passwd|awk -F: '{;print $1,$7}'"$7}'\$7}'t$7}'"$7}',$7}'"\t"
+Usernamet SHell
+root  /bin/bash
+bin  /sbin/nologin
+daemon  /sbin/nologin
+adm  /sbin/nologin
+lp  /sbin/nologin
+sync  /bin/sync
+shutdown  /sbin/shutdown
+halt  /sbin/halt
+mail  /sbin/nologin
+uucp  /sbin/nologin
+operator  /sbin/nologin
+games  /sbin/nologin
+gopher  /sbin/nologin
+ftp  /sbin/nologin
+nobody  /sbin/nologin
+rpc  /sbin/nologin
+ntp  /sbin/nologin
+saslauth  /sbin/nologin
+mailnull  /sbin/nologin
+smmsp  /sbin/nologin
+rpcuser  /sbin/nologin
+nfsnobody  /sbin/nologin
+sshd  /sbin/nologin
+dbus  /sbin/nologin
+ec2-user  /bin/bash
+apache  /sbin/nologin
+dvsbatch9  /bin/bash
+nginx  /sbin/nologin
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim test-data
+  "test-data" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1AllH1,2y3d42,1B2l3r43,1C2h3n43,3All:wq!"test-data" [New] 3L, 12C written
+[root@shellscripting scripts]# cat test-data |sed -i's/Hyd/Hyederabasd/'
+Hyderabad
+Blr
+Chn
+[root@shellscripting scripts]# cat test-data [root@shellscripting scripts]# cat test-data 
+Hyd
+Blr
+Chn
+[root@shellscripting scripts]# cat test-data |sed 's/Hyd/Hyderabad/'
+Hyderabad
+Blr
+Chn
+[root@shellscripting scripts]# cat test-data |sed 's/Hyd/Hyderabad/'
+Hyd
+Blr
+Chn
+[root@shellscripting scripts]# cat test-data |sed 's/Hyd/Hyderabad/'- 's/Hyd/Hyderabad/'i 's/Hyd/Hyderabad/' 's/Hyd/Hyderabad/' 's/Hyd/Hyderabad/' 's/Hyd/Hyderabad/'- 's/Hyd/Hyderabad/'i 's/Hyd/Hyderabad/'
+sed: no input files
+[root@shellscripting scripts]# cat test-data |sed -i 's/Hyd/Hyderabad/' test-data 
+[root@shellscripting scripts]# cat test-data 
+Hyderabad
+Blr
+Chn
+[root@shellscripting scripts]# cat test-data [root@shellscripting scripts]# cat test-data sed -i 's/Hyd/Hyderabad/'1,3g^C
+[root@shellscripting scripts]# [root@shellscripting scripts]# ll
+total 28
+-rw-r--r-- 1 root root 384 Nov 28 02:49 1
+-rw-r--r-- 1 root root 149 Nov 28 03:14 args.sh
+-rw-r--r-- 1 root root 376 Nov 28 03:03 case.sh
+-rw-r--r-- 1 root root  86 Nov 28 02:18 ex2.sh
+-rw-r--r-- 1 root root  69 Nov 28 02:36 ex3.sh
+-rw-r--r-- 1 root root  61 Nov 28 02:55 select.sh
+-rw-r--r-- 1 root root  18 Nov 28 03:36 test-data
+[root@shellscripting scripts]# vim teex3.sh 
+  "ex3.sh" 7L, 69C#!/bin/bash
+num=1
+while ((num<=10))
+do
+echo $num
+num=$((num+1))
+done
+~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      6,1All54321-- INSERT --1,12All2,1Allb2a3s4h56e7x829.10s1h22,11All:wq!"ex3.sh" 8L, 81C written
+[root@shellscripting scripts]# bash ex3.sh 
+File not exists
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+[root@shellscripting scripts]# [root@shellscripting scripts]# vim serverlist
+  "serverlist" [New File]~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      ~                                                                                                      0,0-1All-- INSERT --0,1Alls1,21i2s3e4r5v61serv5162,1s2e3r4v5263,1s2e3r4v5364,14,0-1All:wq!"serverlist" [New] 4L, 19C written
+[root@shellscripting scripts]# cat serverlist 
+serv1
+serv2
+serv3
+
+[root@shellscripting scripts]# [root@shellscripting scripts]# for si in $(cat se
+select.sh   serverlist  
+[root@shellscripting scripts]# for i in $(cat se
+select.sh   serverlist  
+[root@shellscripting scripts]# for i in $(cat server[root@shellscripting scripts]# for i in $(cat serverlist )
+> do
+> echo $i
+> done
+serv1
+serv2
+serv3
+[root@shellscripting scripts]# for i in $(cat serverlist )
+> do
+> echo $i
+> ssh $i /bin/bash -c "df -hT;uname -a"
+> done^C
+[root@shellscripting scripts]# ni[root@shellscripting scripts]# cat test-data 
+Hyderabad
+Blr
+Chn
+[root@shellscripting scripts]# cat test-data |tail -1
+Chn
+[root@shellscripting scripts]# cat test-data |tail -1 -n
+     3Chn
+[root@shellscripting scripts]# cat -n test-data |tail -1
+     1Hyderabad
+     2Blr
+     3Chn
+[root@shellscripting scripts]# cat -n test-data|grep 10
+[root@shellscripting scripts]# cat -n test-data|grep 102
+     2Blr
+[root@shellscripting scripts]# 

@@ -1,0 +1,862 @@
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Last login: Sat Nov 24 09:30:08 2018 from 122.167.36.219
+[ec2-user@k8s-master ~]$ sudo su -
+Last login: Sat Nov 24 09:30:11 UTC 2018 on pts/0
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get nodes
+NAME          STATUS   ROLES    AGE   VERSION
+k8s-master    Ready    master   22h   v1.12.2
+k8s-minion1   Ready    <none>   22h   v1.12.2
+k8s-minion2   Ready    <none>   22h   v1.12.2
+[root@k8s-master ~]#
+[root@k8s-master ~]# df -hT
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/sda1      xfs        10G  3.2G  6.9G  32% /
+devtmpfs       devtmpfs  1.8G     0  1.8G   0% /dev
+tmpfs          tmpfs     1.8G     0  1.8G   0% /dev/shm
+tmpfs          tmpfs     1.8G   25M  1.8G   2% /run
+tmpfs          tmpfs     1.8G     0  1.8G   0% /sys/fs/cgroup
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/23356de2bbcd0d8eadf10f4b6889736320e7dc9ad86b08c2deed3c202c2087dd/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/497cc27477b43d4f078df2198bf8846978f59317a8367ce4bd535673bcc12062/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/e5fff16f2fd29f3474c28dc8bc2a635f82bb1524ea153e5f20a8843df8e42e87/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/5e887d0cf13c314c900a39449fb48a04e89e49eca69ca02a6ceeb58f127bbcfc/merged
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/15d2e6d5982e79083d04c0c3da31bf4811aaa94f747d0a6aad3397fcf3da683e/shm
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/6e481b707efcfb5559be361567d9c321099b40bb94d985764da603c630a49f0d/shm
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/a4beb38c64fedb1032a41cbd7fcb756a4744631060d5e1229ff17f323e47586f/shm
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/b81a57b93bb2cb17070a0a717a6bcd3bb99c0e46c814784bf154a8b3d77fa262/shm
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/f956332194c582b1dcd02c86365bfdabf8a12a1e2dd583d246dd417604ebf2f4/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/9c7aa1b4e6f42fbfc35b8ca736d7cd242c4665e923f2cad4708496ce03025325/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/953c793f77aac1bafce70d80a50f9293a38d4c47e5ec082da69df5e6ae36a000/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/d19ffadb42dd3be1a8e724aeb8bb2c4e6491b27bdc78679406d1689dfc5c0c10/merged
+tmpfs          tmpfs     1.8G   12K  1.8G   1% /var/lib/kubelet/pods/4da2dfbd-ef9d-11e8-b381-42010a8e0002/volumes/kubernetes.io~secret/kube-proxy-token-cndjb
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/8c5e9490c3e1aef71917683b839b5de12c1568d8fa29f7c45a095f6c7c3aaca4/merged
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/fd3d0c8d8e6cf96714130d7f85c2c53ce5b501804344a14808d5224fdcb10858/shm
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/98720a7c68355fdd54e1f5e82fff05d0a6a3cdabcc72c825049cb0e24ff03f3d/merged
+tmpfs          tmpfs     1.8G   12K  1.8G   1% /var/lib/kubelet/pods/a2a1f2b1-ef9d-11e8-b381-42010a8e0002/volumes/kubernetes.io~secret/weave-net-token-cmxr4
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/d95bcf5dfd08914a4f9300801151a9d5aa33fa00baa4d09f738bfbdb217ff749/merged
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/79d168cb93ab6736f146a6418f7e5b6ec009d2b024bb1048aa473b30d02b7462/shm
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/0757c460e56c91a683715562011734d002b6af48f1d073ebfe0c3c678acbc5b7/merged
+tmpfs          tmpfs     1.8G   12K  1.8G   1% /var/lib/kubelet/pods/4d9d4fee-ef9d-11e8-b381-42010a8e0002/volumes/kubernetes.io~secret/coredns-token-j5svz
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/b18efc31dc64d7d9d0e81311673f5162738fe726bf1d59d2b9620291cb05a8a0/merged
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/52377f89731c2f1af063685b50ce3b1ae9067d18473ebb19cbe0ca15256bc045/shm
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/7a979b336641dd7e09e18604f399ca351525cc3fb8fc5c4fc5c5f57cb338e115/merged
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/26808125d4bbdcd2fe9978d3c868cb4e73b98dced912dcef50c2057c84c69c4a/merged
+tmpfs          tmpfs     1.8G   12K  1.8G   1% /var/lib/kubelet/pods/4da514fd-ef9d-11e8-b381-42010a8e0002/volumes/kubernetes.io~secret/coredns-token-j5svz
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/ff6ec535558dd97c448113d9160b1a43b28e4ad8cdd05c4e00a2eff2c32df3f4/merged
+shm            tmpfs      64M     0   64M   0% /var/lib/docker/containers/8eadc0de9d1688204a7409d15d8136382d00290db906363fa7a13cd2acae2542/shm
+overlay        overlay    10G  3.2G  6.9G  32% /var/lib/docker/overlay2/3d9afefa1c9e4807568e3cea55e516d07d516b51e8a2ce781bf28b90a88e35fc/merged
+tmpfs          tmpfs     354M     0  354M   0% /run/user/1001
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]# docker ps
+CONTAINER ID        IMAGE                                                                                                     COMMAND                  CREATED             STATUS              PORTS               NAMES
+41d9fc644200        367cdc8433a4                                                                                              "/coredns -conf /e..."   22 hours ago        Up 22 hours                             k8s_coredns_coredns-576cbf47c7-rfrjt_kube-system_4da514fd-ef9d-11e8-b381-42010a8e0002_0
+8eadc0de9d16        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_coredns-576cbf47c7-rfrjt_kube-system_4da514fd-ef9d-11e8-b381-42010a8e0002_0
+1364006bd617        docker.io/weaveworks/weave-npc@sha256:5bc9e4241eb0e972d3766864b2aca085660638b9d596d4fe761096db46a8c60b    "/usr/bin/weave-npc"     22 hours ago        Up 22 hours                             k8s_weave-npc_weave-net-6tmbc_kube-system_a2a1f2b1-ef9d-11e8-b381-42010a8e0002_0
+acae989fb604        367cdc8433a4                                                                                              "/coredns -conf /e..."   22 hours ago        Up 22 hours                             k8s_coredns_coredns-576cbf47c7-qdr6n_kube-system_4d9d4fee-ef9d-11e8-b381-42010a8e0002_0
+52377f89731c        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_coredns-576cbf47c7-qdr6n_kube-system_4d9d4fee-ef9d-11e8-b381-42010a8e0002_0
+2bfa98b9ff9d        docker.io/weaveworks/weave-kube@sha256:f1b6edd296cf0b7e806b1a1a1f121c1e8095852a4129edd08401fe2e7aab652d   "/home/weave/launc..."   22 hours ago        Up 22 hours                             k8s_weave_weave-net-6tmbc_kube-system_a2a1f2b1-ef9d-11e8-b381-42010a8e0002_0
+79d168cb93ab        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_weave-net-6tmbc_kube-system_a2a1f2b1-ef9d-11e8-b381-42010a8e0002_0
+59cc27063325        15e9da1ca195                                                                                              "/usr/local/bin/ku..."   22 hours ago        Up 22 hours                             k8s_kube-proxy_kube-proxy-9rl72_kube-system_4da2dfbd-ef9d-11e8-b381-42010a8e0002_0
+fd3d0c8d8e6c        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_kube-proxy-9rl72_kube-system_4da2dfbd-ef9d-11e8-b381-42010a8e0002_0
+cb08e2717870        15548c720a70                                                                                              "kube-controller-m..."   22 hours ago        Up 22 hours                             k8s_kube-controller-manager_kube-controller-manager-k8s-master_kube-system_c001bdade7471db33f94e6e217fbfd6c_0
+5bb88d348c9c        d6d57c76136c                                                                                              "kube-scheduler --..."   22 hours ago        Up 22 hours                             k8s_kube-scheduler_kube-scheduler-k8s-master_kube-system_ee7b1077c61516320f4273309e9b4690_0
+3af3aa9add37        51a9c329b7c5                                                                                              "kube-apiserver --..."   22 hours ago        Up 22 hours                             k8s_kube-apiserver_kube-apiserver-k8s-master_kube-system_71d816856ea6e920781f7edf59100b9d_0
+eab1410a233e        3cab8e1b9802                                                                                              "etcd --advertise-..."   22 hours ago        Up 22 hours                             k8s_etcd_etcd-k8s-master_kube-system_c6ac110cbbe80b7156d7f1bb985f7e90_0
+b81a57b93bb2        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_kube-scheduler-k8s-master_kube-system_ee7b1077c61516320f4273309e9b4690_0
+a4beb38c64fe        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_kube-controller-manager-k8s-master_kube-system_c001bdade7471db33f94e6e217fbfd6c_0
+15d2e6d5982e        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_etcd-k8s-master_kube-system_c6ac110cbbe80b7156d7f1bb985f7e90_0
+6e481b707efc        k8s.gcr.io/pause:3.1                                                                                      "/pause"                 22 hours ago        Up 22 hours                             k8s_POD_kube-apiserver-k8s-master_kube-system_71d816856ea6e920781f7edf59100b9d_0
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get deployment
+No resources found.
+[root@k8s-master ~]# cd /mywork/
+[root@k8s-master mywork]# ls -l
+total 8
+-rw-r--r--. 1 root root 177 Nov 24 05:20 lable.yml
+-rw-r--r--. 1 root root 142 Nov 24 04:54 pod.yml
+[root@k8s-master mywork]# vim deploy.yml
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl create -f deploy.yml
+deployment.extensions/nginx-deployement-prod created
+[root@k8s-master mywork]# kubectl get dc
+error: the server doesn't have a resource type "dc"
+[root@k8s-master mywork]# kubectl get deployment
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   1         1         1            1           18s
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-h42ks   1/1     Running   0          118s
+nginx1                                    1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl get pods -o wide
+NAME                                      READY   STATUS    RESTARTS   AGE    IP          NODE          NOMINATED NODE
+nginx-deployement-prod-579ddb95db-h42ks   1/1     Running   0          2m9s   10.44.0.1   k8s-minion1   <none>
+nginx1                                    1/1     Running   0          21h    10.47.0.1   k8s-minion2   <none>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   1         1         1            1           3m27s
+[root@k8s-master mywork]# kubeadm edit deploy/nginx-deployement-prod
+Error: unknown command "edit" for "kubeadm"
+
+Did you mean this?
+        init
+
+Run 'kubeadm --help' for usage.
+error: unknown command "edit" for "kubeadm"
+
+Did you mean this?
+        init
+
+[root@k8s-master mywork]# kubectl edit deploy/nginx-deployement-prod
+Edit cancelled, no changes made.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# cat deploy.yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-prod
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-prod
+    spec:
+      containers:
+      - name: nginx-deployement-prod
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# vim deploy.yml
+[root@k8s-master mywork]# kubectl apply -f deploy.yml
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+deployment.extensions/nginx-deployement-prod configured
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-h42ks   1/1     Running   0          4m36s
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          6s
+nginx1                                    1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl get pods -o wide
+NAME                                      READY   STATUS    RESTARTS   AGE     IP          NODE          NOMINATED NODE
+nginx-deployement-prod-579ddb95db-h42ks   1/1     Running   0          4m52s   10.44.0.1   k8s-minion1   <none>
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          22s     10.47.0.2   k8s-minion2   <none>
+nginx1                                    1/1     Running   0          21h     10.47.0.1   k8s-minion2   <none>
+[root@k8s-master mywork]# cat deploy.yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-prod
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-prod
+    spec:
+      containers:
+      - name: nginx-deployement-prod
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-h42ks   1/1     Running   2          7m17s
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          2m47s
+nginx1                                    1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl delete pod/nginx-deployement-prod-579ddb95db-h42ks
+pod "nginx-deployement-prod-579ddb95db-h42ks" deleted
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-f9lsg   1/1     Running   0          5s
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          3m8s
+nginx1                                    1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   2         2         2            2           7m54s
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# cat dd
+cat: dd: No such file or directory
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# cat deploy.yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-prod
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-prod
+    spec:
+      containers:
+      - name: nginx-deployement-prod
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl scale -h
+Set a new size for a Deployment, ReplicaSet, Replication Controller, or StatefulSet.
+
+Scale also allows users to specify one or more preconditions for the scale action.
+
+If --current-replicas or --resource-version is specified, it is validated before the scale is
+attempted, and it is guaranteed that the precondition holds true when the scale is sent to the
+server.
+
+Examples:
+  # Scale a replicaset named 'foo' to 3.
+  kubectl scale --replicas=3 rs/foo
+
+  # Scale a resource identified by type and name specified in "foo.yaml" to 3.
+  kubectl scale --replicas=3 -f foo.yaml
+
+  # If the deployment named mysql's current size is 2, scale mysql to 3.
+  kubectl scale --current-replicas=2 --replicas=3 deployment/mysql
+
+  # Scale multiple replication controllers.
+  kubectl scale --replicas=5 rc/foo rc/bar rc/baz
+
+  # Scale statefulset named 'web' to 3.
+  kubectl scale --replicas=3 statefulset/web
+
+Options:
+      --all=false: Select all resources in the namespace of the specified resource types
+      --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or
+map key is missing in the template. Only applies to golang and jsonpath output formats.
+      --current-replicas=-1: Precondition for current size. Requires that the current size of the
+resource match this value in order to scale.
+  -f, --filename=[]: Filename, directory, or URL to files identifying the resource to set a new size
+  -o, --output='': Output format. One of:
+json|yaml|name|template|go-template|go-template-file|templatefile|jsonpath|jsonpath-file.
+      --record=false: Record current kubectl command in the resource annotation. If set to false, do
+not record the command. If set to true, record the command. If not set, default to updating the
+existing annotation value only if one already exists.
+  -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you
+want to manage related manifests organized within the same directory.
+      --replicas=0: The new desired number of replicas. Required.
+      --resource-version='': Precondition for resource version. Requires that the current resource
+version match this value in order to scale.
+  -l, --selector='': Selector (label query) to filter on, supports '=', '==', and '!='.(e.g. -l
+key1=value1,key2=value2)
+      --template='': Template string or path to template file to use when -o=go-template,
+-o=go-template-file. The template format is golang templates
+[http://golang.org/pkg/text/template/#pkg-overview].
+      --timeout=0s: The length of time to wait before giving up on a scale operation, zero means
+don't wait. Any other values should contain a corresponding time unit (e.g. 1s, 2m, 3h).
+
+Usage:
+  kubectl scale [--resource-version=version] [--current-replicas=count] --replicas=COUNT (-f
+FILENAME | TYPE NAME) [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   2         2         2            2           10m
+[root@k8s-master mywork]# kubectl scale deploy/nginx-deployement-prod --replicas=4
+deployment.extensions/nginx-deployement-prod scaled
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-2b8sn   1/1     Running   0          6s
+nginx-deployement-prod-579ddb95db-f9lsg   1/1     Running   0          2m53s
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          5m56s
+nginx-deployement-prod-579ddb95db-sq2sr   1/1     Running   0          6s
+nginx1                                    1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl get pods -o wide
+NAME                                      READY   STATUS    RESTARTS   AGE     IP          NODE          NOMINATED NODE
+nginx-deployement-prod-579ddb95db-2b8sn   1/1     Running   0          43s     10.44.0.2   k8s-minion1   <none>
+nginx-deployement-prod-579ddb95db-f9lsg   1/1     Running   0          3m30s   10.44.0.1   k8s-minion1   <none>
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          6m33s   10.47.0.2   k8s-minion2   <none>
+nginx-deployement-prod-579ddb95db-sq2sr   1/1     Running   0          43s     10.47.0.3   k8s-minion2   <none>
+nginx1                                    1/1     Running   0          21h     10.47.0.1   k8s-minion2   <none>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get nodes
+NAME          STATUS   ROLES    AGE   VERSION
+k8s-master    Ready    master   23h   v1.12.2
+k8s-minion1   Ready    <none>   22h   v1.12.2
+k8s-minion2   Ready    <none>   22h   v1.12.2
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   4         4         4            4           13m
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl edit deploy/nginx-deployement-prod
+Edit cancelled, no changes made.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-2b8sn   1/1     Running   0          5m3s
+nginx-deployement-prod-579ddb95db-f9lsg   1/1     Running   0          7m50s
+nginx-deployement-prod-579ddb95db-jq5f6   1/1     Running   0          10m
+nginx-deployement-prod-579ddb95db-sq2sr   1/1     Running   0          5m3s
+nginx1                                    1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl edit pod/nginx-deployement-prod-579ddb95db-2b8sn
+Edit cancelled, no changes made.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   4         4         4            4           17m
+[root@k8s-master mywork]# kubectl delete deploy/nginx-deployement-prod
+deployment.extensions "nginx-deployement-prod" deleted
+[root@k8s-master mywork]# kubectl get deploy
+No resources found.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# vim replication.yml
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+NAME     READY   STATUS    RESTARTS   AGE
+nginx1   1/1     Running   0          21h
+[root@k8s-master mywork]# kubectl delete pod/nginx1
+pod "nginx1" deleted
+[root@k8s-master mywork]# kubectl get pods
+No resources found.
+[root@k8s-master mywork]# kubectl create -f replication.yml
+replicationcontroller/nginx-www1 created
+[root@k8s-master mywork]# kubectl get rc
+NAME         DESIRED   CURRENT   READY   AGE
+nginx-www1   4         4         3       16s
+[root@k8s-master mywork]# kubectl get rc
+NAME         DESIRED   CURRENT   READY   AGE
+nginx-www1   4         4         4       29s
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl delete rc/nginx-www1
+replicationcontroller "nginx-www1" deleted
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get deploy
+No resources found.
+[root@k8s-master mywork]# cat deploy.yml
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-prod
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-prod
+    spec:
+      containers:
+      - name: nginx-deployement-prod
+        image: nginx:1.7.9
+        ports:
+        - containerPort: 80
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# vim deploy.yml
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+No resources found.
+[root@k8s-master mywork]# kubectl create -f deploy.yml
+deployment.extensions/nginx-deployement-prod created
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS              RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-5rl8v   0/1     ContainerCreating   0          3s
+nginx-deployement-prod-579ddb95db-7tvdk   0/1     ContainerCreating   0          3s
+nginx-deployement-prod-579ddb95db-9v5vd   0/1     ContainerCreating   0          3s
+nginx-deployement-prod-579ddb95db-9v8n8   0/1     ContainerCreating   0          3s
+nginx-deployement-prod-579ddb95db-gcdp6   0/1     ContainerCreating   0          3s
+nginx-deployement-prod-579ddb95db-jfflm   1/1     Running             0          3s
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-5rl8v   1/1     Running   0          11s
+nginx-deployement-prod-579ddb95db-7tvdk   1/1     Running   0          11s
+nginx-deployement-prod-579ddb95db-9v5vd   1/1     Running   0          11s
+nginx-deployement-prod-579ddb95db-9v8n8   1/1     Running   0          11s
+nginx-deployement-prod-579ddb95db-gcdp6   1/1     Running   0          11s
+nginx-deployement-prod-579ddb95db-jfflm   1/1     Running   0          11s
+[root@k8s-master mywork]# kubectl get pods -o wide
+NAME                                      READY   STATUS    RESTARTS   AGE   IP          NODE          NOMINATED NODE
+nginx-deployement-prod-579ddb95db-5rl8v   1/1     Running   0          18s   10.44.0.1   k8s-minion1   <none>
+nginx-deployement-prod-579ddb95db-7tvdk   1/1     Running   0          18s   10.47.0.1   k8s-minion2   <none>
+nginx-deployement-prod-579ddb95db-9v5vd   1/1     Running   0          18s   10.44.0.3   k8s-minion1   <none>
+nginx-deployement-prod-579ddb95db-9v8n8   1/1     Running   0          18s   10.47.0.3   k8s-minion2   <none>
+nginx-deployement-prod-579ddb95db-gcdp6   1/1     Running   0          18s   10.44.0.2   k8s-minion1   <none>
+nginx-deployement-prod-579ddb95db-jfflm   1/1     Running   0          18s   10.47.0.2   k8s-minion2   <none>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl describe pods/nginx-deployement-prod-579ddb95db-gcdp6|more
+Name:               nginx-deployement-prod-579ddb95db-gcdp6
+Namespace:          default
+Priority:           0
+PriorityClassName:  <none>
+Node:               k8s-minion1/10.142.0.3
+Start Time:         Sun, 25 Nov 2018 03:23:03 +0000
+Labels:             app=nginx-deployement-prod
+                    pod-template-hash=579ddb95db
+Annotations:        <none>
+Status:             Running
+IP:                 10.44.0.2
+Controlled By:      ReplicaSet/nginx-deployement-prod-579ddb95db
+Containers:
+  nginx-deployement-prod:
+    Container ID:   docker://e1fbcd8f4ba6b019bc93d0ac7ecfe403b04c10edc20f74196cabf8977d68e144
+    Image:          nginx:1.7.9
+    Image ID:       docker-pullable://docker.io/nginx@sha256:e3456c851a152494c3e4ff5fcc26f240206abac0c9
+d794affb40e0714846c451
+    Port:           80/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Sun, 25 Nov 2018 03:23:05 +0000
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-s8xr8 (ro)
+Conditions:
+  Type              Status
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# vim deploy.yml
+[root@k8s-master mywork]# kubectl apply -f deploy.yml
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+deployment.extensions/nginx-deployement-prod configured
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS              RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-5rl8v   1/1     Running             0          3m28s
+nginx-deployement-prod-579ddb95db-7tvdk   1/1     Running             0          3m28s
+nginx-deployement-prod-579ddb95db-9v5vd   1/1     Running             0          3m28s
+nginx-deployement-prod-579ddb95db-9v8n8   1/1     Running             0          3m28s
+nginx-deployement-prod-579ddb95db-jfflm   1/1     Running             0          3m28s
+nginx-deployement-prod-6c9777646-s5w2p    0/1     ContainerCreating   0          6s
+nginx-deployement-prod-6c9777646-vztgp    0/1     ContainerCreating   0          6s
+[root@k8s-master mywork]# kubectl get pods
+NAME                                      READY   STATUS        RESTARTS   AGE
+nginx-deployement-prod-579ddb95db-5rl8v   0/1     Terminating   0          3m34s
+nginx-deployement-prod-579ddb95db-7tvdk   0/1     Terminating   0          3m34s
+nginx-deployement-prod-579ddb95db-9v5vd   0/1     Terminating   0          3m34s
+nginx-deployement-prod-579ddb95db-9v8n8   0/1     Terminating   0          3m34s
+nginx-deployement-prod-579ddb95db-jfflm   0/1     Terminating   0          3m34s
+nginx-deployement-prod-6c9777646-92nb7    1/1     Running       0          5s
+nginx-deployement-prod-6c9777646-b7s5s    1/1     Running       0          4s
+nginx-deployement-prod-6c9777646-s5w2p    1/1     Running       0          12s
+nginx-deployement-prod-6c9777646-vztgp    1/1     Running       0          12s
+nginx-deployement-prod-6c9777646-wrs94    1/1     Running       0          3s
+nginx-deployement-prod-6c9777646-zdgpk    1/1     Running       0          5s
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-6c9777646-92nb7   1/1     Running   0          48s
+nginx-deployement-prod-6c9777646-b7s5s   1/1     Running   0          47s
+nginx-deployement-prod-6c9777646-s5w2p   1/1     Running   0          55s
+nginx-deployement-prod-6c9777646-vztgp   1/1     Running   0          55s
+nginx-deployement-prod-6c9777646-wrs94   1/1     Running   0          46s
+nginx-deployement-prod-6c9777646-zdgpk   1/1     Running   0          48s
+[root@k8s-master mywork]# kubectl describe pods/nginx-deployement-prod-6c9777646-s5w2p|grep -i image
+    Image:          nginx:1.8
+    Image ID:       docker-pullable://docker.io/nginx@sha256:c97ee70c4048fe79765f7c2ec0931957c2898f47400128f4f3640d0ae5d60d10
+  Normal  Pulling    69s   kubelet, k8s-minion2  pulling image "nginx:1.8"
+  Normal  Pulled     64s   kubelet, k8s-minion2  Successfully pulled image "nginx:1.8"
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get service
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   23h
+[root@k8s-master mywork]# vim service.yml
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   6         6         6            6           12m
+[root@k8s-master mywork]# kubectl edit deploy/nginx-deployement-prod
+Edit cancelled, no changes made.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# vim service.yml
+[root@k8s-master mywork]# kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   23h
+[root@k8s-master mywork]# kubectl create -f service.yml
+service/nginx-service1 created
+[root@k8s-master mywork]# kubectl get svc
+NAME             TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+kubernetes       ClusterIP   10.96.0.1     <none>        443/TCP    23h
+nginx-service1   ClusterIP   10.97.104.5   <none>        8000/TCP   1s
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl describe svc/nginx-service1
+Name:              nginx-service1
+Namespace:         default
+Labels:            <none>
+Annotations:       <none>
+Selector:          app=nginx-deployement-prod
+Type:              ClusterIP
+IP:                10.97.104.5
+Port:              <unset>  8000/TCP
+TargetPort:        80/TCP
+Endpoints:         10.44.0.1:80,10.44.0.2:80,10.44.0.3:80 + 3 more...
+Session Affinity:  None
+Events:            <none>
+[root@k8s-master mywork]# curl http://10.44.0.1
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# curl http://10.97.104.5:8000
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# history|tail -15
+  135  kubectl apply -f deploy.yml
+  136  kubectl get pods
+  137  kubectl describe pods/nginx-deployement-prod-6c9777646-s5w2p|grep -i image
+  138  kubectl get service
+  139  vim service.yml
+  140  kubectl get deploy
+  141  kubectl edit deploy/nginx-deployement-prod
+  142  vim service.yml
+  143  kubectl get svc
+  144  kubectl create -f service.yml
+  145  kubectl get svc
+  146  kubectl describe svc/nginx-service1
+  147  curl http://10.44.0.1
+  148  curl http://10.97.104.5:8000
+  149  history|tail -15
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl expose pod nginx --type="LoadBalancer" --name=nginx --port=9001 --external-ip=10.142.0.2 --target-port=80 ^C
+[root@k8s-master mywork]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   6         6         6            6           31m
+[root@k8s-master mywork]# kubectl expose deploy/nginx-deployement-prod --type="LoadBalancer" --name=nginx-deployement-prod --port=9001 --external-ip=10.142.0.2 --target-port=80 ^C
+[root@k8s-master mywork]# ifconfig eth0
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1460
+        inet 10.142.0.2  netmask 255.255.255.255  broadcast 10.142.0.2
+        inet6 fe80::4001:aff:fe8e:2  prefixlen 64  scopeid 0x20<link>
+        ether 42:01:0a:8e:00:02  txqueuelen 1000  (Ethernet)
+        RX packets 610274  bytes 545066000 (519.8 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 4
+        TX packets 651145  bytes 502841440 (479.5 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+[root@k8s-master mywork]# kubectl expose deploy/nginx-deployement-prod --type="LoadBalancer" --name=nginx-deployement-prod --port=9001 --external-ip=10.142.0.2 --target-port=80
+[root@k8s-master mywork]# kubectl expose deploy/nginx-deployement-prod --type="LoadBalancer" --name=nginx-deployement-prod --port=9001 --external-ip=10.142.0.2 --target-port=80
+service/nginx-deployement-prod exposed
+[root@k8s-master mywork]# kubectl get svc
+NAME                     TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes               ClusterIP      10.96.0.1       <none>        443/TCP          23h
+nginx-deployement-prod   LoadBalancer   10.110.164.21   10.142.0.2    9001:30164/TCP   7s
+nginx-service1           ClusterIP      10.97.104.5     <none>        8000/TCP         15m
+[root@k8s-master mywork]# kubectl describe svc/nginx-deployement-prod
+Name:                     nginx-deployement-prod
+Namespace:                default
+Labels:                   app=nginx-deployement-prod
+Annotations:              <none>
+Selector:                 app=nginx-deployement-prod
+Type:                     LoadBalancer
+IP:                       10.110.164.21
+External IPs:             10.142.0.2
+Port:                     <unset>  9001/TCP
+TargetPort:               80/TCP
+NodePort:                 <unset>  30164/TCP
+Endpoints:                10.44.0.1:80,10.44.0.2:80,10.44.0.3:80 + 3 more...
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:                   <none>
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# history|tail -20
+  136  kubectl get pods
+  137  kubectl describe pods/nginx-deployement-prod-6c9777646-s5w2p|grep -i image
+  138  kubectl get service
+  139  vim service.yml
+  140  kubectl get deploy
+  141  kubectl edit deploy/nginx-deployement-prod
+  142  vim service.yml
+  143  kubectl get svc
+  144  kubectl create -f service.yml
+  145  kubectl get svc
+  146  kubectl describe svc/nginx-service1
+  147  curl http://10.44.0.1
+  148  curl http://10.97.104.5:8000
+  149  history|tail -15
+  150  kubectl get deploy
+  151  ifconfig eth0
+  152  kubectl expose deploy/nginx-deployement-prod --type="LoadBalancer" --name=nginx-deployement-prod --port=9001 --external-ip=10.142.0.2 --target-port=80
+  153  kubectl get svc
+  154  kubectl describe svc/nginx-deployement-prod
+  155  history|tail -20
+[root@k8s-master mywork]#
+[root@k8s-master mywork]#
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Last login: Sun Nov 25 02:42:15 2018 from 183.82.18.88
+[ec2-user@k8s-master ~]$ sudo su -
+Last login: Sun Nov 25 02:42:19 UTC 2018 on pts/0
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl -h|more^C
+(reverse-i-search)`expo': ^Cport kubever=$(kubectl version | base64 | tr -d '\n')
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get depl
+error: the server doesn't have a resource type "depl"
+[root@k8s-master ~]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   6         6         6            6           74m
+[root@k8s-master ~]# kubectl logs nginx-deployement-prod
+Error from server (NotFound): pods "nginx-deployement-prod" not found
+[root@k8s-master ~]# kubectl get pods
+NAME                                     READY   STATUS    RESTARTS   AGE
+nginx-deployement-prod-6c9777646-92nb7   1/1     Running   0          71m
+nginx-deployement-prod-6c9777646-b7s5s   1/1     Running   0          71m
+nginx-deployement-prod-6c9777646-s5w2p   1/1     Running   0          71m
+nginx-deployement-prod-6c9777646-vztgp   1/1     Running   0          71m
+nginx-deployement-prod-6c9777646-wrs94   1/1     Running   0          71m
+nginx-deployement-prod-6c9777646-zdgpk   1/1     Running   0          71m
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl logs nginx-deployement-prod-6c9777646-92nb7
+[root@k8s-master ~]# kubectl get dc
+error: the server doesn't have a resource type "dc"
+[root@k8s-master ~]# kubectl get deploy
+NAME                     DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployement-prod   6         6         6            6           76m
+[root@k8s-master ~]# kubectl delete deploy/nginx-deployement-prod
+deployment.extensions "nginx-deployement-prod" deleted
+[root@k8s-master ~]# kubectl get svc
+NAME                     TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+kubernetes               ClusterIP      10.96.0.1       <none>        443/TCP          24h
+nginx-deployement-prod   LoadBalancer   10.110.164.21   10.142.0.2    9001:30164/TCP   43m
+nginx-service1           ClusterIP      10.97.104.5     <none>        8000/TCP         59m
+[root@k8s-master ~]# kubectl delete svc/nginx-deployement-prod
+service "nginx-deployement-prod" deleted
+[root@k8s-master ~]# kubectl delete svc/nginx-service1
+service "nginx-service1" deleted
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get pods
+No resources found.
+[root@k8s-master ~]# kubectl get deploy
+No resources found.
+[root@k8s-master ~]# kubectl get svc
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   24h
+[root@k8s-master ~]# kubectl run my-nginx --replicas=2 --labels="run=nginx-backend" --image=nginx --port=80
+kubectl run --generator=deployment/apps.v1beta1 is DEPRECATED and will be removed in a future version. Use kubectl create instead.
+deployment.apps/my-nginx created
+[root@k8s-master ~]# kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-686f75cdb9-gt9sb   1/1     Running   0          6s
+my-nginx-686f75cdb9-nst97   1/1     Running   0          6s
+[root@k8s-master ~]# kubectl get deploy
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+my-nginx   2         2         2            2           23s
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get deploy
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+my-nginx   2         2         2            2           2m13s
+[root@k8s-master ~]# kubectl autoscale -hj
+Error: unknown shorthand flag: 'j' in -j
+
+
+Examples:
+  # Auto scale a deployment "foo", with the number of pods between 2 and 10, no target CPU utilization specified so a default autoscaling policy will be used:
+  kubectl autoscale deployment foo --min=2 --max=10
+
+  # Auto scale a replication controller "foo", with the number of pods between 1 and 5, target CPU utilization at 80%:
+  kubectl autoscale rc foo --max=5 --cpu-percent=80
+
+Options:
+      --allow-missing-template-keys=true: If true, ignore any errors in templates when a field or map key is missing in the template. Only applies to golang and jsonpath output formats.
+      --cpu-percent=-1: The target average CPU utilization (represented as a percent of requested CPU) over all the pods. If it's not specified or negative, a default autoscaling policy will be used.
+      --dry-run=false: If true, only print the object that would be sent, without sending it.
+  -f, --filename=[]: Filename, directory, or URL to files identifying the resource to autoscale.
+      --generator='horizontalpodautoscaler/v1': The name of the API generator to use. Currently there is only 1 generator.
+      --max=-1: The upper limit for the number of pods that can be set by the autoscaler. Required.
+      --min=-1: The lower limit for the number of pods that can be set by the autoscaler. If it's not specified or negative, the server will apply a default value.
+      --name='': The name for the newly created object. If not specified, the name of the input resource will be used.
+  -o, --output='': Output format. One of: json|yaml|name|go-template-file|templatefile|template|go-template|jsonpath|jsonpath-file.
+      --record=false: Record current kubectl command in the resource annotation. If set to false, do not record the command. If set to true, record the command. If not set, default to updating the existing annotation value only if one already exists.
+  -R, --recursive=false: Process the directory used in -f, --filename recursively. Useful when you want to manage related manifests organized within the same directory.
+      --save-config=false: If true, the configuration of current object will be saved in its annotation. Otherwise, the annotation will be unchanged. This flag is useful when you want to perform kubectl apply on this object in the future.
+      --template='': Template string or path to template file to use when -o=go-template, -o=go-template-file. The template format is golang templates [http://golang.org/pkg/text/template/#pkg-overview].
+
+Usage:
+  kubectl autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [--min=MINPODS] --max=MAXPODS [--cpu-percent=CPU] [options]
+
+Use "kubectl options" for a list of global command-line options (applies to all commands).
+
+unknown shorthand flag: 'j' in -j
+[root@k8s-master ~]# kubectl autoscale rc foo --max=5 --cpu-percent=80
+[root@k8s-master ~]# kubectl autoscale rc foo --max=5 --cpu-percent=80 ^C
+[root@k8s-master ~]# kubectl autoscale deploy my-nginx --min=3 --max=5 --cpu-percent=80
+[root@k8s-master ~]# kubectl autoscale deploy my-nginx --min=3 --max=5 --cpu-percent=80
+horizontalpodautoscaler.autoscaling/my-nginx autoscaled
+[root@k8s-master ~]# kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-686f75cdb9-gt9sb   1/1     Running   0          3m55s
+my-nginx-686f75cdb9-nst97   1/1     Running   0          3m55s
+[root@k8s-master ~]# kubectl get deploy
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+my-nginx   2         2         2            2           4m4s
+[root@k8s-master ~]# kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-686f75cdb9-7hnmn   1/1     Running   0          6s
+my-nginx-686f75cdb9-gt9sb   1/1     Running   0          4m10s
+my-nginx-686f75cdb9-nst97   1/1     Running   0          4m10s
+[root@k8s-master ~]# kubectl scale --replicas=2 deploy/my-nginx
+deployment.extensions/my-nginx scaled
+[root@k8s-master ~]# kubectl get pods
+NAME                        READY   STATUS              RESTARTS   AGE
+my-nginx-686f75cdb9-7hnmn   0/1     Terminating         0          61s
+my-nginx-686f75cdb9-gt9sb   1/1     Running             0          5m5s
+my-nginx-686f75cdb9-llbqq   0/1     ContainerCreating   0          1s
+my-nginx-686f75cdb9-nst97   1/1     Running             0          5m5s
+[root@k8s-master ~]# kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-686f75cdb9-gt9sb   1/1     Running   0          5m21s
+my-nginx-686f75cdb9-llbqq   1/1     Running   0          17s
+my-nginx-686f75cdb9-nst97   1/1     Running   0          5m21s
+[root@k8s-master ~]#
+[root@k8s-master ~]# kubectl get deploy
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+my-nginx   3         3         3            3           7m7s
+[root@k8s-master ~]# kubectl describe deploy/my-nginx
+Name:                   my-nginx
+Namespace:              default
+CreationTimestamp:      Sun, 25 Nov 2018 04:42:19 +0000
+Labels:                 run=nginx-backend
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               run=nginx-backend
+Replicas:               3 desired | 3 updated | 3 total | 3 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  run=nginx-backend
+  Containers:
+   my-nginx:
+    Image:        nginx
+    Port:         80/TCP
+    Host Port:    0/TCP
+    Environment:  <none>
+    Mounts:       <none>
+  Volumes:        <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      True    MinimumReplicasAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   my-nginx-686f75cdb9 (3/3 replicas created)
+Events:
+  Type    Reason             Age                    From                   Message
+  ----    ------             ----                   ----                   -------
+  Normal  ScalingReplicaSet  7m25s                  deployment-controller  Scaled up replica set my-nginx-686f75cdb9 to 2
+  Normal  ScalingReplicaSet  2m23s                  deployment-controller  Scaled down replica set my-nginx-686f75cdb9 to 2
+  Normal  ScalingReplicaSet  2m21s (x2 over 3m21s)  deployment-controller  Scaled up replica set my-nginx-686f75cdb9 to 3
+[root@k8s-master ~]#
+[root@k8s-master ~]#
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Last login: Sun Nov 25 04:32:13 2018 from 183.82.18.88
+[ec2-user@k8s-master ~]$ sudo su -
+Last login: Sun Nov 25 04:32:18 UTC 2018 on pts/1
+[root@k8s-master ~]#
+[root@k8s-master ~]# firewall-cmd --permanent --add-port=9000-9050/tcp
+success
+[root@k8s-master ~]# firewall-cmd --reload
+success
+[root@k8s-master ~]# kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+secret/kubernetes-dashboard-certs created
+serviceaccount/kubernetes-dashboard created
+role.rbac.authorization.k8s.io/kubernetes-dashboard-minimal created
+rolebinding.rbac.authorization.k8s.io/kubernetes-dashboard-minimal created
+deployment.apps/kubernetes-dashboard created
+service/kubernetes-dashboard created
+[root@k8s-master ~]#
+[root@k8s-master ~]# cd /mywork/
+[root@k8s-master mywork]# vim dashboard-admin.yaml
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl create -f dashboard-admin.yaml
+clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+[root@k8s-master mywork]# nohup kubectl proxy --address="10.142.0.2" -p 9000 --accept-hosts='^*$' &
+[1] 23136
+[root@k8s-master mywork]# nohup: ignoring input and appending output to ‘nohup.out’
+
+[root@k8s-master mywork]# kubectl get svc
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          25h
+mytest       LoadBalancer   10.96.151.15   <pending>     8000:32347/TCP   97s
+[root@k8s-master mywork]# kubectl get svc
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          25h
+mytest       LoadBalancer   10.96.151.15   <pending>     8000:32347/TCP   100s
+[root@k8s-master mywork]# kubectl get svc
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          25h
+mytest       LoadBalancer   10.96.151.15   <pending>     8000:32347/TCP   3m59s
+[root@k8s-master mywork]# kubectl edit svc/mytest
+Edit cancelled, no changes made.
+[root@k8s-master mywork]#
+[root@k8s-master mywork]# kubectl get svc
+NAME         TYPE           CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+kubernetes   ClusterIP      10.96.0.1      <none>        443/TCP          25h
+mytest       LoadBalancer   10.96.151.15   <pending>     8000:32347/TCP   8m42s
+[root@k8s-master mywork]# kubectl get dc
+error: the server doesn't have a resource type "dc"
+[root@k8s-master mywork]# kubectl get deploy
+NAME       DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
+my-nginx   4         4         4            4           48m
+mytest     2         2         2            2           8m53s
+[root@k8s-master mywork]# curl htttp://10.96.151.15:8000
+curl: (1) Protocol htttp not supported or disabled in libcurl
+[root@k8s-master mywork]# curl http://10.96.151.15:8000
+^C
+[root@k8s-master mywork]# kubectl get pods
+NAME                        READY   STATUS    RESTARTS   AGE
+my-nginx-686f75cdb9-cfgfn   1/1     Running   0          31m
+my-nginx-686f75cdb9-gt9sb   1/1     Running   0          49m
+my-nginx-686f75cdb9-llbqq   1/1     Running   0          43m
+my-nginx-686f75cdb9-nst97   1/1     Running   0          49m
+mytest-9fc697ccd-4fbv5      1/1     Running   0          9m31s
+mytest-9fc697ccd-wj7fc      1/1     Running   0          9m31s
+[root@k8s-master mywork]#
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Last login: Sun Nov 25 04:53:44 2018 from 223.186.51.46
+[ec2-user@k8s-master ~]$

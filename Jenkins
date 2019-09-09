@@ -1,0 +1,25 @@
+CI/CD Pipeline flow?
+Backup and restore policy of Jenkins?
+Groovy script for pipeline?
+Master and slave configuration?
+How to fix the build jobs slowness?
+How to fix the build job failures?
+How to configure the env varibales?
+log rotation?
+Shared libraries?
+How to start the Jenkins after build jobs completed?
+will jobs in slave will execute if master is down?
+User configurations?
+Default plugins?
+plugin installation with restart and without restart?
+Groovy Script for pipeline?
+Diff Jenkins jobs?
+- Used versions
+- Migrations to new versions
+- Build Job Failures
+- Build Job slowness
+- Master & Slave
+- CI/CD Flow
+- ENV Variables
+- Parametrized Build
+- User logins & Roles

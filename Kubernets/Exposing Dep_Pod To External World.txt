@@ -1,0 +1,54 @@
+Bringing the deployment to the external world !!!!
+
+1. Create the Deployment
+
+kubectl run my-nginx --replicas=2 --labels="run=nginx-backend" --image=nginx --port=80
+
+2. Create a service and expose it to a particular port and give your private ipaddress
+
+kubectl expose deployment my-nginx --type="LoadBalancer" --name=my-nginx --port=8080 --external-ip=10.142.0.2 --target-port=80
+
+Exposing a pod to the outside world !!!!!!
+
+[root@k8s-master mywork]# cat pod.yml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx-mine
+spec:
+  containers:
+   - name: nginx
+     image: nginx
+     ports:
+      - containerPort: 80
+
+kubectl expose pod nginx --type="LoadBalancer" --name=nginx --port=9001 --external-ip=10.142.0.2 --target-port=80
+
+Creating application with the volume ::
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-deployement-dev
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: nginx-deployement-dev
+    spec:
+	  volumes:
+        - name: my-apache
+          hostPath:
+			path: /mydata
+      containers:
+      - name: nginx-deployement-dev
+        image: myimave
+		volumeMounts:
+          - name: my-apache
+            mountPath: /var/www/html/
+
+        ports:
+        - containerPort: 80

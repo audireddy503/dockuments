@@ -1,0 +1,29 @@
+Sample Ansible playbook?
+What are the roles?
+Ansible playbook to check the state of a service?
+d/f config management tool vs Orchestration tools?
+Chef vs Ansible?
+playbooks vs role?
+default port for Ansible?
+How many ways you can define variables?
+How to pass variables in command line?
+What are the modules you are familiar?
+playbook for Apache and MySQL?
+password management using ansible valut?
+Issues?
+delegate_to?
+What are the default files and directories in Ansible roles?
+local_actions?
+debug?
+How to add IP Addresses of EC2 to host inventory after provisioned the EC2?
+How to use the handlers of one role in another role?
+What is Ansible role?
+How to create a role?
+How to execute role?
+- Used versions
+- Migrations to new versions
+- Nginx
+- Httpd
+- Activities
+- LoadBalancer
+- How to create custom modules

@@ -1,0 +1,9 @@
+Python Questions !!
+
+1. Which scripting language you know?
+
+2. What is python language?
+
+2.What are the scripting languages you know?
+3.Are you  used any 3rd  part library to write the python scripts?
+

@@ -1,0 +1,10 @@
+Terraform Questions !!
+
+1. What is Terraform? Does it supports RDS
+
+2. What all u did terraform?
+
+What is Terraform? Does it supports RDS
+
+what do you do throw terraform?
+
